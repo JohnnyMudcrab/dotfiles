@@ -1,0 +1,14 @@
+keycode  11 = 2 degree 2 at twosuperior oneeighth
+keycode  21 = numbersign asterisk numbersign asterisk
+keycode  30 = u U u U udiaeresis Udiaeresis
+keycode  32 = o O o O odiaeresis Odiaeresis
+keycode  34 = minus plus minus plus
+keycode  35 = apostrophe quotedbl apostrophe quotedbl
+keycode  38 = a A a A adiaeresis Adiaeresis
+keycode  47 = parenleft parenright parenleft parenright
+keycode  48 = bracketleft bracketright bracketleft bracketright
+keycode  49 = asciicircum asciitilde asciicircum asciitilde
+keycode  51 = braceleft braceright braceleft braceright
+keycode  61 = slash underscore slash underscore
+remove Lock = Caps_Lock
+keysym Caps_Lock = Escape

@@ -21,6 +21,8 @@ Bundle 'gmarik/vundle'
 
 " Bundles from GitHub repos:
 
+" Mustang color scheme
+Bundle 'Mustang2'
 " Better file browser
 Bundle 'scrooloose/nerdtree'
 " Code and files fuzzy finder

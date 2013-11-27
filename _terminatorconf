@@ -1,0 +1,55 @@
+[global_config]
+  geometry_hinting = False
+  dbus = True
+  focus = mouse
+  borderless = True
+[keybindings]
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    show_titlebar = False
+  [[presentation]]
+    use_system_font = False
+    font = Monospace 13
+[layouts]
+  [[default]]
+    [[[child1]]]
+      profile = default
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+  [[mylayout]]
+    [[[child0]]]
+      position = 0:0
+      type = Window
+      order = 0
+      parent = ""
+      size = 1440, 900
+    [[[child1]]]
+      position = 720
+      type = HPaned
+      order = 0
+      parent = child0
+    [[[child3]]]
+      position = 450
+      type = VPaned
+      order = 1
+      parent = child1
+    [[[terminal2]]]
+      profile = default
+      type = Terminal
+      order = 0
+      parent = child1
+    [[[terminal5]]]
+      profile = default
+      type = Terminal
+      order = 1
+      parent = child3
+    [[[terminal4]]]
+      profile = default
+      type = Terminal
+      order = 0
+      parent = child3
+[plugins]

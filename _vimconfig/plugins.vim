@@ -34,3 +34,11 @@ let g:clang_jumpto_declaration_key="<leader>cg"
 let g:clang_snippets_engine = 'clang_complete'
 let g:clang_hl_errors=1
 let g:clang_auto_select=1
+
+" dont select first item when autoomplete
+let g:acp_autoselectFirstCompletion=0
+
+" latex suite
+let g:Tex_DefaultTargetFormat='pdf'
+let g:Tex_ViewRule_pdf='okular'
+let g:Tex_CompileRule_pdf='pdflatex -interaction=nonstopmode -synctex=1 $*'

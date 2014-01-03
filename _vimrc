@@ -10,6 +10,9 @@ so ~/.vimconfig/mappings.vim
 " load plugin config
 so ~/.vimconfig/plugins.vim
 
+" load autocompletion setup
+so ~/.vimconfig/complete.vim
+
 " Rebind <Leader> key
 let mapleader = ","
 
@@ -28,7 +31,12 @@ if &term =~? 'mlterm\|xterm\|xterm-256\|screen-256'
     colorscheme mustang
 else
     " color
-    colorscheme delek
+    set guioptions-=T
+    set guioptions-=l
+    set guioptions-=r
+    set guioptions-=b
+    set guioptions-=L
+    colorscheme mustang
 endif
 
 " colors for gvim
@@ -43,12 +51,29 @@ set softtabstop=4           " <BS> over autoindent deletes both spaces
 set shiftwidth=4            " indent level is 4 spaces wide
 set shiftround              " rounds indent to a multiple of shiftwidth
 set expandtab               " use spaces, not tabs, for autoindent/tab key
+set mouse=a                 " enable mouse
 
 " tablength exceptions
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType cpp setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType matlab setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType octave setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+" matlab and octave settings
+" augroup filetypedetect
+  " au! BufRead,BufNewFile *.m,*.oct set filetype=octave
+" augroup END
+" if has("autocmd") && exists("+omnifunc")
+   " autocmd Filetype octave
+   " \	if &omnifunc == "" |
+   " \	 setlocal omnifunc=syntaxcomplete#Complete |
+   " \	endif
+" endif
+" au BufNewFile,BufRead *.m     setf octave
+" au BufNewFile,BufRead *.m     set syntax=matlab"
+autocmd BufEnter *.m    compiler mlint
 
 " always show status bar
 set ls=2
@@ -72,6 +97,7 @@ set noautowriteall          " NEVER
 
 " syntax highlight on
 syntax on
+set lazyredraw
 
 " showing line numbers and length
 set number  		        " show line numbers
@@ -87,3 +113,21 @@ set scrolloff=3
 " autocompletion of files and commands behaves like shell
 " (complete only the common part, list the options that match)
 set wildmode=list:longest
+
+" show syntax informations
+nmap <Leader>sI :call <SID>SynStack()<CR>
+
+function! <SID>SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" forward serach with latex
+function! SyncTexForward()
+     let execstr = "silent !okular --unique %:p:r.pdf\\#src:".line(".")."%:p &"
+     exec execstr
+     redraw!
+endfunction
+nnoremap <Leader>f :call SyncTexForward()<CR>

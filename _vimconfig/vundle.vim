@@ -21,10 +21,16 @@ Bundle 'gmarik/vundle'
 
 " Bundles from GitHub repos:
 
-" Mustang color scheme
-Bundle 'Mustang2'
+" color scheme
+" Bundle 'Mustang2'
+Bundle 'croaker/mustang-vim'
+" Bundle 'altercation/vim-colors-solarized'
+" Bundle 'shawncplus/skittles_berry'
+" Bundle 'guns/xterm-color-table.vim'
 " Better file browser
 Bundle 'scrooloose/nerdtree'
+" make nerdtree work with tabs
+Bundle 'jistr/vim-nerdtree-tabs'
 " Code and files fuzzy finder
 Bundle 'kien/ctrlp.vim'
 " Extension to ctrlp, for fuzzy command finder
@@ -44,8 +50,11 @@ Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'honza/vim-snippets'
 Bundle 'garbas/vim-snipmate'
+Bundle 'Shougo/neosnippet.vim'
 " Autocompletion
-Bundle 'AutoComplPop'
+" Bundle 'AutoComplPop'
+" Bundle 'dirkwallenstein/vim-autocomplpop'
+Bundle 'Shougo/neocomplete.vim'
 " Surround
 Bundle 'tpope/vim-surround'
 " Autoclose
@@ -58,6 +67,16 @@ Bundle 'IndexedSearch'
 Bundle 'milkypostman/vim-togglelist'
 " Vim Clang
 Bundle 'Rip-Rip/clang_complete'
+" Latex Support
+Bundle 'gerw/vim-latex-suite'
+" Matlab-Vim
+" Bundle 'lazywei/vim-matlab'
+" Bundle 'djoshea/vim-matlab-fold'
+" multiple cursors
+" Bundle 'terryma/vim-multiple-cursors'
+" Octave Vim
+" Bundle 'sjas/octave.vim'
+" Bundle 'jvirtanen/vim-octave'
 
 " Installing plugins the first time
 if iCanHazVundle == 0

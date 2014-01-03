@@ -1,16 +1,25 @@
 [global_config]
   geometry_hinting = False
   dbus = True
-  focus = mouse
   borderless = True
+  handle_size = 1
+  suppress_multiple_term_dialog = True
 [keybindings]
+  go_left = <Alt>h
+  go_down = <Alt>j
+  go_right = <Alt>l
+  go_up = <Alt>k
 [profiles]
   [[default]]
+    background_image = None
+    background_color = "#1c1c1c"
     scrollbar_position = hidden
     show_titlebar = False
+    foreground_color = "#ffffff"
   [[presentation]]
     use_system_font = False
     font = Monospace 13
+    background_image = None
 [layouts]
   [[default]]
     [[[child1]]]
@@ -26,14 +35,14 @@
       type = Window
       order = 0
       parent = ""
-      size = 1440, 900
+      size = 1920, 1080
     [[[child1]]]
-      position = 720
+      position = 966
       type = HPaned
       order = 0
       parent = child0
     [[[child3]]]
-      position = 450
+      position = 544
       type = VPaned
       order = 1
       parent = child1

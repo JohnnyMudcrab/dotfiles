@@ -31,6 +31,8 @@ Bundle 'croaker/mustang-vim'
 Bundle 'scrooloose/nerdtree'
 " make nerdtree work with tabs
 Bundle 'jistr/vim-nerdtree-tabs'
+" Project Support
+Bundle 'amiorin/vim-project'
 " Code and files fuzzy finder
 Bundle 'kien/ctrlp.vim'
 " Extension to ctrlp, for fuzzy command finder

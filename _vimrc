@@ -13,6 +13,9 @@ so ~/.vimconfig/plugins.vim
 " load autocompletion setup
 so ~/.vimconfig/complete.vim
 
+" load projects
+so ~/.vimconfig/project.vim
+
 " Rebind <Leader> key
 let mapleader = ","
 
@@ -31,17 +34,17 @@ if &term =~? 'mlterm\|xterm\|xterm-256\|screen-256'
     colorscheme mustang
 else
     " color
-    set guioptions-=T
-    set guioptions-=l
-    set guioptions-=r
-    set guioptions-=b
-    set guioptions-=L
     colorscheme mustang
 endif
 
 " colors for gvim
 if has('gui_running')
-    colorscheme wombat
+    colorscheme mustang
+    set guioptions-=T
+    set guioptions-=l
+    set guioptions-=r
+    set guioptions-=b
+    set guioptions-=L
 endif
 
 " moving around/editing

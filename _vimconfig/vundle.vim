@@ -69,6 +69,8 @@ Bundle 'IndexedSearch'
 Bundle 'milkypostman/vim-togglelist'
 " Vim Clang
 Bundle 'Rip-Rip/clang_complete'
+" python mode
+Bundle 'klen/python-mode'
 " Latex Support
 Bundle 'gerw/vim-latex-suite'
 " Matlab-Vim

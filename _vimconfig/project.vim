@@ -8,5 +8,3 @@ File     '~/.vimconfig/plugins.vim'       , 'plugins'
 File     '~/.vimconfig/mappings.vim'      , 'mappings'
 File     '~/.vimconfig/complete.vim'      , 'complete'
 File     '~/.vimconfig/project.vim'       , 'project'
-
-Project  '~/studies/master/forschungsprojekt/tex'   , 'researchProject'

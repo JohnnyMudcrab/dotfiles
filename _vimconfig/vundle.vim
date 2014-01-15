@@ -25,7 +25,10 @@ Bundle 'gmarik/vundle'
 " Bundle 'Mustang2'
 Bundle 'croaker/mustang-vim'
 " Bundle 'altercation/vim-colors-solarized'
-" Bundle 'shawncplus/skittles_berry'
+Bundle 'shawncplus/skittles_berry'
+Bundle 'Skittles-Dark'
+Bundle 'twilight256.vim'
+Bundle 'flazz/vim-colorschemes'
 " Bundle 'guns/xterm-color-table.vim'
 " Better file browser
 Bundle 'scrooloose/nerdtree'
@@ -39,6 +42,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'fisadev/vim-ctrlp-cmdpalette'
 " Class/module browser
 Bundle 'majutsushi/tagbar'
+" restore view
+Bundle 'restore_view.vim'
 " Pending tasks list
 Bundle 'fisadev/FixedTaskList.vim'
 " Code commenter
@@ -51,7 +56,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'honza/vim-snippets'
-Bundle 'garbas/vim-snipmate'
+" Bundle 'garbas/vim-snipmate'
 Bundle 'Shougo/neosnippet.vim'
 " Autocompletion
 " Bundle 'AutoComplPop'

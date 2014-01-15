@@ -127,6 +127,18 @@ function! <SID>SynStack()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+" toogle between number and relativ number
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-n> :call NumberToggle()<cr>
+
+
 " forward serach with latex
 function! SyncTexForward()
      let execstr = "silent !okular --unique %:p:r.pdf\\#src:".line(".")."%:p &"

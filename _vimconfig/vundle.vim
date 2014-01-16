@@ -26,9 +26,9 @@ Bundle 'gmarik/vundle'
 Bundle 'croaker/mustang-vim'
 " Bundle 'altercation/vim-colors-solarized'
 Bundle 'shawncplus/skittles_berry'
-Bundle 'Skittles-Dark'
-Bundle 'twilight256.vim'
-Bundle 'flazz/vim-colorschemes'
+" Bundle 'Skittles-Dark'
+" Bundle 'twilight256.vim'
+" Bundle 'flazz/vim-colorschemes'
 " Bundle 'guns/xterm-color-table.vim'
 " Better file browser
 Bundle 'scrooloose/nerdtree'
@@ -86,6 +86,8 @@ Bundle 'gerw/vim-latex-suite'
 " Octave Vim
 " Bundle 'sjas/octave.vim'
 " Bundle 'jvirtanen/vim-octave'
+" Toogle maximize Window
+" Bundle 'toggle_maximize.vim'
 
 " Installing plugins the first time
 if iCanHazVundle == 0

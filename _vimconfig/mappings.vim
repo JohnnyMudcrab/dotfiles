@@ -15,14 +15,14 @@ map tt :tabnew
 map ts :tab split<CR>
 
 " navigate windows with meta+arrows
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-imap <c-j> <ESC><c-w>l
-imap <c-k> <ESC><c-w>h
-imap <c-l> <ESC><c-w>k
-imap <c-h> <ESC><c-w>j
+noremap <c-j> <c-w>j
+noremap <c-k> <c-w>k
+noremap <c-l> <c-w>l
+noremap <c-h> <c-w>h
+" imap <c-j> <ESC><c-w>l
+" imap <c-k> <ESC><c-w>h
+" imap <c-l> <ESC><c-w>k
+" imap <c-h> <ESC><c-w>j
 
 " sace with ctrl-s
 noremap <silent> <C-S>          :update<CR>

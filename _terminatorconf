@@ -1,21 +1,29 @@
 [global_config]
-  geometry_hinting = False
-  dbus = True
-  borderless = True
+  window_state = hidden
   handle_size = 1
-  suppress_multiple_term_dialog = True
+  title_hide_sizetext = True
+  dbus = True
+  hide_from_taskbar = True
+  always_on_top = True
+  tab_position = left
 [keybindings]
-  go_left = <Alt>h
-  go_down = <Alt>j
-  go_right = <Alt>l
   go_up = <Alt>k
+  next_tab = <Alt>Right
+  move_tab_right = <Shift><Alt>Right
+  prev_tab = <Alt>Left
+  go_down = <Alt>j
+  move_tab_left = <Shift><Alt>Left
+  go_right = <Alt>l
+  go_left = <Alt>h
+  hide_window = F12
 [profiles]
   [[default]]
     background_image = None
-    background_color = "#1c1c1c"
-    scrollbar_position = hidden
-    show_titlebar = False
+    background_darkness = 1.03
     foreground_color = "#ffffff"
+    show_titlebar = False
+    background_color = "#1c1c1c"
+    scrollback_infinite = True
   [[presentation]]
     use_system_font = False
     font = Monospace 13
@@ -61,4 +69,16 @@
       type = Terminal
       order = 0
       parent = child3
+  [[layout]]
+    [[[child0]]]
+      position = 0:0
+      type = Window
+      order = 0
+      parent = ""
+      size = 1440, 438
+    [[[terminal1]]]
+      profile = default
+      type = Terminal
+      order = 0
+      parent = child0
 [plugins]

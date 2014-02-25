@@ -144,5 +144,6 @@ function! SyncTexForward()
      let execstr = "silent !okular --unique %:p:r.pdf\\#src:".line(".")."%:p &"
      exec execstr
      redraw!
+     redraw!
 endfunction
 nnoremap <Leader>f :call SyncTexForward()<CR>

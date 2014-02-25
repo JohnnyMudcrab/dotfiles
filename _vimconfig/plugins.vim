@@ -2,6 +2,9 @@
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'bubblegum'
 let g:airline#extensions#whitespace#enabled = 0
+let g:airline_left_sep=""
+let g:airline_right_sep=""
+let g:airline#extensions#tabline#enabled = 1
 
 " fix some problems with gitgutter and jedi-vim
 let g:gitgutter_eager = 0
@@ -28,7 +31,7 @@ let g:NERDSpaceDelims = 1
 " clang complete
 let g:clang_use_library=1
 let g:clang_complete_macros=1
-let g:clang_library_path="/usr/lib/llvm-3.2/lib"
+let g:clang_library_path="/usr/lib/"
 let g:clang_snippets = 1
 let g:clang_jumpto_declaration_key="<leader>cg"
 let g:clang_snippets_engine = 'clang_complete'
@@ -41,7 +44,7 @@ let g:acp_autoselectFirstCompletion=0
 " latex suite
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_ViewRule_pdf='okular'
-let g:Tex_CompileRule_pdf='pdflatex -interaction=nonstopmode -synctex=1 $*'
+let g:Tex_CompileRule_pdf='pdflatex -shell-escape -interaction=nonstopmode -synctex=1 $*'
 let g:Tex_MultipleCompileFormats='pdf, aux'
 let g:Tex_Folding=0
 let g:Tex_Folding=0

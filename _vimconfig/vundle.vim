@@ -51,7 +51,7 @@ Bundle 'scrooloose/nerdcommenter'
 " Git integration
 Bundle 'motemen/git-vim'
 " Git diff icons on the side of the file lines
-Bundle 'airblade/vim-gitgutter'
+" Bundle 'airblade/vim-gitgutter'
 " Snippets manager (SnipMate), dependencies, and snippets repo
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'

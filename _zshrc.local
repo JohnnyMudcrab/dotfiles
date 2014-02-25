@@ -316,4 +316,7 @@ fi
 #vimpm ()      { vim `perldoc -l $1 | sed -e 's/pod$/pm/'` }
 #vimhelp ()    { vim -c "help $1" -c on -c "au! VimEnter *" }
 
+export TERM=xterm-256color
+[ -n "$TMUX" ] && export TERM=screen-256color
+
 ## END OF FILE #################################################################

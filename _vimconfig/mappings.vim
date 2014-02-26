@@ -36,5 +36,11 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 map <F7> :mksession! ~/.vim_session <cr>
 map <F8> :source ~/.vim_session <cr>
 
+" dont yank replaced text
+vnoremap <leader>p "_dP
+
+" fast reload configuration
+nmap <Leader>s :source ~/.vimrc <CR>
+
 " remove all unwanted whitespaces
 map <leader>dw :%s/\s\+$// <cr>

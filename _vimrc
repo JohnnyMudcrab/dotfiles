@@ -19,6 +19,9 @@ so ~/.vimconfig/project.vim
 " Rebind <Leader> key
 let mapleader = ","
 
+" make system clipboard default
+set clipboard=unnamedplus
+
 " save as sudo
 ca w!! w !sudo tee "%"
 

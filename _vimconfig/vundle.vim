@@ -25,7 +25,7 @@ Bundle 'gmarik/vundle'
 " Bundle 'Mustang2'
 Bundle 'croaker/mustang-vim'
 " Bundle 'altercation/vim-colors-solarized'
-Bundle 'shawncplus/skittles_berry'
+" Bundle 'shawncplus/skittles_berry'
 " Bundle 'Skittles-Dark'
 " Bundle 'twilight256.vim'
 " Bundle 'flazz/vim-colorschemes'
@@ -72,12 +72,6 @@ Bundle 'bling/vim-airline'
 Bundle 'IndexedSearch'
 " Toogle List Tool
 Bundle 'milkypostman/vim-togglelist'
-" Vim Clang
-Bundle 'Rip-Rip/clang_complete'
-" python mode
-Bundle 'klen/python-mode'
-" Latex Support
-Bundle 'gerw/vim-latex-suite'
 " Matlab-Vim
 " Bundle 'lazywei/vim-matlab'
 " Bundle 'djoshea/vim-matlab-fold'

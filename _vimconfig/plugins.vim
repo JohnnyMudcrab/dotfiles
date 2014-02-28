@@ -6,7 +6,7 @@ let g:airline_left_sep=""
 let g:airline_right_sep=""
 let g:airline#extensions#tabline#enabled = 1
 
-" fix some problems with gitgutter and jedi-vim
+" fix some problems with gitgutter
 let g:gitgutter_eager = 0
 let g:gitgutter_realtime = 0
 
@@ -28,39 +28,8 @@ let g:ctrlp_custom_ignore = {
 " tell NERDCommenter to put whitespace after delimiter
 let g:NERDSpaceDelims = 1
 
-" clang complete
-let g:clang_use_library=1
-let g:clang_complete_macros=1
-let g:clang_library_path="/usr/lib/"
-let g:clang_snippets = 1
-let g:clang_jumpto_declaration_key="<leader>cg"
-let g:clang_snippets_engine = 'clang_complete'
-let g:clang_hl_errors=1
-let g:clang_auto_select=1
 
 " dont select first item when autoomplete
 let g:acp_autoselectFirstCompletion=0
 
-" latex suite
-let g:Tex_DefaultTargetFormat='pdf'
-let g:Tex_ViewRule_pdf='okular'
-let g:Tex_CompileRule_pdf='pdflatex -shell-escape -interaction=nonstopmode -synctex=1 $*'
-let g:Tex_MultipleCompileFormats='pdf, aux'
-let g:Tex_Folding=0
-let g:Tex_Folding=0
-let g:Tex_FoldedSections=""
-let g:Tex_FoldedEnvironments=""
-let g:Tex_FoldedMisc=""
-let g:Tex_FoldedSections=""
-let g:Tex_FoldedEnvironments=""
-let g:Tex_FoldedMisc=""
 
-" Settings for python-mode
-let g:pymode = 1
-" let g:pymode_indent = []
-" let g:pymode_rope = 0
-" let g:pymode_breakpoint = 0
-" let g:pymode_syntax = 1
-" let g:pymode_syntax_builtin_objs = 0
-" let g:pymode_syntax_builtin_funcs = 0
-" let g:pymode_lint_cwindow = 0

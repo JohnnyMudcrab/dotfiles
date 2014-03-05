@@ -8,7 +8,7 @@ so ~/.vimconfig/vundle.vim
 so ~/.vimconfig/mappings.vim
 
 " load plugin config
-so ~/.vimconfig/plugins.vim
+so ~/.vimconfig/settings.vim
 
 " load autocompletion setup
 so ~/.vimconfig/complete.vim

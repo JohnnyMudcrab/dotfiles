@@ -321,5 +321,5 @@ export TERM=xterm-256color
 
 export EDITOR=vim
 
-alias ide-latex=vim\ -u\ ~/.vimconfig/latex/load.vim
+alias vim-latex=vim\ -u\ ~/.vimconfig/latex/load.vim
 ## END OF FILE #################################################################

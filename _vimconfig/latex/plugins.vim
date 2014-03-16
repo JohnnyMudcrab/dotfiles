@@ -1,13 +1,27 @@
-" latex suite
-let g:Tex_DefaultTargetFormat='pdf'
-let g:Tex_ViewRule_pdf='okular'
-let g:Tex_CompileRule_pdf='pdflatex -shell-escape -interaction=nonstopmode -synctex=1 $*'
-let g:Tex_MultipleCompileFormats='pdf, aux'
-let g:Tex_Folding=0
-let g:Tex_Folding=0
-let g:Tex_FoldedSections=""
-let g:Tex_FoldedEnvironments=""
-let g:Tex_FoldedMisc=""
-let g:Tex_FoldedSections=""
-let g:Tex_FoldedEnvironments=""
-let g:Tex_FoldedMisc=""
+" Setting up Vundle - the vim plugin bundler
+let iCanHazVundle=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle..."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let iCanHazVundle=0
+endif
+
+" required for vundle
+filetype off
+
+" Latex Support
+Bundle 'gerw/vim-latex-suite'
+
+" Installing plugins the first time
+if iCanHazVundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :BundleInstall
+endif
+
+" allow plugins by file type
+filetype plugin on
+filetype indent on

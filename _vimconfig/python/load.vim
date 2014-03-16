@@ -1,11 +1,11 @@
 " load vimrc
 so ~/.vimrc
 
-" load vundle config
-so ~/.vimconfig/python/vundle.vim
+" load plugins
+so ~/.vimconfig/python/plugins.vim
 
 " load mappings
 so ~/.vimconfig/python/mappings.vim
 
-" load plugin config
-so ~/.vimconfig/python/plugins.vim
+" load settings
+so ~/.vimconfig/python/settings.vim

@@ -1,9 +1,24 @@
-" Settings for python-mode
-let g:pymode = 1
-" let g:pymode_indent = []
-" let g:pymode_rope = 0
-" let g:pymode_breakpoint = 0
-" let g:pymode_syntax = 1
-" let g:pymode_syntax_builtin_objs = 0
-" let g:pymode_syntax_builtin_funcs = 0
-" let g:pymode_lint_cwindow = 0
+" Setting up Vundle - the vim plugin bundler
+let iCanHazVundle=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle..."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let iCanHazVundle=0
+endif
+
+" python mode
+Bundle 'klen/python-mode'
+
+" Installing plugins the first time
+if iCanHazVundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :BundleInstall
+endif
+
+" allow plugins by file type
+filetype plugin on
+filetype indent on

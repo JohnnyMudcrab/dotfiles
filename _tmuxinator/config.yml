@@ -1,7 +1,7 @@
 # ~/.tmuxinator/config.yml
 
 name: config
-root: ~/
+root: ~/.vimconfig
 
 # Optional tmux socket
 # socket_name: foo
@@ -19,8 +19,27 @@ root: ~/
 # tmux_command: byobu
 
 windows:
-  - editor:
-      layout: main-vertical
+  - default:
+      layout: a82b,179x50,0,0{89x50,0,0,2,89x50,90,0[89x25,90,0,3,89x24,90,26,4]}
       panes:
-        - vim .vimrc
-        - vim -u .vimconfig/config.vim
+        - vim default/settings.vim
+        - vim default/plugins.vim
+        - vim default/mappings.vim
+  - c++:
+      layout: a82b,179x50,0,0{89x50,0,0,2,89x50,90,0[89x25,90,0,3,89x24,90,26,4]}
+      panes:
+        - vim c++/settings.vim
+        - vim c++/plugins.vim
+        - vim c++/mappings.vim
+  - latex:
+      layout: a82b,179x50,0,0{89x50,0,0,2,89x50,90,0[89x25,90,0,3,89x24,90,26,4]}
+      panes:
+        - vim latex/settings.vim
+        - vim latex/plugins.vim
+        - vim latex/mappings.vim
+  - python:
+      layout: a82b,179x50,0,0{89x50,0,0,2,89x50,90,0[89x25,90,0,3,89x24,90,26,4]}
+      panes:
+        - vim python/settings.vim
+        - vim python/plugins.vim
+        - vim python/mappings.vim

@@ -1,6 +1,8 @@
 dotfiles
 ========
 
+My personal dotfiles.
+
 ## Installation
 
 You need to clone the repository into `~/github/dotfiles` and run the installation script `./install.sh`.

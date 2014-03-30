@@ -1,11 +1,17 @@
-" show pending tasks list
-map <F2> :TaskList<CR>
+" source colorscheme
+map <leader>c :source ~/github/vim-mudcrab/colors/mudcrab.vim<CR>
+
+" quickly source vimrc
+map <leader>s :source ~/.vimrc<CR>
 
 " NERDTree (better file browser) toggle
-map <F3> :NERDTreeTabsToggle<CR>
+map <leader>n :NERDTreeTabsToggle<CR>
 
 " toggle Tagbar display
-map <F4> :TagbarToggle<CR>
+map <leader>t :TagbarToggle<CR>
+
+" show syntax informations
+nmap <Leader>sI :call <SID>SynStack()<CR>
 
 " tab navigation
 map tn :tabn<CR>
@@ -14,33 +20,16 @@ map tm :tabm
 map tt :tabnew
 map ts :tab split<CR>
 
-" navigate windows with meta+arrows
-noremap <c-j> <c-w>j
-noremap <c-k> <c-w>k
-noremap <c-l> <c-w>l
-noremap <c-h> <c-w>h
-" imap <c-j> <ESC><c-w>l
-" imap <c-k> <ESC><c-w>h
-" imap <c-l> <ESC><c-w>k
-" imap <c-h> <ESC><c-w>j
-
-" sace with ctrl-s
-noremap <silent> <C-S>          :update<CR>
-vnoremap <silent> <C-S>         <C-C>:update<CR>
-inoremap <silent> <C-S>         <C-O>:update<CR>
-
 " autocomplete enhancements
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" quickly save and load session
-map <F7> :mksession! ~/.vim_session <cr>
-map <F8> :source ~/.vim_session <cr>
 
 " dont yank replaced text
 vnoremap <leader>p "_dP
 
-" fast reload configuration
-nmap <Leader>s :source ~/.vimrc <CR>
-
 " remove all unwanted whitespaces
 map <leader>dw :%s/\s\+$// <cr>
+
+" neosnippet usage
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)

@@ -22,66 +22,69 @@ Bundle 'gmarik/vundle'
 " Bundles from GitHub repos:
 
 " color scheme
-" Bundle 'Mustang2'
+Bundle 'gerw/vim-HiLinkTrace'
 Bundle 'croaker/mustang-vim'
+Bundle 'JohnnyMudcrab/vim-mudcrab'
 " Bundle 'altercation/vim-colors-solarized'
 " Bundle 'shawncplus/skittles_berry'
 " Bundle 'Skittles-Dark'
 " Bundle 'twilight256.vim'
 " Bundle 'flazz/vim-colorschemes'
 " Bundle 'guns/xterm-color-table.vim'
+
 " Better file browser
 Bundle 'scrooloose/nerdtree'
+
 " make nerdtree work with tabs
 Bundle 'jistr/vim-nerdtree-tabs'
+
 " Project Support
 Bundle 'amiorin/vim-project'
+
 " Code and files fuzzy finder
 Bundle 'kien/ctrlp.vim'
+
 " Extension to ctrlp, for fuzzy command finder
 Bundle 'fisadev/vim-ctrlp-cmdpalette'
+
 " Class/module browser
 Bundle 'majutsushi/tagbar'
+
 " restore view
 Bundle 'restore_view.vim'
+
 " Pending tasks list
 Bundle 'fisadev/FixedTaskList.vim'
+
 " Code commenter
 Bundle 'scrooloose/nerdcommenter'
+
 " Git integration
 Bundle 'motemen/git-vim'
-" Git diff icons on the side of the file lines
-" Bundle 'airblade/vim-gitgutter'
-" Snippets manager (SnipMate), dependencies, and snippets repo
+
+" snippets stuff
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'honza/vim-snippets'
-" Bundle 'garbas/vim-snipmate'
 Bundle 'Shougo/neosnippet.vim'
+
 " Autocompletion
-" Bundle 'AutoComplPop'
-" Bundle 'dirkwallenstein/vim-autocomplpop'
 Bundle 'Shougo/neocomplete.vim'
+
 " Surround
 Bundle 'tpope/vim-surround'
+
 " Autoclose
 Bundle 'Townk/vim-autoclose'
+
 " Airline
 Bundle 'bling/vim-airline'
+
 " Search results counter
 Bundle 'IndexedSearch'
+
 " Toogle List Tool
 Bundle 'milkypostman/vim-togglelist'
-" Matlab-Vim
-" Bundle 'lazywei/vim-matlab'
-" Bundle 'djoshea/vim-matlab-fold'
-" multiple cursors
-" Bundle 'terryma/vim-multiple-cursors'
-" Octave Vim
-" Bundle 'sjas/octave.vim'
-" Bundle 'jvirtanen/vim-octave'
-" Toogle maximize Window
-" Bundle 'toggle_maximize.vim'
 
 " Installing plugins the first time
 if iCanHazVundle == 0

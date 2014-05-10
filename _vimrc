@@ -79,6 +79,19 @@ set nowrap  		        " don't automatically wrap on load
 set fo-=t   		        " don't automatically wrap text when typing
 set colorcolumn=80	        " show column 80
 
+" make gvim look like vim
+if has("gui_running")
+    set guioptions+=c
+    set guioptions+=R
+    set guioptions-=m
+    set guioptions-=r
+    set guioptions-=b
+    set guioptions-=T
+    set guioptions-=R
+    set guioptions-=L
+    set guioptions-=e
+end
+
 " when scrolling, keep cursor 3 lines away from screen border
 set scrolloff=3
 

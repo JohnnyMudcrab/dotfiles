@@ -1,7 +1,6 @@
 [global_config]
   title_hide_sizetext = True
   dbus = True
-  hide_from_taskbar = True
   handle_size = 1
   tab_position = left
 [keybindings]
@@ -13,7 +12,7 @@
   move_tab_left = <Shift><Alt>Left
   go_right = <Alt>l
   go_left = <Alt>h
-  hide_window = F12
+  hide_window = <Primary><Shift>h
 [profiles]
   [[default]]
     background_image = None

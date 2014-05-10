@@ -322,4 +322,5 @@ export TERM=xterm-256color
 export EDITOR=vim
 
 alias vim-latex=vim\ -u\ ~/.vimconfig/latex/load.vim
+alias vim-python=vim\ -u\ ~/.vimconfig/python/load.vim
 ## END OF FILE #################################################################

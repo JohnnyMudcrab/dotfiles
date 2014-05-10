@@ -13,6 +13,9 @@ map <leader>t :TagbarToggle<CR>
 " show syntax informations
 nmap <Leader>sI :call <SID>SynStack()<CR>
 
+" turn of highlighting
+map <Leader>ho :noh<CR>
+
 " tab navigation
 map tn :tabn<CR>
 map tp :tabp<CR>

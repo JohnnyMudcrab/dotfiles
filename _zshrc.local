@@ -320,6 +320,7 @@ export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 export EDITOR=vim
+export Simox_DIR=~/github/simox
 
 alias vim-latex=vim\ -u\ ~/.vimconfig/latex/load.vim
 alias vim-python=vim\ -u\ ~/.vimconfig/python/load.vim

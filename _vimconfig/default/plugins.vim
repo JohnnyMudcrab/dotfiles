@@ -60,7 +60,8 @@ Bundle 'fisadev/FixedTaskList.vim'
 Bundle 'scrooloose/nerdcommenter'
 
 " Git integration
-Bundle 'motemen/git-vim'
+" Bundle 'motemen/git-vim'
+Bundle 'tpope/vim-fugitive'
 
 " snippets stuff
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -70,6 +71,7 @@ Bundle 'Shougo/neosnippet.vim'
 
 " Autocompletion
 Bundle 'Shougo/neocomplete.vim'
+Bundle 'ervandew/supertab'
 
 " Surround
 Bundle 'tpope/vim-surround'
@@ -85,6 +87,10 @@ Bundle 'IndexedSearch'
 
 " Toogle List Tool
 Bundle 'milkypostman/vim-togglelist'
+
+" Lua support (needs to be outsourced)
+Bundle 'xolox/vim-misc'
+Bundle 'lua.vim'
 
 " Installing plugins the first time
 if iCanHazVundle == 0

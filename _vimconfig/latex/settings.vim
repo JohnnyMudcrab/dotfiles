@@ -23,6 +23,9 @@ let g:Tex_FoldedEnvironments=""
 " no misc will be folded
 let g:Tex_FoldedMisc=""
 
+" change filetype back to latex
+let g:tex_flavor='latex'
+
 "" User Defined Functions
 " forward serach with latex
 function! SyncTexForward()

@@ -12,6 +12,9 @@ endif
 " python mode
 Bundle 'klen/python-mode'
 
+" jedi
+Bundle 'davidhalter/jedi-vim'
+
 " Installing plugins the first time
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"

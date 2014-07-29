@@ -43,3 +43,6 @@ windows:
         - vim python/settings.vim
         - vim python/plugins.vim
         - vim python/mappings.vim
+  - color:
+      panes:
+        - vim ~/github/vim-mudcrab/colors/mudcrab.vim

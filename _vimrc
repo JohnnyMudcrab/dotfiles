@@ -48,10 +48,6 @@ autocmd FileType cpp setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType matlab setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType octave setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
-"use docx2txt.pl to allow VIm to view the text content of a .docx file directly.
-autocmd BufReadPre *.docx set ro
-autocmd BufReadPost *.docx %!docx2txt.pl
-
 " always show status bar
 set ls=2
 

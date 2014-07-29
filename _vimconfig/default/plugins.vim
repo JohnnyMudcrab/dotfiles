@@ -39,7 +39,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 
 " Project Support
-Bundle 'amiorin/vim-project'
+" Bundle 'amiorin/vim-project'
 
 " Code and files fuzzy finder
 Bundle 'kien/ctrlp.vim'
@@ -64,14 +64,15 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-fugitive'
 
 " snippets stuff
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'honza/vim-snippets'
-Bundle 'Shougo/neosnippet.vim'
+" Bundle 'MarcWeber/vim-addon-mw-utils'
+" Bundle 'tomtom/tlib_vim'
+" Bundle 'honza/vim-snippets'
+" Bundle 'Shougo/neosnippet.vim'
 
 " Autocompletion
-Bundle 'Shougo/neocomplete.vim'
-Bundle 'ervandew/supertab'
+" Bundle 'Shougo/neocomplete.vim'
+" Bundle 'ervandew/supertab'
+Bundle 'Valloric/YouCompleteMe'
 
 " Surround
 Bundle 'tpope/vim-surround'

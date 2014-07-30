@@ -30,7 +30,7 @@ let g:NERDSpaceDelims = 1
 
 "" YouCompleteMe
 let g:ycm_filepath_completion_use_working_dir = 1
-let g:ycm_auto_trigger = 0
+let g:ycm_auto_trigger = 1
 set omnifunc=syntaxcomplete#Complete
 
 " Fix to let ESC work as espected with Autoclose plugin

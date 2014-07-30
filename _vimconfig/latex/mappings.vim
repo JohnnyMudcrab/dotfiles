@@ -6,3 +6,6 @@ imap <c-l> <Plug>IMAP_JumpForward
 
 " change insert item
 imap <c-k> <Plug>Tex_InsertItemOnThisLine
+
+" no smart qoutes
+let g:Tex_SmartKeyQuote=0

@@ -78,8 +78,8 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'tpope/vim-surround'
 
 " Autoclose
-Bundle 'Townk/vim-autoclose'
-
+" Bundle 'Townk/vim-autoclose'
+Bundle 'Raimondi/delimitMate'
 " Airline
 Bundle 'bling/vim-airline'
 
@@ -88,6 +88,9 @@ Bundle 'IndexedSearch'
 
 " Toogle List Tool
 Bundle 'milkypostman/vim-togglelist'
+
+" multiple cursor support
+Bundle 'terryma/vim-multiple-cursors'
 
 " Lua support (needs to be outsourced)
 Bundle 'xolox/vim-misc'

@@ -23,6 +23,11 @@ map tm :tabm
 map tt :tabnew
 map ts :tab split<CR>
 
+" buffer navigation
+map <leader>bn :bn<cr>
+map <leader>bp :bp<cr>
+map <leader>bd :bd<cr>
+
 " autocomplete enhancements
 " inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 

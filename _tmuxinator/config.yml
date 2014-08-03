@@ -1,7 +1,7 @@
 # ~/.tmuxinator/config.yml
 
 name: config
-root: ~/.vimconfig
+root: ~/github/dotfiles
 
 # Optional tmux socket
 # socket_name: foo
@@ -19,30 +19,33 @@ root: ~/.vimconfig
 # tmux_command: byobu
 
 windows:
+  - vimrc:
+      panes:
+        - vim _vimrc
   - default:
       layout: a82b,179x50,0,0{89x50,0,0,2,89x50,90,0[89x25,90,0,3,89x24,90,26,4]}
       panes:
-        - vim default/settings.vim
-        - vim default/plugins.vim
-        - vim default/mappings.vim
+        - vim _vimconfig/default/settings.vim
+        - vim _vimconfig/default/plugins.vim
+        - vim _vimconfig/default/mappings.vim
   - c++:
       layout: a82b,179x50,0,0{89x50,0,0,2,89x50,90,0[89x25,90,0,3,89x24,90,26,4]}
       panes:
-        - vim c++/settings.vim
-        - vim c++/plugins.vim
-        - vim c++/mappings.vim
+        - vim _vimconfig/c++/settings.vim
+        - vim _vimconfig/c++/plugins.vim
+        - vim _vimconfig/c++/mappings.vim
   - latex:
       layout: a82b,179x50,0,0{89x50,0,0,2,89x50,90,0[89x25,90,0,3,89x24,90,26,4]}
       panes:
-        - vim latex/settings.vim
-        - vim latex/plugins.vim
-        - vim latex/mappings.vim
+        - vim _vimconfig/latex/settings.vim
+        - vim _vimconfig/latex/plugins.vim
+        - vim _vimconfig/latex/mappings.vim
   - python:
       layout: a82b,179x50,0,0{89x50,0,0,2,89x50,90,0[89x25,90,0,3,89x24,90,26,4]}
       panes:
-        - vim python/settings.vim
-        - vim python/plugins.vim
-        - vim python/mappings.vim
+        - vim _vimconfig/python/settings.vim
+        - vim _vimconfig/python/plugins.vim
+        - vim _vimconfig/python/mappings.vim
   - color:
       panes:
         - vim ~/github/vim-mudcrab/colors/mudcrab.vim

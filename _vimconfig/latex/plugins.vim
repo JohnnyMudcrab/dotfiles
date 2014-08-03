@@ -14,6 +14,7 @@ filetype off
 
 " Latex Support
 Bundle 'gerw/vim-latex-suite'
+Bundle 'hura/vim-asymptote'
 
 " Installing plugins the first time
 if iCanHazVundle == 0

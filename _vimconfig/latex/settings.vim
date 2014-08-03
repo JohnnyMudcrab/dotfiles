@@ -1,11 +1,16 @@
 "" Latex Suite Settings
+" let g:Tex_FormatDependency_pdf = 'dvi,ps,pdf'
+
 " set default output format
 let g:Tex_DefaultTargetFormat='pdf'
 
 " set default viewer
-let g:Tex_ViewRule_pdf='okular'
+let g:Tex_ViewRule_pdf='evince'
 
 " define toolchain for pdf
+" let g:Tex_CompileRule_dvi = 'latex --interaction=nonstopmode $*'
+" let g:Tex_CompileRule_ps = 'dvips -Ppdf -o $*.ps $*.dvi'
+" let g:Tex_CompileRule_pdf = 'ps2pdf $*.ps'
 let g:Tex_CompileRule_pdf='pdflatex -shell-escape -interaction=nonstopmode -synctex=1 $*'
 
 " formats for cross-references
@@ -34,3 +39,7 @@ function! SyncTexForward()
      redraw!
      redraw!
 endfunction
+
+au BufNewFile,BufRead *.asy set filetype=asy
+
+let tex_no_error=1

@@ -106,4 +106,4 @@ so ~/.vimconfig/default/mappings.vim
 so ~/.vimconfig/default/settings.vim
 
 " load projects
-so ~/.vimconfig/project.vim
+" so ~/.vimconfig/project.vim

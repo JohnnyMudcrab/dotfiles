@@ -34,18 +34,6 @@
     [[[window0]]]
       type = Window
       parent = ""
-  [[layout]]
-    [[[child0]]]
-      position = 0:0
-      type = Window
-      order = 0
-      parent = ""
-      size = 1440, 438
-    [[[terminal1]]]
-      profile = default
-      type = Terminal
-      order = 0
-      parent = child0
   [[mylayout]]
     [[[child0]]]
       position = 0:0
@@ -78,4 +66,16 @@
       type = Terminal
       order = 0
       parent = child3
+  [[layout]]
+    [[[child0]]]
+      position = 0:0
+      type = Window
+      order = 0
+      parent = ""
+      size = 1440, 438
+    [[[terminal1]]]
+      profile = default
+      type = Terminal
+      order = 0
+      parent = child0
 [plugins]

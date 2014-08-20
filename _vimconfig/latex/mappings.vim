@@ -9,3 +9,6 @@ imap <c-k> <Plug>Tex_InsertItemOnThisLine
 
 " no smart qoutes
 let g:Tex_SmartKeyQuote=0
+
+" use texcount
+nmap <leader>lc :!texcount -inc -total main.tex<CR>

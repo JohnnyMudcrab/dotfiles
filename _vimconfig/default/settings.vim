@@ -36,6 +36,7 @@ set omnifunc=syntaxcomplete#Complete
 " Fix to let ESC work as espected with Autoclose plugin
 let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 
+let g:sneak#use_ic_scs = 1
 
 "" User Defined Functions
 " show syntax informations
@@ -55,8 +56,23 @@ function! NumberToggle()
   endif
 endfunc
 
+" get word count and set statusmessage
+" function! WordCount()
+  " let s:old_status = v:statusmsg
+  " let position = getpos(".")
+  " exe ":silent normal g\<c-g>"
+  " let stat = v:statusmsg
+  " let s:word_count = 0
+  " if stat != '--No lines in buffer--'
+    " let s:word_count = str2nr(split(v:statusmsg)[11])
+    " let v:statusmsg = s:old_status
+  " end
+  " call setpos('.', position)
+  " return s:word_count
+" endfunction
 
-
+" let g:airline_section_z = '%3p%%%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#:%3c: %{WordCount()}'
+" let g:airline_section_z = '%{WordCount()}'
 
 
 

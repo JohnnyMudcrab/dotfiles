@@ -25,6 +25,7 @@ Bundle 'gmarik/vundle'
 Bundle 'gerw/vim-HiLinkTrace'
 Bundle 'croaker/mustang-vim'
 Bundle 'JohnnyMudcrab/vim-mudcrab'
+Bundle 'endel/vim-github-colorscheme'
 " Bundle 'altercation/vim-colors-solarized'
 " Bundle 'shawncplus/skittles_berry'
 " Bundle 'Skittles-Dark'
@@ -95,6 +96,9 @@ Bundle 'terryma/vim-multiple-cursors'
 " Lua support (needs to be outsourced)
 Bundle 'xolox/vim-misc'
 Bundle 'lua.vim'
+
+" vim sneak for easier motion
+Bundle 'justinmk/vim-sneak'
 
 " Installing plugins the first time
 if iCanHazVundle == 0

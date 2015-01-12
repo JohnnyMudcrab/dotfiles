@@ -37,6 +37,14 @@ vnoremap <leader>p "_dP
 " remove all unwanted whitespaces
 map <leader>dw :%s/\s\+$// <cr>
 
+" vimux
+nnoremap <leader>mm :call VimuxRunCommand("make")<cr>
+nnoremap <leader>mr :call VimuxRunCommand("make run")<cr>
+nnoremap <leader>mc :call VimuxRunCommand("make clean")<cr>
+
+" goto
+nnoremap <leader>gt :YcmCompleter GoTo<CR>
+
 " neosnippet usage
 " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " smap <C-k>     <Plug>(neosnippet_expand_or_jump)

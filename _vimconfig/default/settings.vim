@@ -31,7 +31,17 @@ let g:NERDSpaceDelims = 1
 "" YouCompleteMe
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_auto_trigger = 1
-set omnifunc=syntaxcomplete#Complete
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+set completeopt-=preview
+" set omnifunc=syntaxcomplete#Complete
+
+"" UltiSnips
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " Fix to let ESC work as espected with Autoclose plugin
 let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
@@ -55,6 +65,9 @@ function! NumberToggle()
     set relativenumber
   endif
 endfunc
+
+" enable language tool
+let g:languagetool_jar='~/desktop/LanguageTool-2.7/languagetool-commandline.jar'
 
 " get word count and set statusmessage
 " function! WordCount()

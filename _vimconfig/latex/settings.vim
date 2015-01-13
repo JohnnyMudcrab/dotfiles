@@ -42,4 +42,5 @@ endfunction
 
 au BufNewFile,BufRead *.asy set filetype=asy
 
-let tex_no_error=1
+let Tex_no_error=1
+let g:Tex_ShowErrorContext = 0

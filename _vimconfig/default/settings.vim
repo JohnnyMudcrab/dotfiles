@@ -31,7 +31,7 @@ let g:NERDSpaceDelims = 1
 "" YouCompleteMe
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_auto_trigger = 1
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vimconfig/.ycm_extra_conf.py'
 set completeopt-=preview
 " set omnifunc=syntaxcomplete#Complete
 

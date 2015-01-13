@@ -31,11 +31,22 @@ let g:NERDSpaceDelims = 1
 "" YouCompleteMe
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_auto_trigger = 1
-set omnifunc=syntaxcomplete#Complete
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+set completeopt-=preview
+" set omnifunc=syntaxcomplete#Complete
+
+"" UltiSnips
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " Fix to let ESC work as espected with Autoclose plugin
 let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 
+let g:sneak#use_ic_scs = 1
 
 "" User Defined Functions
 " show syntax informations
@@ -55,8 +66,26 @@ function! NumberToggle()
   endif
 endfunc
 
+" enable language tool
+let g:languagetool_jar='~/desktop/LanguageTool-2.7/languagetool-commandline.jar'
 
+" get word count and set statusmessage
+" function! WordCount()
+  " let s:old_status = v:statusmsg
+  " let position = getpos(".")
+  " exe ":silent normal g\<c-g>"
+  " let stat = v:statusmsg
+  " let s:word_count = 0
+  " if stat != '--No lines in buffer--'
+    " let s:word_count = str2nr(split(v:statusmsg)[11])
+    " let v:statusmsg = s:old_status
+  " end
+  " call setpos('.', position)
+  " return s:word_count
+" endfunction
 
+" let g:airline_section_z = '%3p%%%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#:%3c: %{WordCount()}'
+" let g:airline_section_z = '%{WordCount()}'
 
 
 

@@ -336,4 +336,5 @@ fi
 
 alias vim-latex=vim\ -u\ ~/.vimconfig/latex/load.vim
 alias vim-python=vim\ -u\ ~/.vimconfig/python/load.vim
+alias vim-cpp=vim\ -u\ ~/.vimconfig/c++/load.vim
 ## END OF FILE #################################################################

@@ -20,11 +20,18 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Bundles from GitHub repos:
+" Bundle 'LanguageTool'
 
+"tmux
+Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'benmills/vimux'
+
+Bundle 'gilligan/vim-lldb'
 " color scheme
-Bundle 'gerw/vim-HiLinkTrace'
+" Bundle 'gerw/vim-HiLinkTrace'
 Bundle 'croaker/mustang-vim'
 Bundle 'JohnnyMudcrab/vim-mudcrab'
+" Bundle 'endel/vim-github-colorscheme'
 " Bundle 'altercation/vim-colors-solarized'
 " Bundle 'shawncplus/skittles_berry'
 " Bundle 'Skittles-Dark'
@@ -64,6 +71,8 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-fugitive'
 
 " snippets stuff
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 " Bundle 'MarcWeber/vim-addon-mw-utils'
 " Bundle 'tomtom/tlib_vim'
 " Bundle 'honza/vim-snippets'
@@ -93,8 +102,11 @@ Bundle 'milkypostman/vim-togglelist'
 Bundle 'terryma/vim-multiple-cursors'
 
 " Lua support (needs to be outsourced)
-Bundle 'xolox/vim-misc'
-Bundle 'lua.vim'
+" Bundle 'xolox/vim-misc'
+" Bundle 'lua.vim'
+
+" vim sneak for easier motion
+Bundle 'justinmk/vim-sneak'
 
 " Installing plugins the first time
 if iCanHazVundle == 0

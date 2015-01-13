@@ -31,6 +31,9 @@ let g:Tex_FoldedMisc=""
 " change filetype back to latex
 let g:tex_flavor='latex'
 
+" dont open error message if not wanted
+let g:Tex_GotoError=0
+
 "" User Defined Functions
 " forward serach with latex
 function! SyncTexForward()

@@ -26,7 +26,7 @@ Bundle 'gmarik/vundle'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'benmills/vimux'
 
-Bundle 'gilligan/vim-lldb'
+" Bundle 'gilligan/vim-lldb'
 " color scheme
 " Bundle 'gerw/vim-HiLinkTrace'
 Bundle 'croaker/mustang-vim'

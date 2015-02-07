@@ -14,7 +14,7 @@ map <leader>t :TagbarToggle<CR>
 nmap <Leader>sI :call <SID>SynStack()<CR>
 
 " turn of highlighting
-map <Leader>ho :noh<CR>
+nmap <Leader>ho :noh<CR>
 
 " begin and end of line
 noremap H ^

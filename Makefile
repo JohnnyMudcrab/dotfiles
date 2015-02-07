@@ -10,6 +10,7 @@ symlinks:
 	@ln -nsf $(DIR)/vim/_vim ~/.vim
 	@ln -sf $(DIR)/vim/_vimrc ~/.vimrc
 	@ln -nsf $(DIR)/vim/_vimconfig ~/.vimconfig
+	@ln -sf $(DIR)/task/_taskrc ~/.taskrc
 	@ln -sf $(DIR)/tmux/_tmux.conf ~/.tmux.conf
 	@ln -sf $(DIR)/tmux/_tmuxline ~/.tmuxline
 	@ln -sf $(DIR)/tmux/_tmuxinator ~/.tmuxinator

@@ -12,6 +12,7 @@ packages=(
     "ruby"
     "neovim"
     "wget"
+    "task"
     "ack-grep"
     "silversearcher-ag"
     "exuberant-ctags"

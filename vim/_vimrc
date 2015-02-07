@@ -104,6 +104,14 @@ set scrolloff=1010
 " (complete only the common part, list the options that match)
 set wildmode=list:longest
 
+fu! LeaveWithoutClear()
+    set t_ti= t_te=
+    qa
+endfunction
+
+command! Q q
+command! Qw call LeaveWithoutClear()
+
 " load mappings
 so ~/.vimconfig/default/mappings.vim
 

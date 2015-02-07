@@ -6,6 +6,7 @@ so ~/.vimconfig/default/plugins.vim
 
 " Rebind <Leader> key
 let mapleader = ","
+noremap \ ,
 
 " make system clipboard default
 set clipboard=unnamedplus
@@ -54,6 +55,9 @@ set ls=2
 " Y-N-C prompt if closing with unsaved changes
 set confirm
 
+" don't automatically prefix comments
+set formatoptions-=or
+
 " searching and patterns
 set hlsearch                " Highlight searches by default
 set incsearch               " incrementally search while typing a /regex
@@ -74,6 +78,7 @@ set lazyredraw
 
 " showing line numbers and length
 set number  		        " show line numbers
+set relativenumber
 set tw=79   		        " width of document (used by gd)
 set nowrap  		        " don't automatically wrap on load
 set fo-=t   		        " don't automatically wrap text when typing
@@ -92,8 +97,8 @@ if has("gui_running")
     set guioptions-=e
 end
 
-" when scrolling, keep cursor 3 lines away from screen border
-set scrolloff=3
+" when scrolling, keep cursor x lines away from screen border
+set scrolloff=1010
 
 " autocompletion of files and commands behaves like shell
 " (complete only the common part, list the options that match)

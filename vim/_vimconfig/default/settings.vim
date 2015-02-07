@@ -15,6 +15,7 @@ let g:tagbar_autofocus = 1
 "" Ctrl-P Settings
 " Don't change working directory
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " Ignore files on fuzzy finder
 let g:ctrlp_custom_ignore = {

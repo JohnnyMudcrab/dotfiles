@@ -16,6 +16,11 @@ nmap <Leader>sI :call <SID>SynStack()<CR>
 " turn of highlighting
 map <Leader>ho :noh<CR>
 
+" begin and end of line
+noremap H ^
+noremap L $
+vnoremap L g_
+
 " tab navigation
 map tn :tabn<CR>
 map tp :tabp<CR>

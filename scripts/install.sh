@@ -1,10 +1,5 @@
 #! /bin/bash
-
-# check if script is executed with sudo privileges
-if [ "$(id -u)" != "0" ]; then
-	echo "If you want to install packages aswell, please run make with sudo privileges"
-	exit 1
-fi
+# TODO: add tmux plugin installer
 
 # packages to be installed
 packages=(
@@ -12,8 +7,9 @@ packages=(
     "cmake"
     "zsh"
     "python"
+    "python-dev"
     "vim"
-    "gem"
+    "ruby"
     "neovim"
     "wget"
     "ack-grep"
@@ -34,38 +30,56 @@ gems=(
 
 # function that checks if a repository exists and adds it if not
 add_ppa() {
-  grep -h "^deb.*$1" /etc/apt/sources.list.d/* > /dev/null 2>&1
-  if [ $? -ne 0 ]
-  then
-    echo "Adding ppa:$1"
-    sudo add-apt-repository -y ppa:$1
-    return 0
-  fi
+    grep -h "^deb.*$1" /etc/apt/sources.list.d/* > /dev/null 2>&1
+    if [ $? -ne 0 ]
+    then
+        echo "Adding ppa:$1"
+        sudo add-apt-repository -y ppa:$1
+        return 0
+    fi
 
-  echo "ppa:$1 already exists"
-  return 1
+    echo "ppa:$1 already exists"
+    return 1
 }
 
-# add repositories if not existent
-for i in "${repositories[@]}"; do
-    add_ppa $i
-done
+# routine to install common packages
+install() {
+    # add repositories if not existent
+    for i in "${repositories[@]}"; do
+        add_ppa $i
+    done
 
-# update package lists from repositories
-echo "Updating package list, please wait ..."
-apt-get update > /dev/null
-echo "Update finished"
+    # update package lists from repositories
+    echo "Updating package list, please wait ..."
+    sudo apt-get update > /dev/null
+    echo "Update finished"
 
-# install packages
-for i in "${packages[@]}"; do
-    echo "Installing Package: $i"
-    apt-get install $i -y > /dev/null
-done
+    # install packages
+    for i in "${packages[@]}"; do
+        echo "Installing Package: $i"
+        sudo apt-get install $i -y > /dev/null
+    done
 
-# install gems
-# todo: check if gem already exists (gem list)
-gem update
-for i in "${gems[@]}"; do
-    echo "Installing Gem: $i"
-    gem install $i > /dev/null
+    # install gems
+    # todo: check if gem already exists (gem list)
+    sudo gem update
+    for i in "${gems[@]}"; do
+        echo "Installing Gem: $i"
+        sudo gem install $i > /dev/null
+    done
+
+    # install vundle package manager
+	rm -rf ~/.vim/bundle/vundle
+	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
+
+}
+
+
+# check if packages should be installed
+echo "Do you want to install common packages aswell. (yes|no)"
+select yn in "Yes" "No"; do
+    case $yn in
+        No )  exit;;
+        Yes ) install; exit;;
+    esac
 done

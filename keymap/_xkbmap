@@ -1,0 +1,49 @@
+// based on a keyboard map from an 'xkb/symbols/de' file
+
+default
+xkb_symbols "basic" {
+
+    include "latin(type4)"
+
+    name[Group1]="German";
+
+    key <TLDE>	{ [asciicircum, asciitilde,	asciicircum, asciitilde] };
+    key <AE02>	{ [         2,   degree,  twosuperior,    oneeighth ]	};
+    key <AE03>	{ [         3,    section, threesuperior,    sterling ]	};
+    key <AE04>	{ [         4,     dollar,   onequarter,     currency ]	};
+
+    key <AE11> { [backslash, question, acute, acute ]};
+    key <AE12>	{ [numbersign, asterisk, grave, grave ]	};
+
+    key <AD03>	{ [         e,          E,     EuroSign,     EuroSign ]	};
+    key <AD06>	{ [         z,          Z,    leftarrow,          yen ]	};
+    key <AD07>	{ [         u,          U,    udiaeresis,          Udiaeresis ]	};
+    key <AD09>	{ [         o,          O,    odiaeresis,          Odiaeresis ]	};
+    key <AD11>	{ [minus, plus, minus, plus ] };
+    key <AD12>	{ [      apostrophe,   quotedbl,   apostrophe,  quotedbl ]	};
+
+    key <AC01>  { [         a,          A,                adiaeresis,     Adiaeresis    ] };
+    key <AC02>  { [         s,          S,                U00DF,     U1E9E    ] };
+    key <AC07>  { [         j,          J,        belowdot, abovedot   ] };
+    key <AC10>	{ [parenleft, parenright, parenleft, parenright ] };
+    key <AC11>	{ [bracketleft, bracketright, bracketleft, bracketright ] };
+    key <BKSL>	{ [braceleft, braceright, braceleft,   braceright ]	};
+
+    key <AB01>	{ [         y,          Y,       guillemotright,    U203A 	] };
+    key <AB02>	{ [         x,          X,        guillemotleft,    U2039 	] };
+    key <AB04>	{ [         v,          V,   doublelowquotemark, singlelowquotemark ]	};
+    key <AB05>	{ [         b,          B,  leftdoublequotemark, leftsinglequotemark ] };
+    key <AB06>	{ [         n,          N, rightdoublequotemark, rightsinglequotemark ]	};
+    key <AB08>  { [     comma,  semicolon,       periodcentered,     multiply	] };
+    key <AB09>	{ [    period,      colon,                U2026,     division 	] };
+    key <AB10>	{ [     slash, underscore,               endash,     emdash	] };
+
+    key <CAPS> { type[Group1] = "TWO_LEVEL",
+                 symbols[Group1] = [Escape, Escape],
+                 actions[Group1] = [NoAction(), NoAction()]
+    };
+
+    include "kpdl(comma)"
+
+    include "level3(ralt_switch)"
+};

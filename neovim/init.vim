@@ -12,10 +12,16 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'justinmk/vim-sneak'
-Plug 'gilligan/vim-lldb'
+Plug 'critiqjo/lldb.nvim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Raimondi/delimitMate'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}
+Plug 'roxma/vim-tmux-clipboard'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 "Plug 'shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-clang'
 
@@ -25,6 +31,9 @@ call plug#end()
 "########################
 "### Default Settings ###
 "########################
+
+" make system clipboard default (apt-get install xclip required)
+set clipboard=unnamedplus
 
 " show whitespaces
 " must be inserted befor colorsheme command
@@ -90,8 +99,11 @@ set completeopt-=preview
 " remove all unwanred whitespaces
 map <leader>dw :%s/\s\+$//<CR>
 
-" quickly open init.vim
-map <leader>e :e ~/.config/nvim/init.vim<CR>
+" goto
+map <leader>g :YcmCompleter GoTo<CR>
+
+" open location list
+map <leader>l :lopen<CR>
 
 " quickly open init.vim
 map <leader>m :Neomake<CR>
@@ -99,16 +111,30 @@ map <leader>m :Neomake<CR>
 " don't yank replaced text
 vnoremap <leader>p "_dP
 
+" quickly open init.vim
+map <leader>e :e ~/.config/nvim/init.vim<CR>
+
 " quickly source init.vim
 map <leader>s :source ~/.config/nvim/init.vim<CR>
 
+map <leader>f :Files ~/projects<CR>
+
 " toggle tagbar display
 map <leader>t :TagbarToggle<CR>
+
+" open quickfix list
+map <leader>q :copen<CR>
 
 " tab navigation
 map tn :tabn<CR>
 map tp :tabp<CR>
 map tt :tabnew<CR>
+
+" make breakpoint
+nnoremap <F5> :LL continue<CR>
+nmap <F6> <Plug>LLBreakSwitch
+nnoremap <F10> :LL next<CR>
+nnoremap <F11> :LL step<CR>
 
 
 " ######################
@@ -138,3 +164,14 @@ let g:tagbar_autofocus = 1
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_auto_trigger = 1
 let g:ycm_global_ycm_extra_conf = '~/.vimconfig/.ycm_extra_conf.py'
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+" supertab
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" ultisnips
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+

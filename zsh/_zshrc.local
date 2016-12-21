@@ -338,8 +338,9 @@ alias tnew="new-tmux-from-dir-name"
 alias tatt="tmux attach-session -t "
 
 # vim
-alias vim-latex=vim\ -u\ ~/.vimconfig/latex/load.vim
-alias vim-python=vim\ -u\ ~/.vimconfig/python/load.vim
-alias vim-cpp=vim\ -u\ ~/.vimconfig/c++/load.vim
+alias nv="nvim"
+
+# tmuxinator
+alias tm="tmuxinator"
 
 ## END OF FILE #################################################################

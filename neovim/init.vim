@@ -22,6 +22,8 @@ Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'dag/vim-fish'
+Plug 'ap/vim-css-color'
 "Plug 'shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-clang'
 
@@ -31,6 +33,9 @@ call plug#end()
 "########################
 "### Default Settings ###
 "########################
+
+" use bash as default shell
+"set shell=/bin/zsh
 
 " make system clipboard default (apt-get install xclip required)
 set clipboard=unnamedplus

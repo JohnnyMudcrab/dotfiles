@@ -319,9 +319,7 @@ fi
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 
-export EDITOR=vim
-
-export LESS="-X"
+export EDITOR=nvim
 
 function new-tmux-from-dir-name {
   tmux new-session -As `basename $PWD`

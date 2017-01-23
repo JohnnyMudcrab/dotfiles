@@ -92,6 +92,8 @@ Bundle 'Raimondi/delimitMate'
 " Airline
 Bundle 'bling/vim-airline'
 
+" Bundle 'gilligan/vim-lldb'
+
 " Search results counter
 Bundle 'IndexedSearch'
 

@@ -17,13 +17,17 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'Raimondi/delimitMate'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}
 Plug 'roxma/vim-tmux-clipboard'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'ervandew/supertab'
+Plug 'jalvesaq/Nvim-R'
+Plug 'powerman/vim-plugin-viewdoc'
+Plug 'daeyun/vim-matlab'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'dag/vim-fish'
-Plug 'ap/vim-css-color'
+Plug 'scrooloose/nerdtree'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
+"Plug 'ervandew/supertab'
+"Plug 'ap/vim-css-color'
 "Plug 'shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-clang'
 
@@ -101,6 +105,8 @@ set completeopt-=preview
 " ### Mappings ###
 " ################
 
+map <leader>c <plug>NERDCommenterToggle
+
 " remove all unwanred whitespaces
 map <leader>dw :%s/\s\+$//<CR>
 
@@ -112,6 +118,9 @@ map <leader>l :lopen<CR>
 
 " quickly open init.vim
 map <leader>m :Neomake<CR>
+
+" open nerdtree
+map <leader>n :NERDTreeToggle<CR>
 
 " don't yank replaced text
 vnoremap <leader>p "_dP
@@ -146,6 +155,12 @@ nnoremap <F11> :LL step<CR>
 " ### Plugin Setting ###
 " ######################
 
+" NERDCommenter
+let g:NERDCreateDefaultMappings = 0
+
+"NERDTREE
+let g:NERDTreeQuitOnOpen = 1
+
 " vim-airline
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'bubblegum'
@@ -176,7 +191,7 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " ultisnips
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsExpandTrigger = "<C-k>"
+let g:UltiSnipsJumpForwardTrigger = "<C-k>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-j>"
 

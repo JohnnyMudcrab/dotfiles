@@ -1,4 +1,7 @@
-# enable vim key bindings
+# set path
+set PATH /home/johnny/tools/anaconda3/bin $PATH
+
+# prompt bobthefish
 set -g theme_display_user no
 set -g theme_display_vi yes
 set -g theme_display_virutalenv yes
@@ -33,6 +36,8 @@ function foreground
     fg
 end
 
+abbr f=z
+
 # keybindings
 function fish_vi_key_bindings_local
     fish_vi_key_bindings
@@ -51,4 +56,6 @@ set fish_color_end d78787
 set fish_color_autosuggestion a8a8a8
 set fish_color_redirection afd787 #brblue
 set fish_color_param 87afd7
-set fish_color_operator
+
+# conda support
+source ~/github/dotfiles/fish/conda.fish

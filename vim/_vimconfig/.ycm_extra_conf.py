@@ -35,10 +35,10 @@ import ycm_core
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
 flags = [
-'-Wall',
-'-Wextra',
-'-Werror',
-'-Wc++98-compat',
+#  '-Wall',
+#  '-Wextra',
+#  '-Werror',
+#  '-Wc++98-compat',
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
@@ -49,7 +49,7 @@ flags = [
 # a "-std=<something>".
 # For a C project, you would set this to something like 'c99' instead of
 # 'c++11'.
-'-std=c++11',
+'-std=c++0x',
 # ...and the same thing goes for the magic -x option which specifies the
 # language that the files to be compiled are written in. This is mostly
 # relevant for c++ headers.
@@ -62,6 +62,34 @@ flags = [
 '/usr/include',
 '-isystem',
 '/usr/local/include',
+'-isystem',
+'/usr/include/eigen3',
+'-I',
+'/home/user/projects/',
+'-I',
+'/home/user/projects/common/cpp',
+'-I',
+'/home/user/projects/common/cpp/service',
+'-I',
+'/home/user/projects/common/cpp/data',
+'-I',
+'/home/user/projects/common/corba/cpp',
+'-I',
+'/home/user/projects/stimulate/extern',
+'-I',
+'/home/user/projects/stimulate/cpp',
+'-I',
+'/home/user/projects/extern',
+'-I',
+'/home/user/projects/extern/eigen',
+'-I',
+'/home/user/projects/extern/tinyxml',
+'-I',
+'/home/user/projects/mri/manipulation/KUKALBR/FRI17-Client-SDK_Cpp/include',
+'-I',
+'/home/user/projects/mri/manipulation/RMLibrary/ReflexxesTypeII/include',
+'-I',
+'/home/user/projects/stimulate/services/FriService'
 ]
 
 

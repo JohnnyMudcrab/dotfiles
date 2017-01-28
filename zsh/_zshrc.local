@@ -326,19 +326,46 @@ function new-tmux-from-dir-name {
 }
 
 # dotfiles
-alias df="cd ~/dotfiles"
+#alias df="cd ~/dotfiles"
 alias srcz="source ~/.zshrc"
 
+# neovim
+alias nv="nvim"
+
 # tmux
+alias tm="tmuxinator"
 alias tls="tmux ls"
 alias td="tmux detach"
 alias tnew="new-tmux-from-dir-name"
 alias tatt="tmux attach-session -t "
+
+# llvm
+# alias clang="clang-3.8"
+# alias clang++="clang++-3.8"
+# alias llvm="llvm-3.8"
+# alias lldb="lldb-3.8"
 
 # vim
 alias nv="nvim"
 
 # tmuxinator
 alias tm="tmuxinator"
+
+export NVIM_PYTHON_LOG_FILE=/tmp/nvlog
+
+export http_proxy="http://172.17.0.50:3128"
+export https_proxy="https://172.17.0.50:3128"
+
+export projects="/home/user/projects"
+
+export CUDA_HOME=/usr/local/cuda-7.5
+export LD_LIBRARY_PATH=${CUDA_HOME}/lib64
+
+PATH=${CUDA_HOME}/bin:${PATH}
+export PATH
+
+export GPU_VOXELS_MODEL_PATH=/home/user/github/gpu-voxels/packages/gpu_voxels/models
+
+source ~/.bin/tmuxinator.zsh
 
 ## END OF FILE #################################################################

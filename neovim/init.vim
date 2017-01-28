@@ -24,9 +24,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'dag/vim-fish'
 Plug 'scrooloose/nerdtree'
+Plug 'powerman/vim-plugin-viewdoc'
 "Plug 'SirVer/ultisnips'
 "Plug 'honza/vim-snippets'
 "Plug 'ervandew/supertab'
+"Plug 'ap/vim-css-color'
 "Plug 'ap/vim-css-color'
 "Plug 'shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-clang'
@@ -116,7 +118,7 @@ map <leader>g :YcmCompleter GoTo<CR>
 " open location list
 map <leader>l :lopen<CR>
 
-" quickly open init.vim
+" make
 map <leader>m :Neomake<CR>
 
 " open nerdtree
@@ -186,6 +188,8 @@ let g:ycm_auto_trigger = 1
 let g:ycm_global_ycm_extra_conf = '~/.vimconfig/.ycm_extra_conf.py'
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_warning_symbol = ">"
+let g:ycm_confirm_extra_conf = 0
 
 " supertab
 let g:SuperTabDefaultCompletionType = '<C-n>'

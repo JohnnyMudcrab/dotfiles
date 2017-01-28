@@ -6,6 +6,9 @@ set -g theme_display_user no
 set -g theme_display_vi yes
 set -g theme_display_virutalenv yes
 
+# set terminal
+set -g -x TERM 'xterm-256color'
+
 # alias
 function vim
     nvim $argv

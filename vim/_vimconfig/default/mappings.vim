@@ -48,7 +48,7 @@ nnoremap <leader>mr :call VimuxRunCommand("make run")<cr>
 nnoremap <leader>mc :call VimuxRunCommand("make clean")<cr>
 
 " goto
-nnoremap <leader>gt :YcmCompleter GoTo<CR>
+nnoremap <leader>gg :YcmCompleter GoTo<CR>
 
 " neosnippet usage
 " imap <C-k>     <Plug>(neosnippet_expand_or_jump)

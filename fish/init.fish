@@ -6,6 +6,10 @@ set -g theme_display_virutalenv yes
 # set terminal
 set -g -x TERM 'xterm-256color'
 
+# set projects dir
+set -g -x PROJECTS /home/user/projects
+set -g -x projects /home/user/projects
+
 # alias
 function vim
     nvim $argv

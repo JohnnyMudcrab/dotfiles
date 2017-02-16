@@ -132,9 +132,14 @@ map <leader>t :TagbarToggle<CR>
 map <leader>q :copen<CR>
 
 " tab navigation
-map tn :tabn<CR>
-map tp :tabp<CR>
-map tt :tabnew<CR>
+map tn :bnext<CR>
+map tp :bprevious<CR>
+map tt :enew<CR>
+map tc :bp <BAR> bd #<CR>
+map tl :ls<CR>
+
+" switch between header and implementation
+map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " make breakpoint
 nnoremap <F5> :LL continue<CR>

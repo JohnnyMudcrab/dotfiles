@@ -7,7 +7,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'johnnyMudcrab/vim-mudcrab'
 Plug 'neomake/neomake'
 Plug 'majutsushi/tagbar'
-Plug 'restore_view.vim'
+"Plug 'restore_view.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -16,15 +16,15 @@ Plug 'critiqjo/lldb.nvim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Raimondi/delimitMate'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}
-Plug 'roxma/vim-tmux-clipboard'
-Plug 'jalvesaq/Nvim-R'
+"Plug 'roxma/vim-tmux-clipboard'
+"Plug 'jalvesaq/Nvim-R'
 Plug 'powerman/vim-plugin-viewdoc'
-Plug 'daeyun/vim-matlab'
+"Plug 'daeyun/vim-matlab'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'dag/vim-fish'
+"Plug 'dag/vim-fish'
 Plug 'scrooloose/nerdtree'
-Plug 'powerman/vim-plugin-viewdoc'
+"Plug 'powerman/vim-plugin-viewdoc'
 "Plug 'SirVer/ultisnips'
 "Plug 'honza/vim-snippets'
 "Plug 'ervandew/supertab'
@@ -133,7 +133,7 @@ map <leader>e :e ~/.config/nvim/init.vim<CR>
 " quickly source init.vim
 map <leader>s :source ~/.config/nvim/init.vim<CR>
 
-map <leader>f :Files ~/projects<CR>
+map <leader>f :Files ~/workspace/ros_ur_driver<CR>
 
 " toggle tagbar display
 map <leader>t :TagbarToggle<CR>
@@ -190,17 +190,18 @@ let g:tagbar_autofocus = 1
 " youcompleteme
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_auto_trigger = 1
-let g:ycm_global_ycm_extra_conf = '~/.vimconfig/.ycm_extra_conf.py'
+"let g:ycm_global_ycm_extra_conf = '~/.vimconfig/.ycm_extra_conf.py'
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:ycm_warning_symbol = ">"
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_key_invoke_completion = '<C-k>'
 
 " supertab
-let g:SuperTabDefaultCompletionType = '<C-n>'
+"let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " ultisnips
-let g:UltiSnipsExpandTrigger = "<C-k>"
-let g:UltiSnipsJumpForwardTrigger = "<C-k>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-j>"
+"let g:UltiSnipsExpandTrigger = "<C-k>"
+"let g:UltiSnipsJumpForwardTrigger = "<C-k>"
+"let g:UltiSnipsJumpBackwardTrigger = "<C-j>"
 

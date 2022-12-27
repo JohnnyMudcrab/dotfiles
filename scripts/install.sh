@@ -5,14 +5,13 @@
 packages=(
     "tmux"
     "cmake"
-    "zsh"
     "python"
     "python-dev"
     "vim"
+    "fzf"
     "ruby"
     "neovim"
     "wget"
-    "task"
     "ack-grep"
     "silversearcher-ag"
     "exuberant-ctags"
@@ -21,7 +20,6 @@ packages=(
 
 # repositories to be added
 repositories=(
-    "neovim-ppa/unstable"
     )
 
 # gems to be installed
@@ -69,13 +67,19 @@ install() {
         sudo gem install $i > /dev/null
     done
 
-    # install vundle package manager
-	rm -rf ~/.vim/bundle/vundle
-	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
+    # install vim plug for neovim
+	rm -rf ~/.local/share/nvim/site/autoload/plug.vim
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
     # install tmux package manager
 	rm -rf ~/.tmux/plugins/tpm
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+    # install bash-it
+    rm -rf ~/.bash_it
+    git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+    ~/.bash_it/install.sh --no-modify-config
 
 }
 

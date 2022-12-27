@@ -133,7 +133,7 @@ map <leader>e :e ~/.config/nvim/init.vim<CR>
 " quickly source init.vim
 map <leader>s :source ~/.config/nvim/init.vim<CR>
 
-map <leader>f :Files ~/workspace/ros_ur_driver<CR>
+map <leader>f :Files /<CR>
 
 " toggle tagbar display
 map <leader>t :TagbarToggle<CR>

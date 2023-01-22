@@ -24,7 +24,10 @@ xkb_symbols "basic" {
 
     key <AC01>  { [         a,          A,                adiaeresis,     Adiaeresis    ] };
     key <AC02>  { [         s,          S,                U00DF,     U1E9E    ] };
-    key <AC07>  { [         j,          J,        belowdot, abovedot   ] };
+    key <AC06> { [               h,          H,     Left,   Home ] };
+    key <AC07> { [               j,          J,         Down,   Next ] };
+    key <AC08> { [               k,          K,      Up,    Prior ] };
+    key <AC09> { [               l,          L,          Right, End ] };
     key <AC10>	{ [parenleft, parenright, parenleft, parenright ] };
     key <AC11>	{ [bracketleft, bracketright, bracketleft, bracketright ] };
     key <BKSL>	{ [braceleft, braceright, braceleft,   braceright ]	};

@@ -1,5 +1,5 @@
 # TODO: created links owned by root
-DIR=/home/johnny/github/dotfiles
+DIR=.
 
 all: symlinks install
 	@echo "Reminder: Vim plugins are managed within Vim with Vundle."
@@ -7,7 +7,7 @@ all: symlinks install
 symlinks:
 	@ln -sf $(DIR)/tmux/_tmux.conf ~/.tmux.conf
 	@ln -sf $(DIR)/tmux/_tmuxline ~/.tmuxline
-	@ln -sf $(DIR)/neovim/init.vim ~/.config/init.vim
+	@ln -sf $(DIR)/neovim/init.vim ~/.config/nvim/init.vim
 	@ln -s ~/github/dotfiles/bash/_bashrc ~/.bashrc
 
 

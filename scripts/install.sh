@@ -24,7 +24,7 @@ repositories=(
 
 # gems to be installed
 gems=(
-    "tmuxinator"
+#    "tmuxinator"
     )
 
 # function that checks if a repository exists and adds it if not

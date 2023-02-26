@@ -155,6 +155,8 @@ nmap <leader>gt :YcmCompleter GoTo<CR>
 
 " Git
 nmap <leader>gs :Git<CR>
+nmap <leader>gp :Git push<CR>
+nmap <leader>gc :Git push<CR>
 
 " open location list
 nmap <leader>l :lopen<CR>

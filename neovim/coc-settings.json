@@ -1,0 +1,21 @@
+{
+    "diagnostic.enable": true,
+    "[cpp][python]":{
+         "semanticTokens.enable": true
+    },
+    "inlayHint.enable": false,
+    "clangd.enabled": true,
+    "clangd.disableDiagnostics": false,
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
+    //"clangd.arguments": ["-std=c++17"],
+    "clangd.fallbackFlags": ["-I/opt/ros/humble/include/rclcpp",
+                             "-I/opt/ros/humble/include",
+                             "-I/opt/ros/humble/include/rcl",
+                             "-I/opt/ros/humble/include/rcutils",
+                             "-I/opt/ros/humble/include/rmw",
+                             "-I/opt/ros/humble/include/rcl_yaml_param_parser",
+                             "-I/opt/ros/humble/include/rosidl_runtime_c",
+                             "-I/opt/ros/humble/include/rcpputils"
+                            ],
+    //"clangd.trace.server": "messages"
+}

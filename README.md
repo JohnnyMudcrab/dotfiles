@@ -11,3 +11,7 @@ You need to clone the repository into `~/github/dotfiles` and run the installati
 
 - don't use absolute path in installation script
 - install missing packages like `clang` if necessary
+
+## Neovim Steps
+- :TSInstall <language_to_install>
+    - ensure_installed = { "c", "lua", "vim", "help" }

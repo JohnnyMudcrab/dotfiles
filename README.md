@@ -5,7 +5,7 @@ My personal dotfiles.
 
 ## Installation
 
-You need to clone the repository into `~/github/dotfiles` and `make all`.
+You need to clone the repository into `~/github/dotfiles` and `sudo apt install make && make all`.
 
 ## Neovim Steps
 First start will display errors because all plugins are missing

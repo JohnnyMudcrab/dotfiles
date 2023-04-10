@@ -99,3 +99,4 @@ git config --global user.name $varname
 echo Your Email?
 read varemail
 git config --global user.email $varemail
+git config pull.rebase false

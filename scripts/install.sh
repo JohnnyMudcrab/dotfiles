@@ -1,5 +1,4 @@
 #! /bin/bash
-# TODO: add tmux plugin installer
 
 # packages to be installed
 packages=(
@@ -7,26 +6,25 @@ packages=(
     "cmake"
     "python3"
     "python3-dev"
+    "locales"
     "vim"
-    "ruby"
     "neovim"
     "wget"
     "ack-grep"
     "ripgrep"
-    "ruby-dev"
     "fd-find"
     "silversearcher-ag"
     "exuberant-ctags"
     "build-essential"
     )
 
-# repositories to be added
-repositories=(
+# packages to be installed
+snaps=(
+    "node"
     )
 
-# gems to be installed
-gems=(
-#    "tmuxinator"
+# repositories to be added
+repositories=(
     )
 
 # function that checks if a repository exists and adds it if not
@@ -61,12 +59,10 @@ install() {
         sudo apt-get install $i -y > /dev/null
     done
 
-    # install gems
-    # todo: check if gem already exists (gem list)
-    sudo gem update
-    for i in "${gems[@]}"; do
-        echo "Installing Gem: $i"
-        sudo gem install $i > /dev/null
+    # install packages
+    for i in "${snaps[@]}"; do
+        echo "Installing Snaps: $i"
+        sudo snap install $i > /dev/null
     done
 
     # install vim plug for neovim
@@ -80,17 +76,24 @@ install() {
 
     # install bash-it
     rm -rf ~/.bash_it
-    git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+    git clone --depth=1 https://github.com/JohnnyMudcrab/bash-it.git ~/.bash_it
     ~/.bash_it/install.sh --no-modify-config
+
 
 }
 
+install;
 
-# check if packages should be installed
-echo "Do you want to install common packages aswell. (yes|no)"
-select yn in "Yes" "No"; do
-    case $yn in
-        No )  exit;;
-        Yes ) install; exit;;
-    esac
-done
+mkdir -p ~/.config/nvim
+sudo locale-gen en_US en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+
+export LANG=en_US.UTF-8
+
+
+echo Your Name?
+read varname
+git config --global user.name $varname
+echo Your Email?
+read varemail
+git config --global user.email $varemail

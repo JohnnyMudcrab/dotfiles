@@ -90,6 +90,8 @@ sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 export LANG=en_US.UTF-8
 
+bash-it enable alias git
+bash-it completion alias tmux
 
 echo Your Name?
 read varname

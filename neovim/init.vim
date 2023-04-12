@@ -381,6 +381,9 @@ au User AirlineAfterInit  :let g:airline_section_z = airline#section#create(['%3
 " tabbar
 let g:tagbar_autofocus = 1
 
+" Coc
+let g:coc_global_extensions = ['coc-clangd', 'coc-pyright', 'coc-snippets', 'coc-json', ]
+
 " youcompleteme
 "let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_auto_trigger = 1

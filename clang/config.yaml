@@ -1,0 +1,4 @@
+Diagnostics:
+    Suppress: [invalid_suffix_constant]
+CompileFlags:
+    Add: [-std=c++17]

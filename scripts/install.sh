@@ -6,13 +6,14 @@ packages=(
     "cmake"
     "python3"
     "python3-dev"
+    "python3-pip"
     "locales"
     "vim"
-    "neovim"
     "wget"
     "ack-grep"
     "ripgrep"
     "fd-find"
+    "snapd"
     "silversearcher-ag"
     "exuberant-ctags"
     "build-essential"
@@ -20,7 +21,8 @@ packages=(
 
 # packages to be installed
 snaps=(
-    "node"
+    "node --classic --channel=14"
+    "nvim --classic"
     )
 
 # repositories to be added
@@ -69,6 +71,7 @@ install() {
 	rm -rf ~/.local/share/nvim/site/autoload/plug.vim
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    pip install pynvim --upgrade
 
     # install tmux package manager
 	rm -rf ~/.tmux/plugins/tpm
@@ -92,13 +95,10 @@ sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 export LANG=en_US.UTF-8
 
-bash-it enable alias git
-bash-it completion alias tmux
-
-echo Your Name?
+echo "Your Name?"
 read varname
 git config --global user.name $varname
-echo Your Email?
+echo "Your Email?"
 read varemail
 git config --global user.email $varemail
 git config pull.rebase false

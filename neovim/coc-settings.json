@@ -6,7 +6,8 @@
     "inlayHint.enable": false,
     "clangd.enabled": true,
     "clangd.disableDiagnostics": false,
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
+    //"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
+    "clangd.path": "/usr/bin/clangd-15",
     //"clangd.arguments": ["-std=c++17"],
     "clangd.fallbackFlags": ["-I/opt/ros/humble/include/rclcpp",
                              "-I/opt/ros/humble/include",
@@ -15,6 +16,11 @@
                              "-I/opt/ros/humble/include/rmw",
                              "-I/opt/ros/humble/include/rcl_yaml_param_parser",
                              "-I/opt/ros/humble/include/rosidl_runtime_c",
+                             "-I/opt/ros/humble/include/rosidl_runtime_cpp",
+                             "-I/opt/ros/humble/include/rosidl_typesupport_interface",
+                             "-I/opt/ros/humble/include/rosidl_typesupport_cpp",
+                             "-I/opt/ros/humble/include/rosidl_typesupport_c",
+                             "-I/opt/ros/humble/include/builtin_interfaces",
                              "-I/opt/ros/humble/include/rcpputils"
                             ],
     //"clangd.trace.server": "messages"

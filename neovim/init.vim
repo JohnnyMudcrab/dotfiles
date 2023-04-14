@@ -17,7 +17,8 @@ Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }
 
 Plug 'sheerun/vim-polyglot'
 Plug 'joshdick/onedark.vim'
-"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate \| TSInstall c cpp python'}
 
 "# Statusline
 Plug 'vim-airline/vim-airline'
@@ -69,6 +70,9 @@ Plug 'Raimondi/delimitMate'
 "Plug 'powerman/vim-plugin-viewdoc'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
+"Plug 'kevinhwang91/nvim-ufo'
+"Plug 'kevinhwang91/promise-async'
+Plug 'marklcrns/vim-smartq'
 
 
 call plug#end()
@@ -152,6 +156,10 @@ set updatetime=300
 " diagnostics appear/become resolved
 set signcolumn=yes
 
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+autocmd BufReadPost,FileReadPost * normal zR
+
 " ################
 " ### Mappings ###
 " ################
@@ -181,11 +189,15 @@ nmap <leader>l :lopen<CR>
 " make
 "nmap <leader>m :Neomake<CR>
 
+" show full path
+nmap <leader>p :echo expand('%:p')
+
 " open nerdtree
 nmap <leader>n :NvimTreeToggle<CR>
 
-" don't yank replaced text
-vnoremap <leader>p "_dP
+" improve pasting
+nnoremap p P
+nnoremap P "_dp
 
 " quickly open init.vim
 nmap <leader>e :e ~/.config/nvim/init.vim<CR>
@@ -208,6 +220,11 @@ nmap <leader>t :TagbarToggle<CR>
 " open quickfix list
 "nmap <leader>q :copen<CR>
 
+" vim-smartq
+let g:smartq_default_mappings = 0
+nmap tq        <Plug>(smartq_this) <bar> :bprevious<CR>
+nmap <C-q>    <Plug>(smartq_this_force)
+
 " splits
 nmap <leader><bar> :vsplit<CR>
 nmap <leader>- :split<CR>
@@ -222,11 +239,12 @@ nmap <C-Left> <C-W><<C-W><
 map tn :bnext<CR>
 map tp :bprevious<CR>
 map tt :enew<CR>
-map tq :bd<CR>
+"map tq :bd<CR>
 map tl :ls<CR>
 
 " switch between header and implementation
-map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+"map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+map <F4> :CocCommand clangd.switchSourceHeader<CR>
 
 " make breakpoint
 nnoremap <F5> :LL continue<CR>
@@ -248,6 +266,9 @@ nnoremap <F11> :LL step<CR>
 "nnoremap <leader>rdm <cmd>lua require('ros-nvim.telescope.pickers').msg_picker()<cr>
 "" Params list & values
 "nnoremap <leader>rpl <cmd>lua require('ros-nvim.telescope.pickers').param_picker()<cr>
+
+
+
 
 
 " COC
@@ -333,6 +354,9 @@ nmap <leader>cl  <Plug>(coc-codelens-action)
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
+" Add `:Fold` command to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
 " Mappings for CoCList
 " Show all diagnostics
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
@@ -354,6 +378,9 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " ######################
 " ### Plugin Setting ###
 " ######################
+
+" Startify
+let g:startify_change_to_dir = 0
 
 " NERDCommenter
 let g:NERDCreateDefaultMappings = 0
@@ -580,3 +607,26 @@ EOS
   "custom_colors = {}, -- Overwrite default colors
 "})
 "EOS
+
+"lua << EOS
+"-- UFO
+
+"use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+
+"vim.o.foldcolumn = '1' -- '0' is not bad
+"vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+"vim.o.foldlevelstart = 99
+"vim.o.foldenable = true
+
+"vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+"vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+
+"use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+"require('ufo').setup({
+    "provider_selector = function(bufnr, filetype, buftype)
+        "return {'treesitter', 'indent'}
+    "end
+"})
+
+"EOS
+

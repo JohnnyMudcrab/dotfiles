@@ -70,6 +70,7 @@ Plug 'Raimondi/delimitMate'
 "Plug 'powerman/vim-plugin-viewdoc'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 "Plug 'kevinhwang91/nvim-ufo'
 "Plug 'kevinhwang91/promise-async'
 Plug 'marklcrns/vim-smartq'
@@ -98,9 +99,9 @@ set termguicolors
 colorscheme tender
 
 set cursorline		" have a line indicate the cursor location
-set tabstop=4		" <tab> inserts 4 spaces
-set softtabstop=4	" <BS> over autoindent deletes both spaces
-set shiftwidth=4	" indent level is 4 spaces wide
+set tabstop=2		" <tab> inserts 4 spaces
+set softtabstop=2	" <BS> over autoindent deletes both spaces
+set shiftwidth=2	" indent level is 4 spaces wide
 set shiftround		" rounds indent to a multiple of shiftwidth
 set expandtab		" use spaces, not tabs, for autoindent/tab key
 set mouse=a
@@ -196,8 +197,8 @@ nmap <leader>p :echo expand('%:p')
 nmap <leader>n :NvimTreeToggle<CR>
 
 " improve pasting
-nnoremap p P
-nnoremap P "_dp
+"nnoremap p P
+"nnoremap P "_dp
 
 " quickly open init.vim
 nmap <leader>e :e ~/.config/nvim/init.vim<CR>
@@ -222,7 +223,7 @@ nmap <leader>t :TagbarToggle<CR>
 
 " vim-smartq
 let g:smartq_default_mappings = 0
-nmap tq        <Plug>(smartq_this) <bar> :bprevious<CR>
+nmap tq       :bd<CR> <bar> :bp<CR>
 nmap <C-q>    <Plug>(smartq_this_force)
 
 " splits
@@ -384,6 +385,9 @@ let g:startify_change_to_dir = 0
 
 " NERDCommenter
 let g:NERDCreateDefaultMappings = 0
+
+" SmartQ
+let g:smartq_auto_close_splits = 0
 
 "NERDTREE
 "let g:NERDTreeQuitOnOpen = 1

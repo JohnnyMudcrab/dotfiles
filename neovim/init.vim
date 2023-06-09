@@ -26,33 +26,28 @@ Plug 'vim-airline/vim-airline-themes'
 
 "# Sidebars
 Plug 'majutsushi/tagbar'
-"Plug 'scrooloose/nerdtree'
-"Plug 'ryanoasis/vim-devicons'
-"Plug 'johnstef99/vim-nerdtree-syntax-highlight'
-"Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
 
 "# Movement
 Plug 'justinmk/vim-sneak'
 
+" #  Yank Paste Search Replace
+Plug 'svermeulen/vim-subversive'
+Plug 'svermeulen/vim-yoink'
+
 "# Fuzzy Finder
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'aaronhallaert/advanced-git-search.nvim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'junegunn/fzf.vim'
 
 "# Git
 Plug 'tpope/vim-fugitive'
-"Plug 'airblade/vim-gitgutter'
 Plug 'mhinz/vim-signify'
+Plug 'sindrets/diffview.nvim'
 
 "# Development
-"Plug 'neomake/neomake'
-"Plug 'critiqjo/lldb.nvim'
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --clangd-completer'}
-Plug 'thibthib18/ros-nvim', {'branch': 'ros2'}
-"Plug 'ervandew/supertab'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dbgx/lldb.nvim'
 
@@ -67,13 +62,9 @@ Plug 'christoomey/vim-tmux-navigator'
 " utils
 Plug 'scrooloose/nerdcommenter'
 Plug 'Raimondi/delimitMate'
-"Plug 'powerman/vim-plugin-viewdoc'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-"Plug 'kevinhwang91/nvim-ufo'
-"Plug 'kevinhwang91/promise-async'
-Plug 'marklcrns/vim-smartq'
 
 
 call plug#end()
@@ -165,9 +156,6 @@ autocmd BufReadPost,FileReadPost * normal zR
 " ### Mappings ###
 " ################
 
-" remap goto
-"nmap gd <C-]>
-
 map <leader>cc <plug>NERDCommenterToggle
 
 " remove search highlights
@@ -176,19 +164,16 @@ map <Leader><Space> :noh<CR>
 " remove all unwanted whitespaces
 nmap <leader>w :%s/\s\+$//<CR>
 
-" Autocompletion
-"nmap <leader>gt :YcmCompleter GoTo<CR>
-
 " Git
 nmap <leader>gs :Git<CR>
 nmap <leader>gp :Git push<CR>
 nmap <leader>gc :Git commit<CR>
+nmap <leader>go :DiffviewOpen<CR>
+nmap <leader>gq :DiffviewClose<CR>
+nmap <leader>gf :DiffviewFileHistory %<CR>
 
 " open location list
 nmap <leader>l :lopen<CR>
-
-" make
-"nmap <leader>m :Neomake<CR>
 
 " show full path
 nmap <leader>p :echo expand('%:p')
@@ -196,12 +181,8 @@ nmap <leader>p :echo expand('%:p')
 " open nerdtree
 nmap <leader>n :NvimTreeToggle<CR>
 
-" improve pasting
-"nnoremap p P
-"nnoremap P "_dp
-
 " quickly open init.vim
-nmap <leader>e :e ~/.config/nvim/init.vim<CR>
+nmap <leader>e :e ~/github/dotfiles/neovim/init.vim<CR>
 
 " quickly source init.vim
 nmap <leader>s :source ~/.config/nvim/init.vim<CR>
@@ -221,10 +202,22 @@ nmap <leader>t :TagbarToggle<CR>
 " open quickfix list
 "nmap <leader>q :copen<CR>
 
+" substitute
+nmap s <plug>(SubversiveSubstitute)
+nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
+
+" yoink
+nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+let g:yoinkChangeTickThreshold = 1
+
 " vim-smartq
-let g:smartq_default_mappings = 0
-nmap tq       :bd<CR> <bar> :bp<CR>
-nmap <C-q>    <Plug>(smartq_this_force)
+"let g:smartq_default_mappings = 0
+"nmap tq       :bd<CR> <bar> :bp<CR>
+"nmap <C-q>    <Plug>(smartq_this_force)
 
 " splits
 nmap <leader><bar> :vsplit<CR>
@@ -252,25 +245,6 @@ nnoremap <F5> :LL continue<CR>
 nmap <F6> <Plug>LLBreakSwitch
 nnoremap <F10> :LL next<CR>
 nnoremap <F11> :LL step<CR>
-
-" ros-nvim
-" #### ROS Introspection ####
-" Topics list & info
-"nnoremap <leader>rtl <cmd>lua require('ros-nvim.telescope.pickers').topic_picker()<cr>
-"" Nodes list & info
-"nnoremap <leader>rnl <cmd>lua require('ros-nvim.telescope.pickers').node_picker()<cr>
-"" Services list & info
-"nnoremap <leader>rsl <cmd>lua require('ros-nvim.telescope.pickers').service_picker()<cr>
-"" Service definitions list & info
-"nnoremap <leader>rds <cmd>lua require('ros-nvim.telescope.pickers').srv_picker()<cr>
-"" Message definitions list & info
-"nnoremap <leader>rdm <cmd>lua require('ros-nvim.telescope.pickers').msg_picker()<cr>
-"" Params list & values
-"nnoremap <leader>rpl <cmd>lua require('ros-nvim.telescope.pickers').param_picker()<cr>
-
-
-
-
 
 " COC
 inoremap <silent><expr> <TAB>
@@ -387,12 +361,8 @@ let g:startify_change_to_dir = 0
 let g:NERDCreateDefaultMappings = 0
 
 " SmartQ
-let g:smartq_auto_close_splits = 0
+"let g:smartq_auto_close_splits = 0
 
-"NERDTREE
-"let g:NERDTreeQuitOnOpen = 1
-"let g:NERDTreeFileExtensionHighlightFullName = 0
-"let g:NERDTreeHighlightCursorline = 1
 
 " vim-airline
 let g:airline_powerline_fonts = 0
@@ -415,26 +385,6 @@ let g:tagbar_autofocus = 1
 " Coc
 let g:coc_global_extensions = ['coc-clangd', 'coc-pyright', 'coc-snippets', 'coc-json', ]
 
-" youcompleteme
-"let g:ycm_filepath_completion_use_working_dir = 1
-let g:ycm_auto_trigger = 1
-"let g:ycm_global_ycm_extra_conf = '~/ros2_ws/.ycm_extra_conf.py'
-"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:ycm_warning_symbol = ">"
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_key_invoke_completion = '<C-k>'
-let g:ycm_clangd_args=['--query-driver=/usr/bin/c++']
-let g:ycm_always_populate_location_list = 1
-let g:YcmShowDetailedDiagnostic = 1
-let g:ycm_show_detailed_diag_in_popup=1
-" supertab
-"let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" ultisnips
-"let g:UltiSnipsExpandTrigger = "<C-k>"
-"let g:UltiSnipsJumpForwardTrigger = "<C-k>"
-"let g:UltiSnipsJumpBackwardTrigger = "<C-j>"
 
 " #################
 " ### Functions ###
@@ -448,43 +398,6 @@ function! SynStack()
 endfunc
 nmap <leader>h :call SynStack()<CR>
 
-"lua require'colorizer'.setup()
-
-lua << EOF
-local vim_utils = require "ros-nvim.vim-utils"
-require 'ros-nvim'.setup {
-    catkin_ws_path = "~/ros2_ws",
-    catkin_program = "colcon",
-    -- vim_utils.open_new_buffer or custom function
-    open_terminal_method = function()
-        vim_utils.open_split()
-    end,
-    terminal_height = 8, -- only for split terminal
-    -- Picker mappings
-    node_picker_mappings = function(map)
-        map("n", "<c-k>", vim_utils.open_terminal_with_format_cmd_entry("rosnode kill %s"))
-        map("i", "<c-k>", vim_utils.open_terminal_with_format_cmd_entry("rosnode kill %s"))
-    end,
-    topic_picker_mappings = function(map)
-        local cycle_previewers = function(prompt_bufnr)
-            local picker = action_state.get_current_picker(prompt_bufnr)
-            picker:cycle_previewers(1)
-        end
-        map("n", "<c-b>", vim_utils.open_terminal_with_format_cmd_entry("rostopic pub %s"))
-        map("i", "<c-b>", vim_utils.open_terminal_with_format_cmd_entry("rostopic pub %s"))
-        map("n", "<c-e>", cycle_previewers)
-        map("i", "<c-e>", cycle_previewers)
-    end,
-    service_picker_mappings = function(map)
-        map("n", "<c-e>", vim_utils.open_terminal_with_format_cmd_entry("rosservice call %s"))
-        map("i", "<c-e>", vim_utils.open_terminal_with_format_cmd_entry("rosservice call %s"))
-    end,
-    param_picker_mappings = function(map)
-        map("n", "<c-e>", vim_utils.open_terminal_with_format_cmd_entry("rosparam set %s"))
-        map("i", "<c-e>", vim_utils.open_terminal_with_format_cmd_entry("rosparam set %s"))
-    end
-}
-EOF
 
 lua << EOS
 -- This is Lua
@@ -524,113 +437,3 @@ require("nvim-tree").setup({
   },
 })
 EOS
-
-"lua << EOS
-"require'nvim-treesitter.configs'.setup {
-  "-- A list of parser names, or "all" (the four listed parsers should always be installed)
-  "ensure_installed = { "c", "lua", "vim", "help" },
-
-  "-- Install parsers synchronously (only applied to `ensure_installed`)
-  "sync_install = false,
-
-  "-- Automatically install missing parsers when entering buffer
-  "-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  "auto_install = true,
-
-  "-- List of parsers to ignore installing (for "all")
-  "ignore_install = { "javascript" },
-
-  "---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-  "-- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-
-  "highlight = {
-    "enable = true,
-
-    "-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    "-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    "-- the name of the parser)
-    "-- list of language that will be disabled
-    "disable = { "c", "rust" },
-    "-- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    "disable = function(lang, buf)
-        "local max_filesize = 100 * 1024 -- 100 KB
-        "local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-        "if ok and stats and stats.size > max_filesize then
-            "return true
-        "end
-    "end,
-
-    "-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    "-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    "-- Using this option may slow down your editor, and you may see some duplicate highlights.
-    "-- Instead of true it can also be a list of languages
-    "additional_vim_regex_highlighting = false,
-  "},
-"}
-"EOS
-
-"lua << EOS
-"local nightfox = require('nightfox')
-
-"nightfox.setup({
-    "fox = 'nordfox', -- change the colorscheme
-    "styles = {
-        "comments = 'italic',
-        "functions = 'italic',
-    "},
-"})
-
-"-- load the configurations
-"nightfox.load()
-"EOS
-
-"lua << EOS
-"require('onenord').setup({
-  "theme = nil, -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
-  "borders = true, -- Split window borders
-  "fade_nc = false, -- Fade non-current windows, making them more distinguishable
-  "-- Style that is applied to various groups: see `highlight-args` for options
-  "styles = {
-    "comments = "NONE",
-    "strings = "NONE",
-    "keywords = "NONE",
-    "functions = "NONE",
-    "variables = "NONE",
-    "diagnostics = "underline",
-  "},
-  "disable = {
-    "background = true, -- Disable setting the background color
-    "cursorline = false, -- Disable the cursorline
-    "eob_lines = true, -- Hide the end-of-buffer lines
-  "},
-  "-- Inverse highlight for different groups
-  "inverse = {
-    "match_paren = false,
-  "},
-  "custom_highlights = {}, -- Overwrite default highlight groups
-  "custom_colors = {}, -- Overwrite default colors
-"})
-"EOS
-
-"lua << EOS
-"-- UFO
-
-"use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
-
-"vim.o.foldcolumn = '1' -- '0' is not bad
-"vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-"vim.o.foldlevelstart = 99
-"vim.o.foldenable = true
-
-"vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-"vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-
-"use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-"require('ufo').setup({
-    "provider_selector = function(bufnr, filetype, buftype)
-        "return {'treesitter', 'indent'}
-    "end
-"})
-
-"EOS
-

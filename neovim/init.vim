@@ -5,19 +5,11 @@
 call plug#begin('~/.config/nvim/plugged')
 
 "# Colortheme
-Plug 'lifepillar/vim-colortemplate'
-Plug 'lifepillar/vim-wwdc16-theme'
 Plug 'johnnyMudcrab/vim-mudcrab'
-Plug 'mhinz/vim-janah'
-Plug 'danilo-augusto/vim-afterglow'
 Plug 'JohnnyMudcrab/tender.vim'
-Plug 'rainglow/vim'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }
 
 Plug 'sheerun/vim-polyglot'
-Plug 'joshdick/onedark.vim'
-
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate \| TSInstall c cpp python'}
 
 "# Statusline
@@ -33,13 +25,12 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'justinmk/vim-sneak'
 
 " #  Yank Paste Search Replace
-Plug 'svermeulen/vim-subversive'
-Plug 'svermeulen/vim-yoink'
+Plug 'gbprod/substitute.nvim'
+Plug 'gbprod/yanky.nvim'
 
 "# Fuzzy Finder
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
-Plug 'aaronhallaert/advanced-git-search.nvim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 "# Git
@@ -50,10 +41,6 @@ Plug 'sindrets/diffview.nvim'
 "# Development
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dbgx/lldb.nvim'
-
-"# Snippets
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
 
 "# tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -133,7 +120,7 @@ set fo-=t           " don't automatically wrap text when typing
 
 " when scrolling, keep cursor x lines away from screen border
 "set scrolloff=1010
-set scrolloff=1
+set scrolloff=3
 
 " autocompletion of files and commands behaves like shell
 " (complete only the common part, list the options that match)
@@ -203,17 +190,32 @@ nmap <leader>t :TagbarToggle<CR>
 "nmap <leader>q :copen<CR>
 
 " substitute
-nmap s <plug>(SubversiveSubstitute)
-nmap ss <plug>(SubversiveSubstituteLine)
-nmap S <plug>(SubversiveSubstituteToEndOfLine)
+"nmap s <plug>(SubversiveSubstitute)
+"nmap ss <plug>(SubversiveSubstituteLine)
+"nmap S <plug>(SubversiveSubstituteToEndOfLine)
+"nmap <leader>s <plug>(SubversiveSubstituteRange)
+"xmap <leader>s <plug>(SubversiveSubstituteRange)
 
 " yoink
-nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-nmap <c-p> <plug>(YoinkPostPasteSwapForward)
-nmap p <plug>(YoinkPaste_p)
-nmap P <plug>(YoinkPaste_P)
-let g:yoinkChangeTickThreshold = 1
+"nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+"nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+"nmap [y <plug>(YoinkRotateBack)
+"nmap ]y <plug>(YoinkRotateForward)
+"nmap p <plug>(YoinkPaste_p)
+"nmap P <plug>(YoinkPaste_P)
 
+" sneak
+nmap ( <Plug>Sneak_s
+nmap ) <Plug>Sneak_S
+xmap ( <Plug>Sneak_s
+xmap ) <Plug>Sneak_S
+
+nmap , <Plug>Sneak_;
+nmap ; <Plug>Sneak_,
+xmap , <Plug>Sneak_;
+xmap ; <Plug>Sneak_,
+
+" vim-smartq
 " vim-smartq
 "let g:smartq_default_mappings = 0
 "nmap tq       :bd<CR> <bar> :bp<CR>
@@ -363,7 +365,6 @@ let g:NERDCreateDefaultMappings = 0
 " SmartQ
 "let g:smartq_auto_close_splits = 0
 
-
 " vim-airline
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'bubblegum'
@@ -436,4 +437,31 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
+EOS
+
+
+lua << EOS
+  require("yanky").setup({
+  })
+  vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
+  vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
+  vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")
+  vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
+  vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
+  vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
+
+  require("substitute").setup({
+    on_substitute = require("yanky.integration").substitute(),
+  })
+
+  vim.keymap.set("n", "s", require('substitute').operator, { noremap = true })
+  vim.keymap.set("n", "ss", require('substitute').line, { noremap = true })
+  vim.keymap.set("n", "S", require('substitute').eol, { noremap = true })
+  vim.keymap.set("x", "s", require('substitute').visual, { noremap = true })
+
+  vim.keymap.set("n", "sx", require('substitute.exchange').operator, { noremap = true })
+  vim.keymap.set("n", "sxx", require('substitute.exchange').line, { noremap = true })
+  vim.keymap.set("x", "X", require('substitute.exchange').visual, { noremap = true })
+  vim.keymap.set("n", "sxc", require('substitute.exchange').cancel, { noremap = true })
+
 EOS

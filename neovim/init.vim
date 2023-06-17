@@ -77,9 +77,9 @@ set termguicolors
 colorscheme tender
 
 set cursorline		" have a line indicate the cursor location
-set tabstop=2		" <tab> inserts 4 spaces
-set softtabstop=2	" <BS> over autoindent deletes both spaces
-set shiftwidth=2	" indent level is 4 spaces wide
+set tabstop=4		" <tab> inserts 4 spaces
+set softtabstop=4	" <BS> over autoindent deletes both spaces
+set shiftwidth=4	" indent level is 4 spaces wide
 set shiftround		" rounds indent to a multiple of shiftwidth
 set expandtab		" use spaces, not tabs, for autoindent/tab key
 set mouse=a
@@ -163,7 +163,8 @@ nmap <leader>gf :DiffviewFileHistory %<CR>
 nmap <leader>l :lopen<CR>
 
 " show full path
-nmap <leader>p :echo expand('%:p')
+nmap <leader>p p
+nmap <leader>P P
 
 " open nerdtree
 nmap <leader>n :NvimTreeToggle<CR>
@@ -235,7 +236,7 @@ nmap <C-Left> <C-W><<C-W><
 map tn :bnext<CR>
 map tp :bprevious<CR>
 map tt :enew<CR>
-"map tq :bd<CR>
+map tq :bd<CR>
 map tl :ls<CR>
 
 " switch between header and implementation

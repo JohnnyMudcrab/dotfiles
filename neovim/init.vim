@@ -164,9 +164,7 @@ nmap <leader>gf :DiffviewFileHistory %<CR>
 nmap <leader>l :lopen<CR>
 
 " show full path
-nmap <leader>p p
-nmap <leader>P P
-
+nmap <leader>p :echo expand('%:p')
 " open nerdtree
 nmap <leader>n :NvimTreeToggle<CR>
 

@@ -41,6 +41,7 @@ Plug 'sindrets/diffview.nvim'
 "# Development
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dbgx/lldb.nvim'
+Plug 'puremourning/vimspector'
 
 "# tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -244,10 +245,10 @@ map tl :ls<CR>
 map <F4> :CocCommand clangd.switchSourceHeader<CR>
 
 " make breakpoint
-nnoremap <F5> :LL continue<CR>
-nmap <F6> <Plug>LLBreakSwitch
-nnoremap <F10> :LL next<CR>
-nnoremap <F11> :LL step<CR>
+"nnoremap <F5> :LL continue<CR>
+"nmap <F6> <Plug>LLBreakSwitch
+"nnoremap <F10> :LL next<CR>
+"nnoremap <F11> :LL step<CR>
 
 " COC
 inoremap <silent><expr> <TAB>
@@ -362,6 +363,10 @@ let g:startify_change_to_dir = 0
 
 " NERDCommenter
 let g:NERDCreateDefaultMappings = 0
+
+" VimSpector
+let g:vimspector_install_gadgets = [ 'vscode-cpptools' ]
+let g:vimspector_enable_mappings = 'HUMAN'
 
 " SmartQ
 "let g:smartq_auto_close_splits = 0

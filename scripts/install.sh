@@ -25,6 +25,10 @@ snaps=(
     "nvim --classic"
     )
 
+pips=(
+    "compdb"
+    )
+
 # repositories to be added
 repositories=(
     )
@@ -61,10 +65,16 @@ install() {
         sudo apt-get install $i -y > /dev/null
     done
 
-    # install packages
+    # install snaps
     for i in "${snaps[@]}"; do
         echo "Installing Snaps: $i"
         sudo snap install $i > /dev/null
+    done
+
+    # install pips
+    for i in "${pips[@]}"; do
+        echo "Installing Pips: $i"
+        pip install $i > /dev/null
     done
 
     # install vim plug for neovim
@@ -101,4 +111,4 @@ git config --global user.name $varname
 echo "Your Email?"
 read varemail
 git config --global user.email $varemail
-git config pull.rebase false
+git config --global pull.rebase false

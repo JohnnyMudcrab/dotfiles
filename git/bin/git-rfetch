@@ -1,0 +1,20 @@
+#!/bin/bash
+
+## read input, display help if necessary
+if [[ "$@" == *--help* ]]; then
+    cat<<EOF
+ Recursive fetch
+
+ This command recursively fetches changes from origin.
+ (Up to output it is equal to running
+    git fetch --recurse-submodules=yes.)
+
+ Usage:
+    git rfetch ...
+
+    ...: same arguments as git fetch
+EOF
+    exit 0;
+fi
+
+git fetch --recurse-submodules=yes "$@"

@@ -1,0 +1,164 @@
+#!/bin/bash
+## read input, display help if necessary
+if [[ "$@" == *--help* ]]; then
+    cat<<EOF
+ Recursive status
+
+ This command shows a brief summary about the status of
+ the repository and all the submodules.
+
+ Usage:
+    git rstatus UPSTREAM
+ Example:
+    git rstatus
+    git rstatus origin/master
+ Output:
+ 	W(*) = unstaged changes
+ 	I(+) = staged changes
+ 	S($) = stashed changes
+ 	U(%) = untracked files
+EOF
+    exit 0;
+fi
+
+## from the git mailinglist:
+function git
+{
+    LC_MESSAGES=C command git "$@"
+}
+export git
+
+. "$(git --exec-path)/git-sh-setup"
+
+cd_to_toplevel
+superrepo=$(pwd)
+tmpdir=$(mktemp -d)
+
+cleanup () {
+	test -d "$tmpdir" && rm -rf "$tmpdir"
+}
+
+trap cleanup EXIT ERR
+
+export superrepo tmpdir
+
+upstream_status ()
+{
+	# Find how many commits we are ahead/behind our upstream
+	#count="$(git rev-list --count --left-right "@{upstream}"...HEAD 2>/dev/null)"
+    count="$(git rev-list --count --left-right $1...HEAD 2>/dev/null)"
+
+	case "$count" in
+	    "") # no upstream
+		p="" ;;
+	    "0	0") # equal to upstream
+		p="u=" ;;
+	    "0	"*) # ahead of upstream
+		p="u+${count#0	}" ;;
+	    *"	0") # behind upstream
+		p="u-${count%	0}" ;;
+	    *)	    # diverged from upstream
+		p="u+${count#*	}-${count%	*}" ;;
+	esac
+}
+
+
+worktree_index_status ()
+{
+	local g="$(git rev-parse --git-dir 2>/dev/null)"
+	w=""
+	i=""
+	s=""
+	u=""
+	c=""
+	r=""
+	b=""
+
+	if [ -z "$g" ]; then
+		b="DAMAGED! Consult Manu."
+		return
+	fi
+	if [ -f "$g/rebase-merge/interactive" ]; then
+		r="REBASE-i"
+		b="$(cat "$g/rebase-merge/head-name")"
+	elif [ -d "$g/rebase-merge" ]; then
+		r="REBASE-m"
+		b="$(cat "$g/rebase-merge/head-name")"
+	else
+		if [ -d "$g/rebase-apply" ]; then
+			if [ -f "$g/rebase-apply/rebasing" ]; then
+				r="REBASE"
+			elif [ -f "$g/rebase-apply/applying" ]; then
+				r="AM"
+			else
+				r="AM/REBASE"
+			fi
+		elif [ -f "$g/MERGE_HEAD" ]; then
+			r="MERGING"
+		elif [ -f "$g/CHERRY_PICK_HEAD" ]; then
+			r="CHERRY-PICKING"
+		elif [ -f "$g/BISECT_LOG" ]; then
+			r="BISECTING"
+		fi
+
+		b="$(git symbolic-ref HEAD 2>/dev/null)" || {
+			b="$(git describe --tags --exact-match HEAD 2>/dev/null)" ||
+			b="$(cut -c1-7 "$g/HEAD" 2>/dev/null)..." ||
+			b="unknown"
+			b="($b)"
+		}
+	fi
+
+	if [ "true" = "$(git rev-parse --is-inside-git-dir 2>/dev/null)" ]; then
+		if [ "true" = "$(git rev-parse --is-bare-repository 2>/dev/null)" ]; then
+			c="BARE!"
+		else
+			b="GIT_DIR!"
+		fi
+	elif [ "true" = "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
+		(git diff --no-ext-diff --quiet --exit-code --ignore-submodules=dirty) || w="*"
+		if (git rev-parse --quiet --verify HEAD >/dev/null) ; then
+			(git diff-index --cached --quiet HEAD --) || i="+"
+		else
+			i="#"
+		fi
+		git rev-parse --verify refs/stash >/dev/null 2>&1 && s="$"
+
+		if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+			u="%"
+		fi
+	fi
+
+	# local f="$w$i$s$u"
+	b="${b##refs/heads/}"
+}
+
+do_one_status () {
+	outf=$(mktemp --tmpdir="$tmpdir" 2>/dev/null)
+	name="$1"
+	path="$2"
+	toplevel="$3"
+	mypath="${toplevel#$superrepo}/$path"
+	mypath="${mypath#/}"
+	cd "$toplevel/$path"
+
+	upstream_status $4
+	worktree_index_status
+	printf "%-55s %1s%1s%1s%1s %-6s %-15s %-15s\n" "$mypath" "$w" "$i" "$s" "$u" "$p" "$b" "$c$r" >"$outf"
+}
+
+if [ -z "$1" ];
+    then
+        upstream="@{upstream}"
+    else
+        upstream="$1"
+fi
+
+export -f do_one_status upstream_status worktree_index_status
+export upstream_arg=$upstream
+
+git submodule foreach --quiet --recursive 'echo "$name $path $toplevel"' |
+xargs -r -n3 -P20 bash -c 'do_one_status "$@" $upstream_arg' do_one_status
+
+printf "%-55s %1s%1s%1s%1s %-6s %-15s %-15s\n" SUBMODULE W I S U "<>" HEAD state
+cat "$tmpdir"/* | sort

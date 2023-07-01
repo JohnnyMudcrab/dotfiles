@@ -1,0 +1,12 @@
+#!/bin/bash
+
+SESSION_NAME="rcb_side"
+
+if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+    tmux attach-session -t "$SESSION_NAME"
+else
+    cd ~/ros2_ws/rcb_testing
+    source install/setup.bash
+    tmux new -s rcb_side ';' split-window -v ';' split-window -v ';' select-pane -t 1 ';' split-window -v ';' select-pane -t 1
+fi
+

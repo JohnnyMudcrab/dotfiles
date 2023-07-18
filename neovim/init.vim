@@ -33,7 +33,7 @@ Plug 'gbprod/yanky.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'kdheepak/lazygit.nvim'
+Plug 'JohnnyMudcrab/lazygit.nvim'
 
 "# Git
 Plug 'tpope/vim-fugitive'
@@ -245,7 +245,6 @@ map tl :ls<CR>
 
 " switch between header and implementation
 "map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
-map <F4> :CocCommand clangd.switchSourceHeader<CR>
 
 " make breakpoint
 "nnoremap <F5> :LL continue<CR>
@@ -284,6 +283,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gh :CocCommand clangd.switchSourceHeader<CR>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call ShowDocumentation()<CR>

@@ -23,6 +23,7 @@ Plug 'nvim-tree/nvim-tree.lua'
 
 "# Movement
 Plug 'justinmk/vim-sneak'
+"Plug 'folke/flash.nvim'
 
 " #  Yank Paste Search Replace
 Plug 'gbprod/substitute.nvim'
@@ -30,13 +31,15 @@ Plug 'gbprod/yanky.nvim'
 
 "# Fuzzy Finder
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'kdheepak/lazygit.nvim'
 
 "# Git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'sindrets/diffview.nvim'
+
 
 "# Development
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -159,6 +162,8 @@ nmap <leader>gc :Git commit<CR>
 nmap <leader>go :DiffviewOpen<CR>
 nmap <leader>gq :DiffviewClose<CR>
 nmap <leader>gf :DiffviewFileHistory %<CR>
+nnoremap <silent> <leader>gg :LazyGitCurrentFile<CR>
+nnoremap <silent> <leader>gr :LazyGit ~/ros2_ws/rcb_testing/src/rcb_testing_area<CR>
 
 " open location list
 nmap <leader>l :lopen<CR>
@@ -388,7 +393,7 @@ au User AirlineAfterInit  :let g:airline_section_z = airline#section#create(['%3
 let g:tagbar_autofocus = 1
 
 " Coc
-let g:coc_global_extensions = ['coc-clangd', 'coc-pyright', 'coc-snippets', 'coc-json', ]
+let g:coc_global_extensions = ['coc-clangd', 'coc-pyright', 'coc-snippets', 'coc-json', 'coc-clangd']
 
 
 " #################
@@ -469,3 +474,12 @@ lua << EOS
   vim.keymap.set("n", "sxc", require('substitute.exchange').cancel, { noremap = true })
 
 EOS
+
+"lua << EOS
+  "opts = {}
+  "require("flash").treesitter(opts?)
+  "require("flash").jump({
+  "search = { forward = true, wrap = false, multi_window = false },
+  "})
+
+"EOS

@@ -22,8 +22,8 @@ Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
 
 "# Movement
-Plug 'justinmk/vim-sneak'
-"Plug 'folke/flash.nvim'
+"Plug 'justinmk/vim-sneak'
+Plug 'folke/flash.nvim'
 
 " #  Yank Paste Search Replace
 Plug 'gbprod/substitute.nvim'
@@ -45,6 +45,7 @@ Plug 'sindrets/diffview.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dbgx/lldb.nvim'
 Plug 'puremourning/vimspector'
+Plug 'fannheyward/telescope-coc.nvim'
 
 "# tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -56,6 +57,9 @@ Plug 'Raimondi/delimitMate'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+
+"# ROS
+Plug 'taDachs/ros-nvim'
 
 
 call plug#end()
@@ -146,8 +150,9 @@ autocmd BufReadPost,FileReadPost * normal zR
 " ################
 " ### Mappings ###
 " ################
+let mapleader = "\<Space>"
 
-map <leader>cc <plug>NERDCommenterToggle
+map <leader>c <plug>NERDCommenterToggle
 
 " remove search highlights
 map <Leader><Space> :noh<CR>
@@ -182,11 +187,14 @@ nmap <leader>s :source ~/.config/nvim/init.vim<CR>
 " Telescope magic
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fu <cmd>Telescope find_files cwd=~/<cr>
-nnoremap <leader>fr <cmd>Telescope find_files cwd=/opt/ros/humble/<cr>
+"nnoremap <leader>fr <cmd>Telescope find_files cwd=/opt/ros/humble/<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fc <cmd>Telescope command_history<cr>
+nnoremap <leader>fs <cmd>Telescope coc document_symbols<cr>
+nnoremap <leader>fe <cmd>Telescope coc diagnostics<cr>
+nnoremap <leader>fd <cmd>Telescope coc diagnostics<cr>
 
 " toggle tagbar display
 nmap <leader>t :TagbarToggle<CR>
@@ -210,15 +218,15 @@ nmap <leader>t :TagbarToggle<CR>
 "nmap P <plug>(YoinkPaste_P)
 
 " sneak
-nmap ( <Plug>Sneak_s
-nmap ) <Plug>Sneak_S
-xmap ( <Plug>Sneak_s
-xmap ) <Plug>Sneak_S
+"nmap ( <Plug>Sneak_s
+"nmap ) <Plug>Sneak_S
+"xmap ( <Plug>Sneak_s
+"xmap ) <Plug>Sneak_S
 
-nmap , <Plug>Sneak_;
-nmap ; <Plug>Sneak_,
-xmap , <Plug>Sneak_;
-xmap ; <Plug>Sneak_,
+"nmap , <Plug>Sneak_;
+"nmap ; <Plug>Sneak_,
+"xmap , <Plug>Sneak_;
+"xmap ; <Plug>Sneak_,
 
 " vim-smartq
 " vim-smartq
@@ -296,8 +304,6 @@ function! ShowDocumentation()
   endif
 endfunction
 
-" Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code
 xmap <leader>fo  <Plug>(coc-format-selected)
@@ -323,13 +329,16 @@ nmap <leader>as  <Plug>(coc-codeaction-source)
 " Apply the most preferred quickfix action to fix diagnostic on the current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
 " Remap keys for applying refactor code actions
-nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
-xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
-nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+"nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+"xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+"nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 
 " Run the Code Lens action on the current line
-nmap <leader>cl  <Plug>(coc-codelens-action)
+"nmap <leader>cl  <Plug>(coc-codelens-action)
 
 " Use CTRL-S for selections ranges
 " Requires 'textDocument/selectionRange' support of language server
@@ -341,21 +350,21 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Mappings for CoCList
 " Show all diagnostics
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+" nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " ######################
 " ### Plugin Setting ###
@@ -475,11 +484,31 @@ lua << EOS
 
 EOS
 
-"lua << EOS
-  "opts = {}
-  "require("flash").treesitter(opts?)
-  "require("flash").jump({
-  "search = { forward = true, wrap = false, multi_window = false },
-  "})
+lua << EOS
+  vim.keymap.set({'n','x','o'}, '(', function() require("flash").jump() end)
+  vim.keymap.set({'n','x','o'}, ')', function() require("flash").treesitter() end)
+EOS
 
-"EOS
+lua << EOS
+    require("ros-nvim").setup({only_workspace = true})
+    -- telescope finder
+    vim.keymap.set('n', '<leader>fr', '<cmd>Telescope ros ros<cr>', { noremap = true })
+
+    -- follow links in launch files
+    vim.keymap.set('n', '<leader>rl', function() require("ros-nvim.ros").open_launch_include() end, { silent = true, noremap = true })
+
+    -- show definition for interfaces (messages/services) in floating window
+    vim.keymap.set('n', '<leader>ri', function() require("ros-nvim.ros").show_interface_definition() end, { silent = true, noremap = true })
+EOS
+
+lua << EOF
+require("telescope").setup({
+  extensions = {
+    coc = {
+        theme = 'ivy',
+        prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
+    }
+  },
+})
+require('telescope').load_extension('coc')
+EOF

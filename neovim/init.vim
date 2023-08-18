@@ -60,6 +60,7 @@ Plug 'tpope/vim-repeat'
 
 "# ROS
 Plug 'taDachs/ros-nvim'
+Plug 'JohnnyMudcrab/ros2-nvim'
 
 "# NavBuddy
 Plug 'neovim/nvim-lspconfig'
@@ -536,4 +537,31 @@ require('telescope').load_extension('coc')
 --require'lspconfig'.clangd.setup{}
 
 EOF
+
+lua << EOF
+local vim_utils = require "ros2-nvim.vim-utils"
+require 'ros2-nvim'.setup {
+  -- path to your catkin workspace
+  catkin_ws_path = "~/catkin_ws",
+
+  -- make program (e.g. "catkin_make" or "catkin build" )
+  catkin_program = "catkin_make",
+
+  --method for opening terminal for e.g. catkin_make: utils.open_new_buffer or custom function
+}
+EOF
+
+" #### ROS Introspection ####
+" Topics list & info
+nnoremap <leader>rt <cmd>lua require('ros2-nvim.telescope.pickers').topic_picker()<cr>
+" Nodes list & info
+nnoremap <leader>rn <cmd>lua require('ros2-nvim.telescope.pickers').node_picker()<cr>
+" Services list & info
+nnoremap <leader>rs <cmd>lua require('ros2-nvim.telescope.pickers').service_picker()<cr>
+" Service definitions list & info
+nnoremap <leader>rds <cmd>lua require('ros2-nvim.telescope.pickers').srv_picker()<cr>
+" Message definitions list & info
+nnoremap <leader>rm <cmd>lua require('ros2-nvim.telescope.pickers').msg_picker()<cr>
+" Params list & values
+nnoremap <leader>rp <cmd>lua require('ros2-nvim.telescope.pickers').param_picker()<cr>
 

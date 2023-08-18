@@ -61,6 +61,13 @@ Plug 'tpope/vim-repeat'
 "# ROS
 Plug 'taDachs/ros-nvim'
 
+"# NavBuddy
+Plug 'neovim/nvim-lspconfig'
+Plug 'SmiteshP/nvim-navic'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'numToStr/Comment.nvim'
+Plug 'SmiteshP/nvim-navbuddy'
+
 
 call plug#end()
 
@@ -150,7 +157,7 @@ autocmd BufReadPost,FileReadPost * normal zR
 " ################
 " ### Mappings ###
 " ################
-let mapleader = "\<Space>"
+"let mapleader = "\<Space>"
 
 map <leader>c <plug>NERDCommenterToggle
 
@@ -186,7 +193,7 @@ nmap <leader>s :source ~/.config/nvim/init.vim<CR>
 
 " Telescope magic
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fu <cmd>Telescope find_files cwd=~/<cr>
+nnoremap <leader>fu <cmd>Telescope find_files hidden=true cwd=~/<cr>
 "nnoremap <leader>fr <cmd>Telescope find_files cwd=/opt/ros/humble/<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
@@ -290,7 +297,8 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+"nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent>gr <cmd>Telescope coc references<cr>
 nmap <silent> gh :CocCommand clangd.switchSourceHeader<CR>
 
 " Use K to show documentation in preview window
@@ -417,8 +425,14 @@ function! SynStack()
 endfunc
 nmap <leader>h :call SynStack()<CR>
 
+" #################
+" ###### LUA ######
+" #################
 
-lua << EOS
+lua << EOF
+
+
+------------------------------ nvim-tree -----------------------------------
 -- This is Lua
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
@@ -455,53 +469,51 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
-EOS
 
 
-lua << EOS
-  require("yanky").setup({
-  })
-  vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
-  vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
-  vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")
-  vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
-  vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
-  vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
+------------------------------ yanky -----------------------------------
+require("yanky").setup({
+})
+vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
+vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
+vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")
+vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
+vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
+vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 
-  require("substitute").setup({
-    on_substitute = require("yanky.integration").substitute(),
-  })
+require("substitute").setup({
+on_substitute = require("yanky.integration").substitute(),
+})
 
-  vim.keymap.set("n", "s", require('substitute').operator, { noremap = true })
-  vim.keymap.set("n", "ss", require('substitute').line, { noremap = true })
-  vim.keymap.set("n", "S", require('substitute').eol, { noremap = true })
-  vim.keymap.set("x", "s", require('substitute').visual, { noremap = true })
+vim.keymap.set("n", "s", require('substitute').operator, { noremap = true })
+vim.keymap.set("n", "ss", require('substitute').line, { noremap = true })
+vim.keymap.set("n", "S", require('substitute').eol, { noremap = true })
+vim.keymap.set("x", "s", require('substitute').visual, { noremap = true })
 
-  vim.keymap.set("n", "sx", require('substitute.exchange').operator, { noremap = true })
-  vim.keymap.set("n", "sxx", require('substitute.exchange').line, { noremap = true })
-  vim.keymap.set("x", "X", require('substitute.exchange').visual, { noremap = true })
-  vim.keymap.set("n", "sxc", require('substitute.exchange').cancel, { noremap = true })
+vim.keymap.set("n", "sx", require('substitute.exchange').operator, { noremap = true })
+vim.keymap.set("n", "sxx", require('substitute.exchange').line, { noremap = true })
+vim.keymap.set("x", "X", require('substitute.exchange').visual, { noremap = true })
+vim.keymap.set("n", "sxc", require('substitute.exchange').cancel, { noremap = true })
 
-EOS
 
-lua << EOS
-  vim.keymap.set({'n','x','o'}, '(', function() require("flash").jump() end)
-  vim.keymap.set({'n','x','o'}, ')', function() require("flash").treesitter() end)
-EOS
+------------------------------ flash -----------------------------------
+vim.keymap.set({'n','x','o'}, '(', function() require("flash").jump() end)
+vim.keymap.set({'n','x','o'}, ')', function() require("flash").treesitter() end)
 
-lua << EOS
-    require("ros-nvim").setup({only_workspace = true})
-    -- telescope finder
-    vim.keymap.set('n', '<leader>fr', '<cmd>Telescope ros ros<cr>', { noremap = true })
 
-    -- follow links in launch files
-    vim.keymap.set('n', '<leader>rl', function() require("ros-nvim.ros").open_launch_include() end, { silent = true, noremap = true })
+------------------------------ ros-nvim -----------------------------------
+require("ros-nvim").setup({only_workspace = true})
+-- telescope finder
+vim.keymap.set('n', '<leader>fr', '<cmd>Telescope ros ros<cr>', { noremap = true })
 
-    -- show definition for interfaces (messages/services) in floating window
-    vim.keymap.set('n', '<leader>ri', function() require("ros-nvim.ros").show_interface_definition() end, { silent = true, noremap = true })
-EOS
+-- follow links in launch files
+vim.keymap.set('n', '<leader>rl', function() require("ros-nvim.ros").open_launch_include() end, { silent = true, noremap = true })
 
-lua << EOF
+-- show definition for interfaces (messages/services) in floating window
+vim.keymap.set('n', '<leader>ri', function() require("ros-nvim.ros").show_interface_definition() end, { silent = true, noremap = true })
+
+
+------------------------------ coc Telescope -----------------------------------
 require("telescope").setup({
   extensions = {
     coc = {
@@ -511,4 +523,17 @@ require("telescope").setup({
   },
 })
 require('telescope').load_extension('coc')
+
+
+------------------------------ NavBuddy -----------------------------------
+--local navbuddy = require("nvim-navbuddy")
+
+--navbuddy.setup {
+--    lsp = {
+--        auto_attach = true
+--    }
+--}
+--require'lspconfig'.clangd.setup{}
+
 EOF
+

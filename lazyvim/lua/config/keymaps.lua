@@ -17,3 +17,8 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map("n", "<leader>a", "<cmd>e ~/.config/nvim/init.lua<cr>", { desc = "Edit Config" })
+
+map("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Navigate Down" })
+map("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Navigate Up" })
+map("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "Navigate Left" })
+map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Navigate Right" })

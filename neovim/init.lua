@@ -70,7 +70,7 @@ require("lazy").setup({
 
     -- ROS
     'taDachs/ros-nvim',
-    'JohnnyMudcrab/ros2-nvim'
+    --'JohnnyMudcrab/ros2-nvim'
 })
 
 -- ################
@@ -515,7 +515,30 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
+local function my_on_attach(bufnr)
+    local api = require "nvim-tree.api"
+
+    local function opts(desc)
+        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
+
+    -- default mappings
+    api.config.mappings.default_on_attach(bufnr)
+
+    -- custom mappings
+    vim.keymap.set('n', '<leader>d', api.tree.change_root_to_node, opts('CD'))
+    vim.keymap.set('n', 'u', api.node.navigate.parent, opts('Parent Directory'))
+end
+
+-- pass to setup along with your other options
+require("nvim-tree").setup {
+    ---
+    on_attach = my_on_attach,
+    ---
+}
+
 require("nvim-tree").setup({
+    on_attach = my_on_attach,
     actions = {
         change_dir = {
             global = false
@@ -527,12 +550,6 @@ require("nvim-tree").setup({
     sort_by = "case_sensitive",
     view = {
         width = 50,
-        mappings = {
-            list = {
-                { key = "u",         action = "dir_up" },
-                { key = "<leader>d", action = "cd" },
-            },
-        },
     },
     renderer = {
         group_empty = true,
@@ -596,15 +613,15 @@ require("telescope").setup({
 require('telescope').load_extension('coc')
 
 --local vim_utils = require "ros2-nvim.vim-utils"
-require 'ros2-nvim'.setup {
-    -- path to your catkin workspace
-    catkin_ws_path = "~/catkin_ws",
+--require 'ros2-nvim'.setup {
+---- path to your catkin workspace
+--catkin_ws_path = "~/catkin_ws",
 
-    -- make program (e.g. "catkin_make" or "catkin build" )
-    catkin_program = "catkin_make",
+---- make program (e.g. "catkin_make" or "catkin build" )
+--catkin_program = "catkin_make",
 
-    --method for opening terminal for e.g. catkin_make: utils.open_new_buffer or custom function
-}
+----method for opening terminal for e.g. catkin_make: utils.open_new_buffer or custom function
+--}
 
 -- ROS Introspection
 local map_opts = { noremap = true, silent = true }

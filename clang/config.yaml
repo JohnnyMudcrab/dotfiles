@@ -8,6 +8,7 @@ CompileFlags:
           -I/home/hanses/ros2_ws/rcb_testing/src/rcb_testing_area/rcb/rcb_main/rcb_robot_interface/include,
           -I/home/hanses/ros2_ws/rcb_testing/src/rcb_testing_area/rcb/rcb_main/rcb_ruckig/include,
           -I/home/hanses/ros2_ws/rcb_testing/src/rcb_testing_area/rcb/rcb_main/rcb_common/include,
+          -I/home/hanses/ros2_ws/rcb_testing/src/rcb_testing_area/rcb/ruckig_pro/include,
           -I/home/hanses/ros2_ws/rcb_testing/build/rcb_ruckig/rcb_ruckig_parameters/include,
           -I/home/hanses/ros2_ws/rcb_testing/build/rcb_robot_interface/rcb_robot_safety_parameters/include,
           -I/home/hanses/ros2_ws/rcb_testing/build/rcb_robot_interface/rcb_robot_interface_parameters/include,
@@ -45,6 +46,9 @@ CompileFlags:
           -I/opt/ros/humble/include/rosidl_typesupport_c,
           -I/opt/ros/humble/include/builtin_interfaces,
           -I/opt/ros/humble/include/rcpputils,
+          -I/opt/ros/humble/include/rclcpp_action,
+          -I/opt/ros/humble/include/rcl_action,
+          -I/opt/ros/humble/include/realtime_tools,
           -I/usr/include/eigen3,
           ]
 

@@ -7,6 +7,7 @@ packages=(
 	"python3"
 	"python3-dev"
 	"python3-pip"
+	"python3-venv"
 	"locales"
 	"vim"
 	"wget"
@@ -24,7 +25,6 @@ packages=(
 # packages to be installed
 snaps=(
 	"node --classic --channel=14"
-	"nvim --classic"
 )
 
 pips=(

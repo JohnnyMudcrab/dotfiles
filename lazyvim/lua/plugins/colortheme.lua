@@ -55,19 +55,19 @@ return {
                 colors.fg_dark = "#dadada"
                 colors.fg_gutter = "#444444"
                 colors.dark3 = "#545c7e"
-                colors.comment = "#666666"
-                colors.dark5 = "#b7b7b7"
+                colors.dark5 = "#a7a7a7" --"#b7b7b7"
                 colors.blue0 = "#3d59a1"
-                colors.blue = "#87afd7"
                 colors.blue1 = "#87afd7"
-                colors.blue2 = "#0db9d7"
-                colors.blue5 = "#89ddff"
-                colors.blue6 = "#b4f9f8"
+                colors.blue = "#b1dbec"
+                colors.blue2 = "#8aacba"
+                colors.blue5 = "#647c86"
+                colors.blue6 = "#3d4c53"
                 colors.blue7 = "#394b70"
                 colors.cyan = "#7dcfff"
+                colors.comment = "#666666"
                 colors.magenta = "#d78787" -- "#ff007c" --colors.fg
                 colors.magenta2 = "#ff007c"
-                colors.purple = "#b7bdf8"
+                colors.purple = "#a074c4" --"#b7bdf8"
                 colors.orange = "#ffc24b"
                 colors.yellow = "#d3b987"
                 colors.green = "#afd787"
@@ -100,6 +100,22 @@ return {
                 hl.AlphaHeaderLabel = { fg = c.orange }
                 hl.AlphaFooter = { fg = c.green }
                 hl.AlphaButtons = { fg = c.fg_dark }
+                hl.Type = { fg = c.blue }
+                hl["@lsp.type.variable"] = { fg = c.fg }
+                hl["@lsp.type.class"] = { fg = c.blue1 }
+                hl["@lsp.typemod.class.defaultLibrary.cpp"] = hl["@lsp.type.class"]
+                hl["@lsp.typemod.type.defaultLibrary.cpp"] = hl.Type
+                hl["@lsp.type.property"] = hl["@lsp.type.variable"]
+                hl["@lsp.type.namespace"] = { fg = c.magenta }
+                hl["@lsp.type.unknown.cpp"] = { underline = true }
+                hl["@operator"] = { fg = c.dark5 }
+                hl.String = { fg = c.fg }
+                hl.PreProc = { fg = c.dark5 }
+                hl.Statement = { fg = c.magenta }
+                hl.DiagnosticUnnecessary = { fg = c.comment, underline = true }
+                hl.Constant = { fg = c.orange }
+                hl.Function = { fg = c.green }
+                hl.cppNumber = { fg = c.fg }
             end
             opts.style = "storm"
             opts.transparent = false

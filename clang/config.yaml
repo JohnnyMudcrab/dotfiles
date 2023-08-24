@@ -19,6 +19,7 @@ CompileFlags:
           -I/home/hanses/ros2_ws/rcb_testing/build/rcb_controllers/rcb_controller_joint_test_parameters/include,
           -I/home/hanses/ros2_ws/rcb_testing/build/rcb_controllers/rcb_controller_joint_test_velocity_parameters/include,
           -I/home/hanses/ros2_ws/rcb_testing/build/rcb_controllers/rcb_controller_joint_trajectory_ros2_parameters/include,
+          -I/home/hanses/ros2_ws/rcb_testing/build/rcb_controllers/rcb_controller_hand_guiding_parameters/include,
           -I/home/hanses/ros2_ws/rcb_testing/build/rcb_ros2_interfaces/rosidl_generator_cpp,
           -I/opt/ros/humble/include,
           -I/opt/ros/humble/include/rclcpp,

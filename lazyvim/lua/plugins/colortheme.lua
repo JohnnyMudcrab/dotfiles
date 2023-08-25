@@ -45,6 +45,7 @@ return {
         --     delete = "#b2555b",
         -- },
         -- }
+        -- TODO: change color of indentline, command color, which keys, neotree, autocompletion
         opts = function(_, opts)
             opts.on_colors = function(colors)
                 colors.none = "NONE"
@@ -92,30 +93,40 @@ return {
             end
             opts.on_highlights = function(hl, c)
                 hl.NeoTreeGitModified = { fg = c.orange }
-                hl.NeoTreeDirectoryName = { fg = c.fg_dark }
-                hl.NeoTreeRootName = { fg = c.purple }
+                hl.NeoTreeDirectoryName = { fg = c.yellow }
+                hl.NeoTreeRootName = { fg = c.magenta }
+                hl.NeoTreeTitleBar = { fg = c.magenta }
+                hl.NeoTreeGitUntracked = { fg = c.red1 }
 
-                hl.AlphaShortcut = { fg = c.purple }
+                hl.AlphaShortcut = { fg = c.magenta }
                 hl.AlphaHeader = { fg = c.blue1 }
                 hl.AlphaHeaderLabel = { fg = c.orange }
                 hl.AlphaFooter = { fg = c.green }
                 hl.AlphaButtons = { fg = c.fg_dark }
+
+                hl.Constant = { fg = c.orange }
+                hl.cppNumber = { fg = c.fg }
+                hl.Directory = { fg = c.blue1 }
+                hl.DiagnosticUnnecessary = { fg = c.comment, underline = true }
+                hl.Function = { fg = c.green }
+                hl.PreProc = { fg = c.dark5 }
+                hl.String = { fg = c.fg }
+                hl.Statement = { fg = c.magenta }
                 hl.Type = { fg = c.blue }
-                hl["@lsp.type.variable"] = { fg = c.fg }
-                hl["@lsp.type.class"] = { fg = c.blue1 }
+
+                hl["@operator"] = { fg = c.magenta }
+
+                hl["@lsp.type.variable.cpp"] = { fg = c.fg_dark }
+                hl["@lsp.type.class.cpp"] = { fg = c.blue1 }
                 hl["@lsp.typemod.class.defaultLibrary.cpp"] = hl["@lsp.type.class"]
                 hl["@lsp.typemod.type.defaultLibrary.cpp"] = hl.Type
-                hl["@lsp.type.property"] = hl["@lsp.type.variable"]
+                hl["@lsp.typemod.function.defaultLibrary.cpp"] = hl.Function
+                hl["@lsp.typemod.variable.readonly.cpp"] = hl.Constant
+                hl["@lsp.type.property.cpp"] = { fg = c.yellow } --hl["@lsp.type.variable"]
                 hl["@lsp.type.namespace"] = { fg = c.magenta }
                 hl["@lsp.type.unknown.cpp"] = { underline = true }
-                hl["@operator"] = { fg = c.dark5 }
-                hl.String = { fg = c.fg }
-                hl.PreProc = { fg = c.dark5 }
-                hl.Statement = { fg = c.magenta }
-                hl.DiagnosticUnnecessary = { fg = c.comment, underline = true }
-                hl.Constant = { fg = c.orange }
-                hl.Function = { fg = c.green }
-                hl.cppNumber = { fg = c.fg }
+
+                hl.BufferLineTabSelected = { fg = c.magenta }
             end
             opts.style = "storm"
             opts.transparent = false

@@ -61,7 +61,6 @@ vim.opt.textwidth = 80 -- width of document (used by gd)
 vim.opt.wrap = false -- don't automatically wrap on load
 vim.opt.formatoptions:remove("t") -- don't automatically wrap text when typing
 -- vim.opt.colorcolumn = "80"  -- show column 80
-
 -- when scrolling, keep cursor x lines away from screen border
 -- vim.opt.scrolloff = 1010
 vim.opt.scrolloff = 4
@@ -72,3 +71,5 @@ vim.opt.updatetime = 200
 
 -- vim.opt.foldmethod = 'expr'
 -- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+vim.opt.pumblend = 0

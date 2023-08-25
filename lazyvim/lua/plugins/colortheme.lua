@@ -45,7 +45,7 @@ return {
         --     delete = "#b2555b",
         -- },
         -- }
-        -- TODO: change color of indentline, command color, which keys, neotree, autocompletion
+        -- TODO: change color of autocompletion
         opts = function(_, opts)
             opts.on_colors = function(colors)
                 colors.none = "NONE"
@@ -54,6 +54,7 @@ return {
                 colors.bg_highlight = "#323232"
                 colors.fg = "#eeeeee"
                 colors.fg_dark = "#dadada"
+                colors.fg_darker = "#cbcbcb"
                 colors.fg_gutter = "#444444"
                 colors.dark3 = "#545c7e"
                 colors.dark5 = "#a7a7a7" --"#b7b7b7"
@@ -89,7 +90,8 @@ return {
                 colors.fg_statusline = colors.fg_dark
                 colors.bg_float = "#1b1b1b"
                 colors.fg_float = colors.fg_dark
-                colors.info = colors.dark5
+                colors.info = colors.green1 --colors.dark5
+                colors.white = "#ffffff"
             end
             opts.on_highlights = function(hl, c)
                 hl.NeoTreeGitModified = { fg = c.orange }
@@ -104,19 +106,30 @@ return {
                 hl.AlphaFooter = { fg = c.green }
                 hl.AlphaButtons = { fg = c.fg_dark }
 
+                hl.CmpItemKind = { bg = c.fg }
+
+                hl.MiniIndentscopeSymbol = { fg = c.green1 }
+
+                hl.WhichKeyDesc = { fg = c.fg }
+                -- hl.WhichKey = { fg = c.white }
+                hl.WhichKeyGroup = { fg = c.yellow }
+
                 hl.Constant = { fg = c.orange }
                 hl.cppNumber = { fg = c.fg }
                 hl.Directory = { fg = c.blue1 }
                 hl.DiagnosticUnnecessary = { fg = c.comment, underline = true }
                 hl.Function = { fg = c.green }
+                hl.Pmenu = { bg = c.bg_highlight }
+                hl.PmenuSbar = { bg = c.bg }
                 hl.PreProc = { fg = c.dark5 }
                 hl.String = { fg = c.fg }
                 hl.Statement = { fg = c.magenta }
                 hl.Type = { fg = c.blue }
 
                 hl["@operator"] = { fg = c.magenta }
+                hl["@keyword"] = { fg = c.magenta }
 
-                hl["@lsp.type.variable.cpp"] = { fg = c.fg_dark }
+                hl["@lsp.type.variable.cpp"] = { fg = c.fg }
                 hl["@lsp.type.class.cpp"] = { fg = c.blue1 }
                 hl["@lsp.typemod.class.defaultLibrary.cpp"] = hl["@lsp.type.class"]
                 hl["@lsp.typemod.type.defaultLibrary.cpp"] = hl.Type
@@ -124,7 +137,7 @@ return {
                 hl["@lsp.typemod.variable.readonly.cpp"] = hl.Constant
                 hl["@lsp.type.property.cpp"] = { fg = c.yellow } --hl["@lsp.type.variable"]
                 hl["@lsp.type.namespace"] = { fg = c.magenta }
-                hl["@lsp.type.unknown.cpp"] = { underline = true }
+                hl["@lsp.type.unknown.cpp"] = { fg = c.fg_darker, underline = true }
 
                 hl.BufferLineTabSelected = { fg = c.magenta }
             end

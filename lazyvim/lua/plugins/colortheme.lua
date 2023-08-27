@@ -106,7 +106,7 @@ return {
                 hl.AlphaFooter = { fg = c.green }
                 hl.AlphaButtons = { fg = c.fg_dark }
 
-                hl.CmpItemKind = { bg = c.fg }
+                -- hl.CmpItemKind = { bg = c.fg }
 
                 hl.MiniIndentscopeSymbol = { fg = c.green1 }
 

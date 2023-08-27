@@ -124,6 +124,7 @@ return {
                 hl.PreProc = { fg = c.dark5 }
                 hl.String = { fg = c.fg }
                 hl.Statement = { fg = c.magenta }
+                hl.Title = { fg = c.magenta }
                 hl.Type = { fg = c.blue }
 
                 hl["@operator"] = { fg = c.magenta }

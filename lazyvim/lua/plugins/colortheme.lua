@@ -100,6 +100,13 @@ return {
                 hl.NeoTreeTitleBar = { fg = c.magenta }
                 hl.NeoTreeGitUntracked = { fg = c.red1 }
 
+                -- hl.FlashCurrent = { bg = c.green }
+                -- hl.FlashMatch = { bg = c.purple }
+                -- hl.FlashLabel = { bg = c.green }
+                -- hl.FlashBackdrop = { bg = c.comment }
+
+                -- hl.IlluminatedWordWrite = { bg = c.magenta }
+
                 hl.AlphaShortcut = { fg = c.magenta }
                 hl.AlphaHeader = { fg = c.blue1 }
                 hl.AlphaHeaderLabel = { fg = c.orange }

@@ -101,6 +101,9 @@ install() {
 	install_lazygit
 	install_neovim
 
+	# install deno
+	curl -fsSL https://deno.land/x/install/install.sh | sh
+
 	# install vim plug for neovim
 	# rm -rf ~/.local/share/nvim/site/autoload/plug.vim
 	# sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \

@@ -131,6 +131,7 @@ return {
                 hl.PreProc = { fg = c.dark5 }
                 hl.String = { fg = c.fg }
                 hl.Statement = { fg = c.magenta }
+                hl.TermCursor = hl.Cursor
                 hl.Title = { fg = c.magenta }
                 hl.Type = { fg = c.blue }
 
@@ -151,6 +152,7 @@ return {
             end
             opts.style = "storm"
             opts.transparent = false
+            opts.styles = { comments = { italic = false }, keywords = { italic = false } }
         end,
     },
 

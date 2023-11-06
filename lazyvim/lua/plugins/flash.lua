@@ -21,5 +21,12 @@ return {
                 enabled = false,
             },
         }
+        opts["highlight"] = {
+            backdrop = false,
+        }
+        opts["labels"] = "asdfghjklwertyuiopxcvbnm([{"
+        opts["jump"] = {
+            pos = "start",
+        }
     end,
 }

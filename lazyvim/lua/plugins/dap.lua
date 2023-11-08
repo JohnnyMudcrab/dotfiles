@@ -6,6 +6,6 @@ return {
         }
     end,
     opts = function(_, opts)
-        opts.ensure_installed = { "cpptools" }
+        opts.ensure_installed = { "cppdbg", "python" }
     end,
 }

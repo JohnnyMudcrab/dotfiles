@@ -93,7 +93,7 @@ return {
                 colors.info = colors.green1 --colors.dark5
                 colors.white = "#ffffff"
                 colors.border = colors.comment
-                colors.border_highlight = colors.orange
+                colors.border_highlight = colors.comment
             end
             opts.on_highlights = function(hl, c)
                 hl.NeoTreeGitModified = { fg = c.orange }

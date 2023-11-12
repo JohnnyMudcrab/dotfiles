@@ -3,7 +3,7 @@ return {
     --stylua: ignore
     keys = function()
         return {
-            { "<leader>z", mode = { "n", "x", "o" }, function() require("zen-mode").toggle({}) end, desc = "Flash"},
+            { "<C-z>", mode = { "n", "x", "o" }, function() require("zen-mode").toggle({window = {width = .9}}) end, desc = "Flash"},
         }
     end,
 

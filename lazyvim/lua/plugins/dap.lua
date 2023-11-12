@@ -5,7 +5,7 @@ return {
             { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
         }
     end,
-    opts = function(_, opts)
-        opts.ensure_installed = { "cppdbg", "python" }
-    end,
+    -- opts = function(_, opts)
+    --     opts.ensure_installed = { "cppdbg" }
+    -- end,
 }

@@ -115,6 +115,7 @@ return {
                 hl.AlphaFooter = { fg = c.green }
                 hl.AlphaButtons = { fg = c.fg_dark }
 
+                hl.TreeSitterContextSeparator = { fg = c.comment }
                 -- hl.CmpItemKind = { bg = c.fg }
 
                 hl.MiniIndentscopeSymbol = { fg = c.green1 }

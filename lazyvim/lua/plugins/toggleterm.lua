@@ -6,11 +6,12 @@ return {
         return {
         }
     end,
+    lazy = false,
     opts = {},
     config = function()
         local Terminal = require("toggleterm.terminal").Terminal
         local build_ros = Terminal:new({
-            cmd = 'colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS="-isystem /opt/ros/humble/include" --symlink-install && read -p "Press Enter to exit..."',
+            cmd = 'colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_FLAGS="-isystem /opt/ros/humble/include" --symlink-install',
             -- function to run on opening the terminal
             on_open = function(term)
                 vim.notify("Started RCB Build")

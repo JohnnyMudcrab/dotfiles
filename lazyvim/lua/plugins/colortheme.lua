@@ -6,6 +6,12 @@ return {
         "nvim-treesitter/playground",
     },
     {
+        "catppuccin",
+        opts = function(_, opts)
+            opts.flavour = "macchiato"
+        end,
+    },
+    {
         "folke/tokyonight.nvim",
         -- M.default = {
         -- none = "NONE",

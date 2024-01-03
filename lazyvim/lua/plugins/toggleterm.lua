@@ -81,12 +81,13 @@ return {
                     vim.notify("RCB Build finished without errors")
                 else
                     vim.notify("RCB Build finished with errors", "error")
-                    vim.cmd("TroubleToggle quickfix")
+                    vim.cmd("Trouble quickfix")
                 end
             end,
         })
 
         function _build_ros()
+            vim.cmd("TroubleClose")
             build_ros:toggle()
         end
     end,

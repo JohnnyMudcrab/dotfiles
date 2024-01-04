@@ -2,10 +2,9 @@ return {
     "akinsho/toggleterm.nvim",
     version = "*",
     --stylua: ignore
-    keys = function()
-        return {
-        }
-    end,
+    keys = {
+        { "<leader>rb", function() _build_ros() end , desc = "ROS Build"},
+    },
     lazy = false,
     opts = {},
     config = function()

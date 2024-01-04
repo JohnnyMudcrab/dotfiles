@@ -16,6 +16,13 @@ local function map(mode, lhs, rhs, opts)
     end
 end
 
+local wk = require("which-key")
+wk.register({
+    r = {
+        name = "ROS", -- optional group name
+    },
+}, { prefix = "<leader>" })
+
 map("n", "<leader>a", "<cmd>e ~/.config/nvim/init.lua<cr>", { desc = "Edit Config" })
 map("t", "<esc>", "<C-\\><C-n>", { desc = "Exit to Normal in Terminal" })
 

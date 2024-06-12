@@ -86,7 +86,7 @@ return {
         })
 
         function _build_ros()
-            vim.cmd("TroubleClose")
+            vim.cmd("Trouble quickfix close")
             build_ros:toggle()
         end
     end,

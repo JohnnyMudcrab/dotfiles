@@ -61,7 +61,7 @@ install_neovim() {
 	pushd ~/github/
 	git clone https://github.com/neovim/neovim
 	pushd neovim
-	git checkout tags/0.9.4
+	git checkout tags/v0.10.0
 	make CMAKE_BUILD_TYPE=RelWithDebInfo
 	sudo make install
 	popd

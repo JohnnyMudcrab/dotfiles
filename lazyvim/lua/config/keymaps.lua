@@ -37,3 +37,9 @@ map("n", "<C-i>", "<C-i>zz", { desc = "Jump forward and center" })
 map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
 map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
 map("n", "<leader>.", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+map(
+    "n",
+    "<leader>fs",
+    "<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.getcwd() .. '/src' })<CR>",
+    { desc = "Find Files in src directory" }
+)

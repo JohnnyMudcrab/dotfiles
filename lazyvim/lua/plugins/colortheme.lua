@@ -12,6 +12,11 @@ return {
         end,
     },
     {
+        "sonph/onehalf",
+        rtp = "vim",
+        lazy = false,
+    },
+    {
         "folke/tokyonight.nvim",
         -- M.default = {
         -- none = "NONE",
@@ -128,7 +133,7 @@ return {
 
                 hl.WhichKeyDesc = { fg = c.fg }
                 -- hl.WhichKey = { fg = c.white }
-                hl.WhichKeyGroup = { fg = c.yellow }
+                hl.WhichKeyGroup = { fg = c.fg_dark }
 
                 hl.Constant = { fg = c.orange }
                 hl.cppNumber = { fg = c.fg }
@@ -138,7 +143,8 @@ return {
                 hl.Pmenu = { bg = c.bg_highlight }
                 hl.PmenuSbar = { bg = c.bg }
                 hl.PreProc = { fg = c.dark5 }
-                hl.String = { fg = c.fg }
+                hl.String = { fg = c.dark5 }
+                --hl.String = { fg = c.fg }
                 hl.Statement = { fg = c.magenta }
                 hl.TermCursor = hl.Cursor
                 hl.Title = { fg = c.magenta }
@@ -153,7 +159,8 @@ return {
                 hl["@lsp.typemod.type.defaultLibrary.cpp"] = hl.Type
                 hl["@lsp.typemod.function.defaultLibrary.cpp"] = hl.Function
                 hl["@lsp.typemod.variable.readonly.cpp"] = hl.Constant
-                hl["@lsp.type.property.cpp"] = { fg = c.yellow } --hl["@lsp.type.variable"]
+                --hl["@lsp.type.property.cpp"] = { fg = c.yellow } --hl["@lsp.type.variable"]
+                hl["@lsp.type.property.cpp"] = { fg = c.fg } --hl["@lsp.type.variable"]
                 hl["@lsp.type.namespace"] = { fg = c.magenta }
                 hl["@lsp.type.unknown.cpp"] = { fg = c.fg_darker, underline = true }
 

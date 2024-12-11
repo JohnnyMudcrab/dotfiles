@@ -17,11 +17,7 @@ local function map(mode, lhs, rhs, opts)
 end
 
 local wk = require("which-key")
-wk.register({
-    r = {
-        name = "ROS", -- optional group name
-    },
-}, { prefix = "<leader>" })
+wk.add({ "<leader>r", group = "ROS" })
 
 map("n", "<leader>a", "<cmd>e ~/.config/nvim/init.lua<cr>", { desc = "Edit Config" })
 map("t", "<esc>", "<C-\\><C-n>", { desc = "Exit to Normal in Terminal" })
@@ -34,8 +30,8 @@ map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Navigate Right" })
 -- center after jump
 map("n", "<C-o>", "<C-o>zz", { desc = "Jump back and center" })
 map("n", "<C-i>", "<C-i>zz", { desc = "Jump forward and center" })
-map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
-map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
+-- map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+-- map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
 map("n", "<leader>.", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map(
     "n",

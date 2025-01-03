@@ -56,12 +56,12 @@ install_lazygit() {
 	sudo install lazygit /usr/local/bin
 }
 
-# install neovim 0.9.1
+# install neovim 0.10.3
 install_neovim() {
 	pushd ~/github/
 	git clone https://github.com/neovim/neovim
 	pushd neovim
-	git checkout tags/v0.10.0
+	git checkout tags/v0.10.3
 	make CMAKE_BUILD_TYPE=RelWithDebInfo
 	sudo make install
 	popd

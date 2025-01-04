@@ -32,6 +32,7 @@ map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Navigate Right" })
 -- map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
 -- map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
 
+map("n", "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", { desc = "Switch Source/Header (C/C++)" })
 map("n", "<leader>.", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map(
     "n",

@@ -8,6 +8,7 @@ return {
             red = "#ca1243",
             grey = "#323232",
             dark_grey = "#282828",
+            light_grey = "#676767",
             black = "#383a42",
             white = "#f3f3f3",
             light_green = "#83a598",
@@ -42,6 +43,23 @@ return {
         local custom_theme = require("lualine.themes.auto")
         -- Override just the normal section c background color
         custom_theme.normal.c.bg = colors.grey
+        vim.api.nvim_set_hl(0, "LualineSeparatorOrange", { fg = colors.light_grey, bg = colors.grey })
+
+        -- Reusable separator formatting functions
+        local function add_sep_left(str)
+            if str and str ~= "" then
+                return str .. " %#LualineSeparatorOrange#╲"
+            end
+            return str
+        end
+
+        local function add_sep_right(str)
+            if str and str ~= "" then
+                return str .. " %#LualineSeparatorOrange#╱"
+            end
+            return str
+        end
+
         -- custom_theme.normal.x = { bg = "#444444" }
         opts.options.theme = custom_theme
         opts.options.section_separators = { left = "", right = "" }
@@ -59,10 +77,12 @@ return {
                         info = icons.diagnostics.Info,
                         hint = icons.diagnostics.Hint,
                     },
+                    fmt = add_sep_left,
+                    padding = { left = 1, right = 0 },
                 },
-                { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+                { "filetype", icon_only = false, padding = { left = 1, right = 0 }, fmt = add_sep_left },
                 -- { LazyVim.lualine.pretty_path() },
-                { "filename", path = 1 },
+                { "filename", path = 1, padding = { left = 1, right = 0 } },
             },
             lualine_x = {
                 Snacks.profiler.status(),
@@ -71,24 +91,32 @@ return {
                     function() return require("noice").api.status.command.get() end,
                     cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
                     color = function() return { fg = Snacks.util.color("Statement") } end,
+                    fmt = add_sep_right,
+                    padding = { left = 0, right = 1 }
                 },
                 -- stylua: ignore
                 {
                     function() return require("noice").api.status.mode.get() end,
                     cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
                     color = function() return { fg = Snacks.util.color("Constant") } end,
+                    fmt = add_sep_right,
+                    padding = { left = 0, right = 1 }
                 },
                 -- stylua: ignore
                 {
                     function() return "  " .. require("dap").status() end,
                     cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
                     color = function() return { fg = Snacks.util.color("Debug") } end,
+                    fmt = add_sep_right,
+                    padding = { left = 0, right = 1 }
                 },
                 -- stylua: ignore
                 {
                     require("lazy.status").updates,
                     cond = require("lazy.status").has_updates,
                     color = function() return { fg = Snacks.util.color("Special") } end,
+                    fmt = add_sep_right,
+                    padding = { left = 0, right = 1 }
                 },
                 {
                     "diff",
@@ -107,6 +135,7 @@ return {
                             }
                         end
                     end,
+                    padding = { left = 0, right = 1 },
                 },
             },
             lualine_y = {

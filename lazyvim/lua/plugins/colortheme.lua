@@ -130,10 +130,17 @@ return {
                 -- hl.IlluminatedWordWrite = { bg = c.magenta }
 
                 hl.AlphaShortcut = { fg = c.magenta }
+                hl.SnacksDashboardKey = { fg = c.magenta }
                 hl.AlphaHeader = { fg = c.blue1 }
+                hl.SnacksDashboardHeader = { fg = c.blue1 }
                 hl.AlphaHeaderLabel = { fg = c.orange }
                 hl.AlphaFooter = { fg = c.green }
+                hl.SnacksDashboardFooter = { fg = c.green }
+                hl.SnacksDashboardSpecial = { fg = c.magenta }
+                hl.SnacksDashboardTitle = { fg = c.green }
                 hl.AlphaButtons = { fg = c.fg_dark }
+                hl.SnacksDashboardDesc = { fg = c.fg_dark }
+                hl.SnacksDashboardDir = { fg = c.fg_dark }
 
                 hl.TreeSitterContextSeparator = { fg = c.comment }
                 -- hl.CmpItemKind = { bg = c.fg }

@@ -60,15 +60,15 @@ return {
             return str
         end
 
+
         -- custom_theme.normal.x = { bg = "#444444" }
         opts.options.theme = custom_theme
         opts.options.section_separators = { left = "", right = "" }
         opts.sections = process_sections({
             lualine_a = { "mode" },
             lualine_b = { "branch" },
-
             lualine_c = {
-                LazyVim.lualine.root_dir(),
+                --LazyVim.lualine.root_dir(),
                 {
                     "diagnostics",
                     symbols = {

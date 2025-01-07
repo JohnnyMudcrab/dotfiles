@@ -1,0 +1,11 @@
+#!/bin/bash
+
+SESSION_NAME="rcb_side_nd"
+
+if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+	tmux attach-session -t "$SESSION_NAME"
+else
+	cd ~/ros2_ws/neighborhood_diagnostics/
+	source install/setup.bash
+	tmux new -s rcb_side_nd ';' split-window -v ';' split-window -v ';' select-pane -t 1 ';' split-window -v ';' select-pane -t 1
+fi

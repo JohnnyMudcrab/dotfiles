@@ -1,9 +1,29 @@
 return {
+    -- {
+    --     "norcalli/nvim-colorizer.lua",
+    -- },
     {
-        "norcalli/nvim-colorizer.lua",
+        "eero-lehtinen/oklch-color-picker.nvim",
+        event = "VeryLazy",
+        opts = {},
+        keys = {
+            -- One handed keymap recommended, you will be using the mouse
+            { "<leader>v", "<cmd>ColorPickOklch<cr>", desc = "Color pick under cursor" },
+        },
     },
     {
         "nvim-treesitter/playground",
+    },
+    {
+        "catppuccin",
+        opts = function(_, opts)
+            opts.flavour = "macchiato"
+        end,
+    },
+    {
+        "sonph/onehalf",
+        rtp = "vim",
+        lazy = false,
     },
     {
         "folke/tokyonight.nvim",
@@ -92,6 +112,8 @@ return {
                 colors.fg_float = colors.fg_dark
                 colors.info = colors.green1 --colors.dark5
                 colors.white = "#ffffff"
+                colors.border = colors.comment
+                colors.border_highlight = colors.comment
             end
             opts.on_highlights = function(hl, c)
                 hl.NeoTreeGitModified = { fg = c.orange }
@@ -108,18 +130,26 @@ return {
                 -- hl.IlluminatedWordWrite = { bg = c.magenta }
 
                 hl.AlphaShortcut = { fg = c.magenta }
+                hl.SnacksDashboardKey = { fg = c.magenta }
                 hl.AlphaHeader = { fg = c.blue1 }
+                hl.SnacksDashboardHeader = { fg = c.blue1 }
                 hl.AlphaHeaderLabel = { fg = c.orange }
                 hl.AlphaFooter = { fg = c.green }
+                hl.SnacksDashboardFooter = { fg = c.green }
+                hl.SnacksDashboardSpecial = { fg = c.magenta }
+                hl.SnacksDashboardTitle = { fg = c.green }
                 hl.AlphaButtons = { fg = c.fg_dark }
+                hl.SnacksDashboardDesc = { fg = c.fg_dark }
+                hl.SnacksDashboardDir = { fg = c.fg_dark }
 
+                hl.TreeSitterContextSeparator = { fg = c.comment }
                 -- hl.CmpItemKind = { bg = c.fg }
 
                 hl.MiniIndentscopeSymbol = { fg = c.green1 }
 
                 hl.WhichKeyDesc = { fg = c.fg }
                 -- hl.WhichKey = { fg = c.white }
-                hl.WhichKeyGroup = { fg = c.yellow }
+                hl.WhichKeyGroup = { fg = c.fg_dark }
 
                 hl.Constant = { fg = c.orange }
                 hl.cppNumber = { fg = c.fg }
@@ -129,8 +159,10 @@ return {
                 hl.Pmenu = { bg = c.bg_highlight }
                 hl.PmenuSbar = { bg = c.bg }
                 hl.PreProc = { fg = c.dark5 }
-                hl.String = { fg = c.fg }
+                hl.String = { fg = c.dark5 }
+                --hl.String = { fg = c.fg }
                 hl.Statement = { fg = c.magenta }
+                hl.TermCursor = hl.Cursor
                 hl.Title = { fg = c.magenta }
                 hl.Type = { fg = c.blue }
 
@@ -143,7 +175,8 @@ return {
                 hl["@lsp.typemod.type.defaultLibrary.cpp"] = hl.Type
                 hl["@lsp.typemod.function.defaultLibrary.cpp"] = hl.Function
                 hl["@lsp.typemod.variable.readonly.cpp"] = hl.Constant
-                hl["@lsp.type.property.cpp"] = { fg = c.yellow } --hl["@lsp.type.variable"]
+                --hl["@lsp.type.property.cpp"] = { fg = c.yellow } --hl["@lsp.type.variable"]
+                hl["@lsp.type.property.cpp"] = { fg = c.fg } --hl["@lsp.type.variable"]
                 hl["@lsp.type.namespace"] = { fg = c.magenta }
                 hl["@lsp.type.unknown.cpp"] = { fg = c.fg_darker, underline = true }
 
@@ -151,6 +184,7 @@ return {
             end
             opts.style = "storm"
             opts.transparent = false
+            opts.styles = { comments = { italic = false }, keywords = { italic = false } }
         end,
     },
 

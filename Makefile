@@ -7,12 +7,15 @@ all: install symlinks
 symlinks:
 	@ln -sf $(DIR)/tmux/_tmux.conf ~/.tmux.conf
 	@ln -sf $(DIR)/tmux/_tmuxline ~/.tmuxline
+	@ln -sf $(DIR)/git/lazygit/config.yml ~/.config/lazygit/config.yml
 	@ln -sf $(DIR)/lazyvim/init.lua ~/.config/nvim/init.lua
 	@ln -sf $(DIR)/lazyvim/stylua.toml ~/.config/nvim/stylua.toml
+	@ln -sf $(DIR)/lazyvim/lazy-lock.json ~/.config/nvim/lazy-lock.json
+	@ln -sf $(DIR)/lazyvim/lazyvim.json ~/.config/nvim/lazyvim.json
 	@ln -sf $(DIR)/lazyvim/lua ~/.config/nvim/lua
 	@ln -sf $(DIR)/clang/config.yaml ~/.config/clangd/config.yaml
 	@ln -sf $(DIR)/neovim/coc-settings.json ~/.config/nvim/coc-settings.json
-	@ln -sff ~/github/dotfiles/bash/_bashrc ~/.bashrc
+	@ln -sf $(DIR)/dotfiles/bash/_bashrc ~/.bashrc
 
 
 install:

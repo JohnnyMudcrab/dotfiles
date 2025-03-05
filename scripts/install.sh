@@ -12,6 +12,7 @@ packages=(
     "vim"
     "wget"
     "git"
+    "gettext"
     "ranger"
     "ack-grep"
     "ripgrep"

@@ -6,12 +6,20 @@
     "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.dap.nlua",
     "lazyvim.plugins.extras.editor.navic",
+    "lazyvim.plugins.extras.editor.snacks_explorer",
+    "lazyvim.plugins.extras.editor.snacks_picker",
     "lazyvim.plugins.extras.lang.clangd",
+    "lazyvim.plugins.extras.lang.cmake",
+    "lazyvim.plugins.extras.lang.json",
+    "lazyvim.plugins.extras.lang.markdown",
     "lazyvim.plugins.extras.lang.python",
+    "lazyvim.plugins.extras.lang.toml",
+    "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.ui.smear-cursor"
   ],
+  "install_version": 7,
   "news": {
     "NEWS.md": "10960"
   },
-  "version": 7
+  "version": 8
 }

@@ -41,6 +41,6 @@ map(
     { desc = "Find Files in src directory" }
 )
 
-map("n", "<leader>gg", function()
-    require("lazygit-confirm").confirm()
-end, { noremap = true, desc = "Lazygit (Root dir)" })
+-- map("n", "<leader>gg", function()
+--     require("lazygit-confirm").confirm()
+-- end, { noremap = true, desc = "Lazygit (Root dir)" })

@@ -1,9 +1,9 @@
 return {
-    {
-        "thelastpsion/lazygit-confirm.nvim",
-        opts = {
-            -- options
-            show_saveall = true,
-        },
-    },
+    -- {
+    --     "thelastpsion/lazygit-confirm.nvim",
+    --     opts = {
+    --         -- options
+    --         show_saveall = true,
+    --     },
+    -- },
 }

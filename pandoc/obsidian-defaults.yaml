@@ -1,0 +1,7 @@
+from: docx
+to: markdown-simple_tables-multiline_tables-grid_tables+pipe_tables
+output-file: output.md
+standalone: true
+wrap: none
+atx-headers: true
+columns: 120

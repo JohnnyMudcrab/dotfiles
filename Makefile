@@ -14,7 +14,8 @@ symlinks:
 	@ln -sf $(DIR)/lazyvim/lazyvim.json ~/.config/nvim/lazyvim.json
 	@ln -sf $(DIR)/lazyvim/lua ~/.config/nvim/lua
 	@ln -sf $(DIR)/clang/config.yaml ~/.config/clangd/config.yaml
-	@ln -sf $(DIR)/dotfiles/bash/_bashrc ~/.bashrc
+	@ln -sf $(DIR)/bash/_bashrc ~/.bashrc
+	@ln -sf $(DIR)/pandoc ~/.pandoc
 
 
 install:

@@ -1,5 +1,5 @@
 return {
-    "echasnovski/mini.pairs",
+    "nvim-mini/mini.pairs",
     opts = function(_, opts)
         opts.mappings = {
             ["("] = { action = "open", pair = "()", neigh_pattern = ".[%s]" },

@@ -215,3 +215,4 @@ export PATH="$PATH:$HOME/github/dotfiles/git/bin:$HOME/github/dotfiles/tmux/bin:
 # Load Bash It
 alias sb='source ~/.bashrc'
 source "$BASH_IT"/bash_it.sh
+export PATH="$HOME/.local/bin:$PATH"

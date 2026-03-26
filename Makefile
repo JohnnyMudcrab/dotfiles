@@ -2,11 +2,11 @@
 DIR=~/github/dotfiles
 
 all: install symlinks
-	@echo "Reminder: Vim plugins are managed within Vim with Vundle."
 
 symlinks:
+	@mkdir -p ~/.config/wezterm
 	@ln -sf $(DIR)/tmux/_tmux.conf ~/.tmux.conf
-	@ln -sf $(DIR)/tmux/_tmuxline ~/.tmuxline
+	@ln -sf $(DIR)/wezterm/_wezterm.lua ~/.config/wezterm/wezterm.lua
 	@ln -sf $(DIR)/git/lazygit/config.yml ~/.config/lazygit/config.yml
 	@ln -sf $(DIR)/lazyvim/init.lua ~/.config/nvim/init.lua
 	@ln -sf $(DIR)/lazyvim/stylua.toml ~/.config/nvim/stylua.toml

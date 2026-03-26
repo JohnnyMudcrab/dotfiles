@@ -217,4 +217,8 @@ alias sb='source ~/.bashrc'
 source "$BASH_IT"/bash_it.sh
 export PATH="$HOME/.local/bin:$PATH"
 
+# fnm (node version manager)
+export PATH="$HOME/.local/share/fnm:$PATH"
+eval "$(fnm env --use-on-cdpath 2>/dev/null)"
+
 source /usr/share/doc/fzf/examples/key-bindings.bash

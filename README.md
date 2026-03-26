@@ -1,17 +1,35 @@
 dotfiles
 ========
 
-My personal dotfiles.
+My personal dotfiles for ROS2/C++ development.
 
 ## Installation
 
-You need to clone the repository into `~/github/dotfiles` and `sudo apt install make && make all`.
+Clone the repository and run:
 
-## Neovim Steps
-First start will display errors because all plugins are missing
-`:PlugInstall`
-   
-## WSL Workaround for snapd
+```bash
+git clone https://github.com/JohnnyMudcrab/dotfiles ~/github/dotfiles
+sudo apt install make
+make all
+```
 
-- Install node as explained here: https://github.com/nodesource/distributions
-- Build neovim from source: https://github.com/neovim/neovim
+This installs packages, tools, and creates all symlinks. Safe to re-run for updates.
+
+## What gets installed
+
+- **Neovim** – latest stable binary (LazyVim)
+- **lazygit** – latest release
+- **Node.js** – latest LTS via fnm
+- **Deno**
+- **tmux** + TPM
+- **bash-it**
+- apt packages: tmux, ripgrep, fd-find, ranger, python3, ...
+
+## First start
+
+Open Neovim – LazyVim will automatically bootstrap and install all plugins on first launch.
+
+## Updating
+
+Re-running `make all` updates Neovim and lazygit to their latest releases.
+Neovim plugins are managed with `:Lazy update` inside Neovim.

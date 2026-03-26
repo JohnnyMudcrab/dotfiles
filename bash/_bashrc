@@ -216,3 +216,5 @@ export PATH="$PATH:$HOME/github/dotfiles/git/bin:$HOME/github/dotfiles/tmux/bin:
 alias sb='source ~/.bashrc'
 source "$BASH_IT"/bash_it.sh
 export PATH="$HOME/.local/bin:$PATH"
+
+source /usr/share/doc/fzf/examples/key-bindings.bash

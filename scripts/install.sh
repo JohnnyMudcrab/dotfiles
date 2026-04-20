@@ -13,7 +13,8 @@ packages=(
     "git"
     "unzip"
     "ranger"
-    "ack-grep"
+    "ack"
+    "fzf"
     "ripgrep"
     "fd-find"
     "silversearcher-ag"
@@ -90,7 +91,7 @@ install() {
     # install pips
     for i in "${pips[@]}"; do
         echo "Installing Pips: $i"
-        pip install $i >/dev/null
+        pip install --break-system-packages $i >/dev/null
     done
 
     install_lazygit
@@ -112,6 +113,9 @@ install() {
         git clone --depth=1 https://github.com/JohnnyMudcrab/bash-it.git ~/.bash_it
         ~/.bash_it/install.sh --no-modify-config
     fi
+    source ~/.bash_it/bash_it.sh
+    bashit enable alias ros2 git
+    bashit enable completion git tmux
 
 }
 

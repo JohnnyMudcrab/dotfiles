@@ -26,3 +26,11 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.spell = false
     end,
 })
+
+-- lazy.nvim creates filetype scoped keymaps only when a FileType event fires
+-- after its handlers are attached. For the file given on the command line that
+-- has already happened, so those keymaps are missing (<leader>cp for markdown,
+-- for example). Fire the event once more.
+vim.schedule(function()
+    vim.cmd("do FileType")
+end)

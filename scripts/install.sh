@@ -15,7 +15,8 @@ packages=(
     "git"
     "unzip"
     "ranger"
-    "ack-grep"
+    "ack"
+    "fzf"
     "ripgrep"
     "fd-find"
     "silversearcher-ag"
@@ -127,7 +128,7 @@ install() {
     # install pips
     for i in "${pips[@]}"; do
         echo "Installing Pips: $i"
-        pip install "$i" >/dev/null || echo "pip: $i failed" >&2
+        pip install --break-system-packages "$i" >/dev/null || echo "pip: $i failed" >&2
     done
 
     install_lazygit
@@ -150,6 +151,13 @@ install() {
         ~/.bash_it/install.sh --no-modify-config
     fi
 
+    # bash-it's init is neither -e nor -u clean
+    (
+        set +eu
+        source ~/.bash_it/bash_it.sh
+        bash-it enable alias ros2 git
+        bash-it enable completion git tmux
+    )
 }
 
 install

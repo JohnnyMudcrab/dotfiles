@@ -5,6 +5,7 @@ all: install symlinks
 
 symlinks:
 	@mkdir -p ~/.config/wezterm
+	@mkdir -p ~/.config/lazygit
 	@ln -sf $(DIR)/tmux/_tmux.conf ~/.tmux.conf
 	@ln -sf $(DIR)/wezterm/_wezterm.lua ~/.config/wezterm/wezterm.lua
 	@ln -sf $(DIR)/git/lazygit/config.yml ~/.config/lazygit/config.yml
@@ -19,5 +20,5 @@ symlinks:
 
 
 install:
-	$(DIR)/scripts/install.sh
+	bash $(DIR)/scripts/install.sh
 

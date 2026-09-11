@@ -1,0 +1,6 @@
+# Rules for markdownlint-cli2, linked to ~/.config/nvim/.markdownlint.yaml.
+# The linter reads markdown from stdin, so it can only find a config that is
+# passed explicitly - see lua/plugins/markdown.lua.
+
+# line length: prose is soft wrapped in the editor, a hard limit only adds noise
+MD013: false

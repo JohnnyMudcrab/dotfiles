@@ -16,3 +16,13 @@ vim.filetype.add({
         xacro = "xml", -- falls du auch xacro-Dateien verwendest
     },
 })
+
+-- LazyVim switches spell checking on for markdown, with an english dictionary.
+-- On german prose that underlines most of the words. Toggle it per buffer with
+-- <leader>us when proof reading is actually wanted.
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+    callback = function()
+        vim.opt_local.spell = false
+    end,
+})

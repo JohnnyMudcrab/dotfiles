@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -euo pipefail
+
 # packages to be installed
 packages=(
     "tmux"
@@ -30,21 +32,47 @@ repositories=(
 
 # function that checks if a repository exists and adds it if not
 add_ppa() {
-    grep -h "^deb.*$1" /etc/apt/sources.list.d/* >/dev/null 2>&1
-    if [ $? -ne 0 ]; then
-        echo "Adding ppa:$1"
-        sudo add-apt-repository -y ppa:$1
+    if grep -qh "^deb.*$1" /etc/apt/sources.list.d/* 2>/dev/null; then
+        echo "ppa:$1 already exists"
         return 0
     fi
 
-    echo "ppa:$1 already exists"
-    return 1
+    echo "Adding ppa:$1"
+    sudo add-apt-repository -y "ppa:$1"
 }
 
-# install lazygit
+# latest release tag of a github repo, resolved without the rate limited api
+latest_tag() {
+    local tag
+    tag=$(curl -fsSLI -o /dev/null -w '%{url_effective}' "https://github.com/$1/releases/latest" | sed 's#.*/tag/##')
+    if [[ $tag != v* ]]; then
+        echo "$1: cannot determine latest release" >&2
+        return 1
+    fi
+    echo "$tag"
+}
+
+installed_neovim() {
+    command -v nvim >/dev/null && nvim --version | awk 'NR==1 {print $2}' || true
+}
+
+installed_lazygit() {
+    command -v lazygit >/dev/null && lazygit --version | grep -Po 'version=\K[0-9][^,]*' | head -1 || true
+}
+
+# install lazygit, skipped when the latest release is already in place
 install_lazygit() {
-    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    local tag version
+    tag=$(latest_tag jesseduffield/lazygit)
+    version=${tag#v}
+
+    if [[ $(installed_lazygit) == "$version" ]]; then
+        echo "lazygit $version is up to date"
+        return 0
+    fi
+
+    echo "Installing lazygit $version"
+    curl -fLo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/${tag}/lazygit_${version}_Linux_x86_64.tar.gz"
     tar xf /tmp/lazygit.tar.gz -C /tmp lazygit
     sudo install /tmp/lazygit /usr/local/bin
     rm /tmp/lazygit.tar.gz /tmp/lazygit
@@ -52,8 +80,17 @@ install_lazygit() {
 
 # install latest stable neovim from pre-built binary
 install_neovim() {
-    curl -Lo /tmp/nvim.tar.gz \
-        "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
+    local tag
+    tag=$(latest_tag neovim/neovim)
+
+    if [[ $(installed_neovim) == "$tag" ]]; then
+        echo "neovim $tag is up to date"
+        return 0
+    fi
+
+    echo "Installing neovim $tag"
+    curl -fLo /tmp/nvim.tar.gz \
+        "https://github.com/neovim/neovim/releases/download/${tag}/nvim-linux-x86_64.tar.gz"
     sudo tar -xzf /tmp/nvim.tar.gz -C /usr/local --strip-components=1
     rm /tmp/nvim.tar.gz
 }
@@ -73,7 +110,7 @@ install_fnm() {
 install() {
     # add repositories if not existent
     for i in "${repositories[@]}"; do
-        add_ppa $i
+        add_ppa "$i" || echo "ppa:$i failed" >&2
     done
 
     # update package lists from repositories
@@ -81,16 +118,16 @@ install() {
     sudo apt-get update >/dev/null
     echo "Update finished"
 
-    # install packages
+    # install packages, a single unavailable one must not stop the run
     for i in "${packages[@]}"; do
         echo "Installing Package: $i"
-        sudo apt-get install $i -y >/dev/null
+        sudo apt-get install "$i" -y >/dev/null || echo "apt: $i failed" >&2
     done
 
     # install pips
     for i in "${pips[@]}"; do
         echo "Installing Pips: $i"
-        pip install $i >/dev/null
+        pip install "$i" >/dev/null || echo "pip: $i failed" >&2
     done
 
     install_lazygit
@@ -127,12 +164,12 @@ export LANG=en_US.UTF-8
 
 if [ -z "$(git config --global user.name)" ]; then
     echo "Your Name?"
-    read varname
+    read -r varname
     git config --global user.name "$varname"
 fi
 if [ -z "$(git config --global user.email)" ]; then
     echo "Your Email?"
-    read varemail
+    read -r varemail
     git config --global user.email "$varemail"
 fi
 git config --global pull.rebase false

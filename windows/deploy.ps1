@@ -57,13 +57,51 @@ try {
     throw "Cannot create symlinks. Turn on Developer Mode (Settings > System > For developers) or run this elevated."
 }
 
-# autohotkey layout at logon
+# autohotkey layout at logon. A shortcut in the startup folder cannot send
+# keys to elevated windows, so when this runs elevated the layout is registered
+# as a scheduled task with highest privileges instead.
 $startup = [Environment]::GetFolderPath('Startup')
-$shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut((Join-Path $startup 'layout.lnk'))
-$shortcut.TargetPath = "$RepoRoot\keymap\layout.ahk"
-$shortcut.WorkingDirectory = "$RepoRoot\keymap"
-$shortcut.Save()
-Write-Host "startup: $startup\layout.lnk -> $($shortcut.TargetPath)"
+$shortcutPath = Join-Path $startup 'layout.lnk'
+$layout = "$RepoRoot\keymap\layout.ahk"
+$taskName = 'AutoHotkey layout (dotfiles)'
+
+$ahk = (Get-Command autohotkey -ErrorAction SilentlyContinue).Source
+if (-not $ahk) {
+    Write-Warning "autohotkey not on PATH - open a new shell after install.ps1"
+}
+
+$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole(
+    [Security.Principal.WindowsBuiltInRole]::Administrator)
+
+if ($isAdmin -and $ahk) {
+    $action = New-ScheduledTaskAction -Execute $ahk -Argument """$layout"""
+    $trigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
+    $principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" `
+        -LogonType Interactive -RunLevel Highest
+    $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries `
+        -ExecutionTimeLimit ([TimeSpan]::Zero)
+
+    Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger `
+        -Principal $principal -Settings $settings -Force | Out-Null
+
+    # the startup shortcut would start a second, unelevated instance
+    if (Test-Path $shortcutPath) { Remove-Item $shortcutPath }
+
+    Write-Host "logon task: $taskName -> $ahk ""$layout"" (elevated)"
+} else {
+    $shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcutPath)
+    if ($ahk) {
+        $shortcut.TargetPath = $ahk
+        $shortcut.Arguments = """$layout"""
+    } else {
+        $shortcut.TargetPath = $layout
+        $shortcut.Arguments = ''
+    }
+    $shortcut.WorkingDirectory = "$RepoRoot\keymap"
+    $shortcut.Save()
+    Write-Host "startup: $shortcutPath -> $($shortcut.TargetPath) $($shortcut.Arguments)"
+    Write-Host "  elevated windows will not see the remaps - rerun this elevated for that"
+}
 
 if ($ImportRegistry) {
     $neovide = (Get-Command neovide -ErrorAction SilentlyContinue).Source

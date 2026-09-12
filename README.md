@@ -47,3 +47,8 @@ scoop export -c > windows\scoop.json   # on the old machine, commit the result
 deliberately does not carry it. `deploy.ps1` needs Developer Mode or an
 elevated shell for the symlinks and moves anything it finds in the way to a
 `.bak-<timestamp>` copy.
+
+Run `deploy.ps1` from an elevated shell to have the autohotkey layout
+registered as a logon task with highest privileges; only then do the remaps
+reach elevated windows. Unelevated it falls back to a shortcut in the startup
+folder, which covers everything except elevated windows.

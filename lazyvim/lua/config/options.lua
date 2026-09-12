@@ -26,10 +26,10 @@ vim.opt.shiftwidth = 4
 vim.opt.shiftround = true
 vim.opt.expandtab = true
 vim.opt.mouse = "a"
+-- indentation: every filetype worth mentioning brings its own indentexpr
+-- (treesitter for c/cpp via LazyVim, the ftplugin for python), and indentexpr
+-- overrides both smartindent and cindent. So autoindent is all that is left.
 vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.cindent = true
-vim.opt.cinoptions = ""
 
 -- Y-N-C prompt if closing with unsaved changes
 vim.opt.confirm = true
@@ -50,8 +50,6 @@ vim.opt.swapfile = false
 vim.opt.autowrite = false -- never write a file unless I request it
 vim.opt.autowriteall = false -- NEVER
 
--- syntax highlight on
-vim.cmd("syntax on")
 -- vim.opt.lazyredraw = true
 
 -- showing line numbers and length

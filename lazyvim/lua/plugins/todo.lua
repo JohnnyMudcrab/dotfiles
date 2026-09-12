@@ -1,9 +1,7 @@
 return {
     "folke/todo-comments.nvim",
     --stylua: ignore
-    keys = function()
-        return {
-            { "<leader>xt", "<cmd>TodoTrouble cwd=vim.fn.expand('%:p')<cr>", desc = "Todo (Trouble)" },
-        }
-    end,
+    keys = {
+        { "<leader>xt", "<cmd>Trouble todo toggle filter.buf=0<cr>", desc = "Todo (current file)" },
+    },
 }

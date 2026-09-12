@@ -34,12 +34,9 @@ map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Navigate Right" })
 
 map("n", "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", { desc = "Switch Source/Header (C/C++)" })
 map("n", "<leader>.", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map(
-    "n",
-    "<leader>fs",
-    "<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.getcwd() .. '/src' })<CR>",
-    { desc = "Find Files in src directory" }
-)
+map("n", "<leader>fs", function()
+    Snacks.picker.files({ cwd = vim.fn.getcwd() .. "/src" })
+end, { desc = "Find Files in src directory" })
 
 -- map("n", "<leader>gg", function()
 --     require("lazygit-confirm").confirm()

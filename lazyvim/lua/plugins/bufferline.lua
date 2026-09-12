@@ -3,8 +3,8 @@ return {
     opts = function(_, opts)
         opts.options.offsets = {
             {
-                filetype = "neo-tree",
-                text = "Neo-tree",
+                filetype = "snacks_layout_box",
+                text = "Explorer",
                 highlight = "@property",
                 text_align = "left",
             },

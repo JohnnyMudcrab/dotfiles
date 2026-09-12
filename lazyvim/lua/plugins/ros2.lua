@@ -1,21 +1,18 @@
 return {
     "ErickKramer/nvim-ros2",
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim",
-        "nvim-treesitter/nvim-treesitter",
-    },
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
     opts = {
-        -- Add any custom options here
         autocmds = true,
-        telescope = true,
         treesitter = true,
+        picker = "snacks",
     },
+    --stylua: ignore
     keys = {
-        { "<leader>ra", "<cmd>Telescope ros2 actions<CR>", desc = "List ROS Actions" },
-        { "<leader>rt", "<cmd>Telescope ros2 topics<CR>", desc = "List ROS topics" },
-        { "<leader>ri", "<cmd>Telescope ros2 interfaces<CR>", desc = "List ROS Interfaces" },
-        { "<leader>rn", "<cmd>Telescope ros2 nodes<CR>", desc = "List ROS Nodes" },
-        { "<leader>rs", "<cmd>Telescope ros2 services<CR>", desc = "List ROS services" },
+        { "<leader>ra", function() require("nvim-ros2.pickers").actions() end,     desc = "List ROS Actions" },
+        { "<leader>rt", function() require("nvim-ros2.pickers").topics_info() end, desc = "List ROS Topics" },
+        { "<leader>ri", function() require("nvim-ros2.pickers").interfaces() end,  desc = "List ROS Interfaces" },
+        { "<leader>rn", function() require("nvim-ros2.pickers").nodes() end,       desc = "List ROS Nodes" },
+        { "<leader>rs", function() require("nvim-ros2.pickers").services() end,    desc = "List ROS Services" },
+        { "<leader>rp", function() require("nvim-ros2.pickers").packages() end,    desc = "List ROS Packages" },
     },
 }

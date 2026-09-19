@@ -57,50 +57,32 @@ try {
     throw "Cannot create symlinks. Turn on Developer Mode (Settings > System > For developers) or run this elevated."
 }
 
-# autohotkey layout at logon. A shortcut in the startup folder cannot send
-# keys to elevated windows, so when this runs elevated the layout is registered
-# as a scheduled task with highest privileges instead.
+# autohotkey layout at logon. Reaching elevated windows requires UI access, and
+# that requires the interpreter to sit under Program Files - AutoHotkey says so
+# itself in UX\ui-setup.ahk. An interpreter from scoop can never provide it, so
+# an official install is preferred when one is present.
 $startup = [Environment]::GetFolderPath('Startup')
 $shortcutPath = Join-Path $startup 'layout.lnk'
 $layout = "$RepoRoot\keymap\layout.ahk"
-$taskName = 'AutoHotkey layout (dotfiles)'
 
-$ahk = (Get-Command autohotkey -ErrorAction SilentlyContinue).Source
-if (-not $ahk) {
-    Write-Warning "autohotkey not on PATH - open a new shell after install.ps1"
-}
+$uia = Get-ChildItem "$env:ProgramFiles\AutoHotkey\v2\*_UIA.exe" -ErrorAction SilentlyContinue |
+    Select-Object -First 1
+$ahk = if ($uia) { $uia.FullName } else { (Get-Command autohotkey -ErrorAction SilentlyContinue).Source }
 
-$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole(
-    [Security.Principal.WindowsBuiltInRole]::Administrator)
-
-if ($isAdmin -and $ahk) {
-    $action = New-ScheduledTaskAction -Execute $ahk -Argument """$layout"""
-    $trigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
-    $principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" `
-        -LogonType Interactive -RunLevel Highest
-    $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries `
-        -ExecutionTimeLimit ([TimeSpan]::Zero)
-
-    Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger `
-        -Principal $principal -Settings $settings -Force | Out-Null
-
-    # the startup shortcut would start a second, unelevated instance
-    if (Test-Path $shortcutPath) { Remove-Item $shortcutPath }
-
-    Write-Host "logon task: $taskName -> $ahk ""$layout"" (elevated)"
+$shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcutPath)
+if ($ahk) {
+    $shortcut.TargetPath = $ahk
+    $shortcut.Arguments = """$layout"""
 } else {
-    $shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcutPath)
-    if ($ahk) {
-        $shortcut.TargetPath = $ahk
-        $shortcut.Arguments = """$layout"""
-    } else {
-        $shortcut.TargetPath = $layout
-        $shortcut.Arguments = ''
-    }
-    $shortcut.WorkingDirectory = "$RepoRoot\keymap"
-    $shortcut.Save()
-    Write-Host "startup: $shortcutPath -> $($shortcut.TargetPath) $($shortcut.Arguments)"
-    Write-Host "  elevated windows will not see the remaps - rerun this elevated for that"
+    Write-Warning "autohotkey not found - open a new shell after install.ps1"
+    $shortcut.TargetPath = $layout
+    $shortcut.Arguments = ''
+}
+$shortcut.WorkingDirectory = "$RepoRoot\keymap"
+$shortcut.Save()
+Write-Host "startup: $shortcutPath -> $($shortcut.TargetPath) $($shortcut.Arguments)"
+if (-not $uia) {
+    Write-Host "  no UI access interpreter, so elevated windows will not see the remaps"
 }
 
 if ($ImportRegistry) {
@@ -113,7 +95,10 @@ if ($ImportRegistry) {
     $template = Join-Path $PSScriptRoot 'neovideOpenFolder.reg'
     $generated = Join-Path $env:TEMP 'neovideOpenFolder.generated.reg'
     $old = 'C:\\Users\\hanses\\scoop\\apps\\neovide\\current\\neovide.exe'
-    (Get-Content $template -Raw).Replace($old, $neovide.Replace('\', '\\')) | Set-Content $generated -Encoding Unicode
+    # per user under HKCU, so no admin rights are needed
+    $content = (Get-Content $template -Raw).Replace($old, $neovide.Replace('\', '\\'))
+    $content = $content.Replace('[HKEY_CLASSES_ROOT\', '[HKEY_CURRENT_USER\Software\Classes\')
+    $content | Set-Content $generated -Encoding Unicode
 
     reg import $generated
     Write-Host "registry: neovide entries point to $neovide"

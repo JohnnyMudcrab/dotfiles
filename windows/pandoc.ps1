@@ -1,5 +1,5 @@
 # PowerShell Script to set up Pandoc Context Menu Integration
-# This script requires Administrator privileges to modify the registry
+# Registers a 'Convert to Markdown' entry for .docx files. No admin rights needed.
 
 # Variables
 $pandocDir = "$env:USERPROFILE\.pandoc"
@@ -61,12 +61,10 @@ pause > nul
 Set-Content -Path $converterScriptPath -Value $batchScript -Encoding ASCII
 
 # 3. Add to Windows Context Menu via Registry
-$registryPath = "HKCR:\SystemFileAssociations\.docx\shell\ConvertToMarkdown"
-
-# Check if Registry Provider exists
-if (!(Test-Path "HKCR:")) {
-    New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT
-}
+# Per user under HKCU\Software\Classes, which Windows merges into HKEY_CLASSES_ROOT.
+# Writing to HKCR directly would need admin rights and would land in the admin's
+# profile on machines where the working account is a standard user.
+$registryPath = "HKCU:\Software\Classes\SystemFileAssociations\.docx\shell\ConvertToMarkdown"
 
 # Create registry keys
 New-Item -Path $registryPath -Force | Out-Null

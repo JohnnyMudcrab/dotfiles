@@ -86,20 +86,38 @@ if (-not $uia) {
 }
 
 if ($ImportRegistry) {
+    # Everything below goes to HKCU\Software\Classes: per user, no admin rights,
+    # and Windows merges it into HKEY_CLASSES_ROOT.
+
+    # neovide context menu. The checked in .reg carries the path of the old
+    # machine, so it is patched before the import.
     $neovide = (Get-Command neovide -ErrorAction SilentlyContinue).Source
-    if (-not $neovide) {
-        throw "neovide is not in PATH, install it first"
+    if ($neovide) {
+        $template = Join-Path $PSScriptRoot 'neovideOpenFolder.reg'
+        $generated = Join-Path $env:TEMP 'neovideOpenFolder.generated.reg'
+        $old = 'C:\\Users\\hanses\\scoop\\apps\\neovide\\current\\neovide.exe'
+        $content = (Get-Content $template -Raw).Replace($old, $neovide.Replace('\', '\\'))
+        $content = $content.Replace('[HKEY_CLASSES_ROOT\', '[HKEY_CURRENT_USER\Software\Classes\')
+        $content | Set-Content $generated -Encoding Unicode
+        reg import $generated
+        Write-Host "registry: neovide entries point to $neovide"
+    } else {
+        Write-Warning "neovide not on PATH, context menu skipped"
     }
 
-    # the checked in .reg carries the path of the old machine, patch it
-    $template = Join-Path $PSScriptRoot 'neovideOpenFolder.reg'
-    $generated = Join-Path $env:TEMP 'neovideOpenFolder.generated.reg'
-    $old = 'C:\\Users\\hanses\\scoop\\apps\\neovide\\current\\neovide.exe'
-    # per user under HKCU, so no admin rights are needed
-    $content = (Get-Content $template -Raw).Replace($old, $neovide.Replace('\', '\\'))
-    $content = $content.Replace('[HKEY_CLASSES_ROOT\', '[HKEY_CURRENT_USER\Software\Classes\')
-    $content | Set-Content $generated -Encoding Unicode
-
-    reg import $generated
-    Write-Host "registry: neovide entries point to $neovide"
+    # outlook: links, as written by windows\outlook\MailLink.bas, open the mail
+    # they point to
+    $outlook = Get-ChildItem "$env:ProgramFiles\Microsoft Office\root\Office*\OUTLOOK.EXE" `
+        -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($outlook) {
+        $key = 'HKCU:\Software\Classes\outlook'
+        New-Item -Path "$key\shell\open\command" -Force | Out-Null
+        Set-ItemProperty -Path $key -Name '(Default)' -Value 'URL:Outlook Folders'
+        Set-ItemProperty -Path $key -Name 'URL Protocol' -Value ''
+        Set-ItemProperty -Path "$key\shell\open\command" -Name '(Default)' `
+            -Value """$($outlook.FullName)"" /select ""%1"""
+        Write-Host "registry: outlook: links open in $($outlook.FullName)"
+    } else {
+        Write-Warning "OUTLOOK.EXE not found, outlook: links are not registered"
+    }
 }

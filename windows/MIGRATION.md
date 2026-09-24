@@ -62,8 +62,17 @@ everything you change afterwards stays behind on the old machine.
 | `C:\Users\<user>\.ssh` | keys, `config`, `known_hosts` |
 | PowerToys backup | Settings > Backup & Restore > Backup |
 | `%APPDATA%\Microsoft\Signatures` | Outlook signatures |
+| `%APPDATA%\Microsoft\Outlook\VbaProject.OTM` | Outlook macros; copy with Outlook closed |
 | Browser profile or a sync login | bookmarks, saved logins |
 | Downloads, Desktop, certificates | whatever is not in git |
+
+For comparison later, export the old `outlook:` link handler. One of the two
+exists, the other one fails:
+
+```powershell
+reg export HKCU\Software\Classes\outlook D:\transfer\outlook-handler-hkcu.reg
+reg export HKLM\Software\Classes\outlook D:\transfer\outlook-handler-hklm.reg
+```
 
 ### A5. Push the repository
 
@@ -196,7 +205,12 @@ throws it away.
 ### B2. Local again, as the working account
 
 1. PowerToys > Backup & Restore > Restore
-2. Sign out and back in: only then does the autohotkey autostart run and the
+2. Outlook macros: close Outlook, copy `D:\transfer\...\VbaProject.OTM` back to
+   `%APPDATA%\Microsoft\Outlook\`. Without the backup, import
+   `windows\outlook\MailLink.bas` instead (Alt+F11 > File > Import File). If the
+   macro does not run, check File > Options > Trust Center > Macro Settings - on
+   a managed machine a policy may decide that for you.
+3. Sign out and back in: only then does the autohotkey autostart run and the
    new PATH reach every program
 
 ## Phase C - what to check
@@ -210,6 +224,8 @@ throws it away.
 | `:Lazy clean` once | drops plugins that are no longer in the config |
 | right click on a folder | "Open Folder as Neovim Project" |
 | right click on a .docx | "Convert to Markdown" |
+| mail selected, Alt+F8 > `AddLinkToMessageInClipboard`, paste and click | the mail opens |
+| an `outlook:` link written on the old machine | opens too, see below |
 | `wsl -l -v` | the distribution is there and runs version 2 |
 
 ## Why some of this is the way it is
@@ -223,5 +239,9 @@ throws it away.
   separate profile. Running the deploy elevated would put the symlinks, the
   startup entry and the registry keys into that profile instead of yours, and a
   scheduled task with "highest privileges" grants a standard account nothing.
+- **`outlook:` links carry the EntryID of the mail.** For a mailbox that lives
+  on the Exchange server that ID belongs to the server store, so links written
+  before the move should keep working - test one old link rather than trust it.
+  Mails in a local PST get new IDs with every new profile.
 - **A snapshot is a snapshot.** After `wsl --export`, work done inside WSL on
   the old machine is not in the image.

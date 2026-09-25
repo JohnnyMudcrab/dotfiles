@@ -98,8 +98,9 @@ install_neovim() {
 
 # install fnm (node version manager) and latest LTS node
 install_fnm() {
+    # --skip-shell: ~/.bashrc is a symlink into this repo and sets fnm up already
     if [ ! -f "$HOME/.local/share/fnm/fnm" ]; then
-        curl -fsSL https://fnm.vercel.app/install | bash --no-modify-config
+        curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
     fi
     export PATH="$HOME/.local/share/fnm:$PATH"
     eval "$(fnm env --shell bash)"
@@ -135,9 +136,9 @@ install() {
     install_neovim
     install_fnm
 
-    # install deno
+    # install deno, without prompts and without touching ~/.bashrc
     if [ ! -f "$HOME/.deno/bin/deno" ]; then
-        curl -fsSL https://deno.land/x/install/install.sh | sh
+        curl -fsSL https://deno.land/install.sh | sh -s -- -y --no-modify-path
     fi
 
     # install tmux plugin manager

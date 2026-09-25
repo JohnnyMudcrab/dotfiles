@@ -110,10 +110,16 @@ if ($ImportRegistry) {
     $outlook = Get-ChildItem "$env:ProgramFiles\Microsoft Office\root\Office*\OUTLOOK.EXE" `
         -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($outlook) {
+        # same values as the handler the old machine had under HKLM
         $key = 'HKCU:\Software\Classes\outlook'
         New-Item -Path "$key\shell\open\command" -Force | Out-Null
-        Set-ItemProperty -Path $key -Name '(Default)' -Value 'URL:Outlook Folders'
+        New-Item -Path "$key\DefaultIcon" -Force | Out-Null
+        Set-ItemProperty -Path $key -Name '(Default)' -Value 'URL:Outlook Protocol'
         Set-ItemProperty -Path $key -Name 'URL Protocol' -Value ''
+        Set-ItemProperty -Path $key -Name 'EditFlags' -Value 2 -Type DWord
+        Set-ItemProperty -Path "$key\DefaultIcon" -Name '(Default)' -Value "$($outlook.FullName),0"
+        Set-ItemProperty -Path "$key\shell" -Name '(Default)' -Value 'open'
+        Set-ItemProperty -Path "$key\shell\open" -Name '(Default)' -Value 'Open'
         Set-ItemProperty -Path "$key\shell\open\command" -Name '(Default)' `
             -Value """$($outlook.FullName)"" /select ""%1"""
         Write-Host "registry: outlook: links open in $($outlook.FullName)"

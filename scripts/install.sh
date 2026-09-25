@@ -12,6 +12,7 @@ packages=(
     "locales"
     "vim"
     "wget"
+    "curl"
     "git"
     "unzip"
     "ranger"
@@ -96,6 +97,33 @@ install_neovim() {
     rm /tmp/nvim.tar.gz
 }
 
+# claude code on request. It lands in ~/.local/bin, which bash/_bashrc puts on
+# PATH, and leaves the shell configuration alone (checked in a throwaway HOME).
+claude_installed() {
+    command -v claude >/dev/null || [ -x "$HOME/.local/bin/claude" ]
+}
+
+# asked up front, while you are still watching; installed after apt
+ask_claude() {
+    WANT_CLAUDE=no
+    claude_installed && return 0
+    if [ -t 0 ]; then
+        local answer
+        read -r -p "Install Claude Code? [y/N] " answer || answer=""
+        case "$answer" in [yYjJ]*) WANT_CLAUDE=yes ;; esac
+    fi
+}
+
+install_claude() {
+    if [ "$WANT_CLAUDE" = yes ]; then
+        curl -fsSL https://claude.ai/install.sh | bash
+    elif claude_installed; then
+        echo "claude code already installed, it updates itself"
+    else
+        echo "claude code skipped"
+    fi
+}
+
 # install fnm (node version manager) and latest LTS node
 install_fnm() {
     # --skip-shell: ~/.bashrc is a symlink into this repo and sets fnm up already
@@ -110,6 +138,8 @@ install_fnm() {
 
 # routine to install common packages
 install() {
+    ask_claude
+
     # add repositories if not existent
     for i in "${repositories[@]}"; do
         add_ppa "$i" || echo "ppa:$i failed" >&2
@@ -135,6 +165,7 @@ install() {
     install_lazygit
     install_neovim
     install_fnm
+    install_claude
 
     # install deno, without prompts and without touching ~/.bashrc
     if [ ! -f "$HOME/.deno/bin/deno" ]; then

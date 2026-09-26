@@ -1,7 +1,9 @@
 local wezterm = require("wezterm")
 
 return {
-	default_prog = { "wsl.exe", "--distribution", "Ubuntu-24.04" },
+	-- --cd ~: otherwise wsl.exe inherits wezterm's own working directory, the
+	-- Windows profile, and the shell starts in /mnt/c/Users/<user>
+	default_prog = { "wsl.exe", "--distribution", "Ubuntu-24.04", "--cd", "~" },
 	--font = wezterm.font("Hack Nerd Font Mono"), -- Replace with your preferred font "JetBrains Mono"
 	font = wezterm.font("JetBrains Mono Bold"), -- Replace with your preferred font "JetBrains Mono"
 	font_size = 12.0,

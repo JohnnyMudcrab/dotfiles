@@ -1,6 +1,7 @@
 # Links the configs of this repo into their Windows locations, the counterpart
 # to "make symlinks" on Linux. Needs Developer Mode or an elevated shell.
-# -ImportRegistry also adds the neovide entries to the context menu (elevated).
+# -ImportRegistry also registers the neovide context menu and outlook: links,
+# per user and only for what is installed.
 
 param(
     [switch]$ImportRegistry
@@ -69,20 +70,20 @@ $uia = Get-ChildItem "$env:ProgramFiles\AutoHotkey\v2\*_UIA.exe" -ErrorAction Si
     Select-Object -First 1
 $ahk = if ($uia) { $uia.FullName } else { (Get-Command autohotkey -ErrorAction SilentlyContinue).Source }
 
-$shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcutPath)
 if ($ahk) {
+    $shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcutPath)
     $shortcut.TargetPath = $ahk
     $shortcut.Arguments = """$layout"""
+    $shortcut.WorkingDirectory = "$RepoRoot\keymap"
+    $shortcut.Save()
+    Write-Host "startup: $shortcutPath -> $ahk ""$layout"""
+    if (-not $uia) {
+        Write-Host "  no UI access interpreter, so elevated windows will not see the remaps"
+    }
 } else {
-    Write-Warning "autohotkey not found - open a new shell after install.ps1"
-    $shortcut.TargetPath = $layout
-    $shortcut.Arguments = ''
-}
-$shortcut.WorkingDirectory = "$RepoRoot\keymap"
-$shortcut.Save()
-Write-Host "startup: $shortcutPath -> $($shortcut.TargetPath) $($shortcut.Arguments)"
-if (-not $uia) {
-    Write-Host "  no UI access interpreter, so elevated windows will not see the remaps"
+    # a shortcut to the bare .ahk would only make windows ask at every logon
+    # how to open it
+    Write-Warning "autohotkey not found, layout autostart skipped - if install.ps1 just ran, open a new shell and run this again"
 }
 
 if ($ImportRegistry) {
